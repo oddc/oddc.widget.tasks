@@ -1,0 +1,251 @@
+.users .user {
+    padding-right: 35px;
+}
+
+.users .user .username {
+    padding-left: 15px;
+}
+
+.attach-img {
+    width: 35px;
+    height: 35px;
+}
+
+.tpl-small-header .ta-root .ta-editor {
+    height: 117px;
+    min-height: 117px;
+}
+
+.comments {
+    padding: 15px 0 0 0;
+}
+
+.comments .chat-message-bubble {
+    margin: 0 0 15px 0;
+}
+
+.ta-scroll-window.form-control,
+.tpl-small-header .content .ta-editor.ta-html,
+.tpl-small-header .content .ta-scroll-window > .ta-bind,
+.tpl-small-header .options .content .ta-editor {
+    height: 115px;
+    min-height: 115px;
+}
+
+.action-box {
+    padding: 10px;
+}
+
+.action-box .list-group-item {
+    font-size: 13px;
+    border-right: 1px solid #E8E8E8;
+    border-left: 1px solid #E8E8E8;
+}
+
+.action-box .list-group-item:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top: 1px solid #E8E8E8;
+}
+
+.action-box .list-group-item:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.panel .list-group-item.selected {
+    background: #F5F5F5;
+}
+
+.tasklist-item {
+    padding-right: 25px;
+}
+
+.chat-message-bubble {
+    padding: 0 15px;
+}
+
+.chat-message-bubble .chat-message-bubble-image {
+    width: 35px;
+    height: 35px;
+    float: left;
+}
+
+.chat-message-bubble .chat-message-bubble-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.chat-message-bubble .bubble {
+    float: left;
+    position: relative;
+    margin: 0 0 0 15px;
+    max-width: calc(100% - 50px);
+}
+
+.chat-message-bubble .bubble .textmessage {
+    background: #EDEDED;
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    position: relative;
+}
+
+.chat-message-bubble .bubble .textmessage .message-timestamp {
+    opacity: .5;
+}
+
+.chat-message-bubble .bubble .triangle::before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 11px;
+    border: 7px solid;
+}
+
+.chat-message-bubble .bubble .triangle::before {
+    left: -6px;
+    border-color: #EDEDED;
+    transform: rotate(-45deg);
+}
+
+.task-assign-area .task-assign-image-area {
+    display: inline-block;
+    position: relative;
+}
+
+.task-assign-area .task-assign-image-area {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+}
+
+.task-assign-area .task-assign-image-area img {
+    width: 35px;
+    height: 35px;
+}
+
+.task-assign-area .task-assign-image-area:hover .hover-user-image {
+    display: inherit;
+}
+
+.task-assign-area .task-assign-image-area .hover-user-image {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    opacity: .7;
+    background: #333333;
+    text-align: center;
+    color: red;
+    line-height: 35px;
+    font-size: 25px;
+    padding-top: 2px;
+}
+
+.commentForm form {
+    padding: 0 15px;
+}
+
+.ok-button {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    z-index: 999999;
+}
+
+od-widget-header .col-xs-4 .ok-button {
+    right: 16px;
+}
+
+od-widget-header input.form-control.ng-not-empty {
+    padding-right: 50px;
+}
+
+od-widget-header input.form-control {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #979DAD;
+    border: 1px solid #E6E8EF;
+}
+
+od-widget-header input.form-control:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-color: #66AFE9;
+}
+
+od-widget-header input.form-control:hover {
+    border-color: #B8BABF;
+}
+
+.ta-toolbar {
+    display: none;
+}
+
+.task-user-add {
+    height: 38px;
+    line-height: 38px;
+    padding-left: 5px;
+    width: calc(100% - 34px);
+    border: none;
+}
+
+.task-user-add:focus {
+    border: none;
+    outline: none;
+}
+
+.panel .action-box li.list-group-item {
+    padding: 10px 15px;
+}
+
+.panel .action-box li.list-group-item * {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.panel .action-box li.list-group-item.task-user img {
+    width: 30px;
+    height: 30px;
+}
+
+.panel .action-box li.list-group-item.task-user {
+    cursor: pointer;
+}
+
+.panel .action-box .list-group-item span {
+    font-weight: normal;
+}
+
+oddc-tasklist ul li.list-group-item.active {
+    background: #66AFE9;
+    color: #FFFFFF;
+}
+
+.panel oddc-tasklist .list-group-item.active.item-hover:hover {
+    background: #5B9DD1;
+    color: #FFFFFF;
+}
+
+ul.tasklist li.list-group-item {
+    padding: 15px;
+}
+
+oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
+    height: 292px !important;
+}

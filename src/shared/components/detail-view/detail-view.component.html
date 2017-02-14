@@ -1,0 +1,46 @@
+<div class="action-box" ng-if="detailViewController.service.getSelectedTask() !== null">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div ng-if="detailViewController.service.getSelectedTask().open"
+                 ng-click="detailViewController.closeTask(detailViewController.service.getSelectedTask())">
+                <span style="cursor: pointer; font-size: 20px; vertical-align: middle;"
+                      class="icon-widget-check"></span>
+                <span style="cursor: pointer; padding-left: 5px;">Als erledigt markieren</span>
+            </div>
+            <div ng-if="!detailViewController.service.getSelectedTask().open"
+                 ng-click="detailViewController.openTask(detailViewController.service.getSelectedTask())">
+                <span style="cursor: pointer; font-size: 20px; vertical-align: middle;" class="icon-unlock"
+                      ng-click="detailViewController.openTask(detailViewController.task)"></span>
+                <span style="cursor: pointer; padding-left: 5px;">Als nicht erledigt markieren</span>
+            </div>
+        </li>
+        <li ng-click="detailViewController.onClickAssign(detailViewController.service.getSelectedTask())"
+            class="list-group-item task-user">
+            <span ng-if="!detailViewController.service.getSelectedTask().users.length"
+                  style="font-size: 20px; vertical-align: middle;" class="icon-user-plus"></span>
+            <img class="img-circle" ng-if="detailViewController.service.getSelectedTask().users.length"
+                 ng-src="{{ detailViewController.service.getSelectedTask().users[0].image }}"/>
+            <span style="padding-left: 5px;" ng-if="detailViewController.service.getSelectedTask().users.length">{{ detailViewController.service.getSelectedTask().users[0].firstName }} {{ detailViewController.service.getSelectedTask().users[0].lastName }}</span>
+            <span style="padding-left: 5px;" ng-if="!detailViewController.service.getSelectedTask().users.length">Jemanden hinzufügen</span>
+        </li>
+    </ul>
+    <br>
+    <h3>Notiz <span ng-if="detailViewController.service.getSelectedTask().open">hinzufügen</span></h3>
+    <div class="task-description-editor">
+        <div ckeditor="{height:'120px'}"
+             ng-if="detailViewController.service.getSelectedTask().open"
+             ng-model="detailViewController.service.getSelectedTask().description"
+             ng-change="detailViewController.delayedSave(detailViewController.service.getSelectedTask())"></div>
+
+        <div ng-if="!detailViewController.service.getSelectedTask().open">
+            <div ng-if="detailViewController.service.getSelectedTask().description"
+                 ng-bind-html="detailViewController.service.getSelectedTask().description"></div>
+            <div ng-if="!detailViewController.service.getSelectedTask().description">
+                Keine Notiz vorhanden
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-panel btn-xs icon-trash-o"
+            ui-sref="detail.delete({id: detailViewController.service.getSelectedTask().id})">Löschen
+    </button>
+</div>

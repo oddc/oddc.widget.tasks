@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "connect": "^3.4.1",
+    "dateformat": "^1.0.12",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-concat": "^2.6.0",
+    "gulp-header": "^1.8.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-uglify": "^1.5.3",
+    "gulp-watch": "^4.3.5",
+    "jshint": "^2.9.2",
+    "serve-static": "^1.10.2"
+  }
+}

@@ -1,0 +1,29 @@
+<od-widget widget-title="Aufgaben" template="tpl-small-header" icon="ressources/images/icon.svg">
+    <od-widget-header>
+        <div class="col-md-12" ng-if="!tasklistpage.loading && !tasklistpage.error">
+            <form ng-submit="tasklistpage.addTask(tasklistpage.newTask)">
+                <input type="text"
+                       class="form-control"
+                       ng-model="tasklistpage.newTask"
+                       name="add-task"
+                       placeholder="+ Aufgabe hinzufügen..."
+                       autocomplete="off" />
+                <button ng-show="tasklistpage.newTask.length > 0" type="submit" class="btn btn-success ok-button">OK</button>
+            </form>
+        </div>
+    </od-widget-header>
+    <od-widget-content nospacing>
+        <div ng-if="tasklistpage.loading">
+            <od-loader></od-loader>
+        </div>
+        <div ng-if="!tasklistpage.loading && tasklistpage.error" class="alert alert-danger" ng-bind="tasklistpage.errorMessage"></div>
+        <od-scrollbar>
+            <oddc-tasklist ng-if="!tasklistpage.loading && !tasklistpage.error"
+                           on-select-task="tasklistpage.onSelectTask({ $task })"
+                           selected-task="tasklistpage.service.getSelectedTask()"
+                           tasks="tasklistpage.service.getTasks()"
+                           on-closed-tasks-visibility-change="tasklistpage.onClosedTasksVisibilityChange($visibility)"
+                           on-status-change="tasklistpage.onStatusChange($task)"></oddc-tasklist>
+        </od-scrollbar>
+    </od-widget-content>
+</od-widget>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget id="oddc.widget.tasks" builder="2.3.1">
+    <information>
+        <name lang="de-DE">Aufgaben</name>
+        <version>2.0.28</version>
+        <author>
+            <company>opta data Gruppe</company>
+            <telephone>0201 / 3 19 60</telephone>
+            <fax>0201 89074499</fax>
+            <email>service@optadata-gruppe.de</email>
+            <web>http://www.optadata-gruppe.de</web>
+        </author>
+        <developer>
+            <name>Sven Strgar</name>
+            <email>s.strgar@optadata-gruppe.de</email>
+        </developer>
+        <summary lang="de-DE">
+            <image>/ressources/images/small.png</image>
+            <text type="textile">
+                Dieses Widget zeigt Ihnen Ihre aktuellen To-dos an und hilft Ihnen, Ihre Aufgaben zu verwalten.
+           </text>
+        </summary>
+        <description lang="de-DE">
+            <image>/ressources/images/big.png</image>
+            <text type="textile">
+                Das Aufgabenwidget bildet Ihre Arbeitsabläufe übersichtlich ab: Aktuelle Projekte können Sie hier bearbeiten, Aufgaben zuweisen und kommentieren.
+            </text>
+        </description>
+        <tags>kostenlos,opta data</tags>
+        <appearance>
+            <text-appearance>light</text-appearance>
+            <main-color>#DB4C3F</main-color>
+            <text-color>#FFFFFF</text-color>
+        </appearance>
+    </information>
+    <ressources>
+        <templates lang="de-DE">
+            <template cols="1" rows="1" markup="/src/1x1/app.html">
+                <styles>
+                    <style>/src/shared/styles/tasks.widget.css</style>
+                    <style>/src/1x1/styles/animations.css</style>
+                </styles>
+                <scripts>
+                    <script>/src/1x1/app.js</script>
+                    <script>/src/shared/services/tasks.service.js</script>
+                    <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
+                    <script>/src/shared/components/tasklist/tasklist.component.js</script>
+                    <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
+                    <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
+                    <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
+                    <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
+                    <script>/src/shared/components/detail-view/detail-view.component.js</script>
+                    <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
+                    <script>/src/1x1/components/detail-page/detail-page.component.js</script>
+                    <script>/src/1x1/components/list-page/list-page.component.js</script>
+                </scripts>
+            </template>
+            <template cols="2" rows="1" markup="/src/2x1/app.html">
+                <styles>
+                    <style>/src/shared/styles/tasks.widget.css</style>
+                    <style>/src/2x1/styles/animations.css</style>
+                </styles>
+                <scripts>
+                    <script>/src/2x1/app.js</script>
+                    <script>/src/shared/services/tasks.service.js</script>
+                    <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
+                    <script>/src/shared/components/tasklist/tasklist.component.js</script>
+                    <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
+                    <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
+                    <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
+                    <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
+                    <script>/src/shared/components/detail-view/detail-view.component.js</script>
+                    <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
+                    <script>/src/2x1/components/indexpage/indexpage.component.js</script>
+                </scripts>
+            </template>
+        </templates>
+        <services>
+            <service environment="DEV" type="restful" name="createTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="PUT"></service>
+            <service environment="DEV" type="restful" name="readTasks" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="updateTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="deleteTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="completeTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}/close" method="POST"></service>
+            <service environment="DEV" type="restful" name="createComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment" method="PUT"></service>
+            <service environment="DEV" type="restful" name="updateComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="deleteComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="readUsers" url="http://crm-test.optadata.com:8080/odone.business/users" method="GET"></service>
+            <service environment="DEV" type="restful" name="readUser" url="http://crm-test.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="getCurrentUser" url="http://crm-test.optadata.com:8080/odone.business/users/current" method="GET"></service>
+
+            <service environment="PROD" type="restful" name="createTask" url="https://widgetservice.optadata-one.de/task" method="PUT"></service>
+            <service environment="PROD" type="restful" name="readTasks" url="https://widgetservice.optadata-one.de/task" method="GET"></service>
+            <service environment="PROD" type="restful" name="readTask" url="https://widgetservice.optadata-one.de/task/{id}" method="GET"></service>
+            <service environment="PROD" type="restful" name="updateTask" url="https://widgetservice.optadata-one.de/task/{id}" method="POST"></service>
+            <service environment="PROD" type="restful" name="deleteTask" url="https://widgetservice.optadata-one.de/task/{id}" method="DELETE"></service>
+            <service environment="PROD" type="restful" name="completeTask" url="https://widgetservice.optadata-one.de/task/{id}/close" method="POST"></service>
+            <service environment="PROD" type="restful" name="createComment" url="https://widgetservice.optadata-one.de/comment" method="PUT"></service>
+            <service environment="PROD" type="restful" name="updateComment" url="https://widgetservice.optadata-one.de/comment/{id}" method="POST"></service>
+            <service environment="PROD" type="restful" name="deleteComment" url="https://widgetservice.optadata-one.de/comment/{id}" method="DELETE"></service>
+            <service environment="PROD" type="restful" name="readUsers" url="https://biz.optadata-one.de/users" method="GET"></service>
+            <service environment="PROD" type="restful" name="readUser" url="https://biz.optadata-one.de/users/{id}" method="GET"></service>
+            <service environment="PROD" type="restful" name="getCurrentUser" url="https://biz.optadata-one.de/users/current" method="GET"></service>
+        </services>
+    </ressources>
+</widget>
+

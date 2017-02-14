@@ -1,0 +1,15 @@
+<div class="tasklist-item form-inline ellipsify"
+     ng-click="tasklistitem.onSelectTask({ $task: tasklistitem.task })">
+    <div class="checkbox"
+         ng-click="tasklistitem.onClickCheckbox($event)">
+        <input id="chk_{{tasklistitem.task.id}}"
+               ng-change="tasklistitem.onStatusChange({ $task: tasklistitem.task })"
+               ng-model="tasklistitem.task.open"
+               ng-false-value="true"
+               ng-true-value="false"
+               type="checkbox" />
+        <label for="chk_{{tasklistitem.task.id}}"><span></span></label>
+    </div>
+    <div class="checkbox-label-text">{{tasklistitem.task.title}}</div>
+    <span class="glyphicon icon-chevron-right"></span>
+</div>

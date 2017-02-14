@@ -1,0 +1,36 @@
+ui-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+#widget.list > ui-view.ng-enter {
+    animation:slideInLeft .5s both;
+}
+
+#widget.list > ui-view.ng-leave {
+    animation:slideOutRight .5s both;
+}
+
+#widget.detail > ui-view.ng-enter {
+    animation:slideInRight .5s both;
+}
+
+#widget.detail > ui-view.ng-leave {
+    animation:slideOutLeft .5s both;
+}
+
+#widget.detail.assign ui-view ui-view.ng-enter,
+#widget.detail.comment ui-view  ui-view.ng-enter,
+#widget.detail.view ui-view  ui-view.ng-enter,
+#widget.detail.delete ui-view  ui-view.ng-enter {
+    animation:fadeIn .5s both;
+}
+
+#widget.detail.assign ui-view  ui-view.ng-leave,
+#widget.detail.comment ui-view  ui-view.ng-leave,
+#widget.detail.view ui-view  ui-view.ng-leave,
+#widget.detail.delete ui-view  ui-view.ng-leave {
+    animation:fadeOut .5s both;
+}
