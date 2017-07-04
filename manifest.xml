@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget id="oddc.widget.tasks" builder="2.3.2">
+<widget id="oddc.widget.tasks" builder="3.0.0">
     <information>
         <name lang="de-DE">Aufgaben</name>
-        <version>2.0.29</version>
+        <version>2.0.31</version>
         <author>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
@@ -30,7 +30,6 @@
         <appearance>
             <text-appearance>light</text-appearance>
             <main-color>#DB4C3F</main-color>
-            <text-color>#FFFFFF</text-color>
         </appearance>
     </information>
     <ressources>
@@ -101,6 +100,20 @@
             <service environment="PROD" type="restful" name="readUsers" url="https://biz.optadata-one.de/users" method="GET"></service>
             <service environment="PROD" type="restful" name="readUser" url="https://biz.optadata-one.de/users/{id}" method="GET"></service>
             <service environment="PROD" type="restful" name="getCurrentUser" url="https://biz.optadata-one.de/users/current" method="GET"></service>
+
+            <service environment="TEST" type="restful" name="createTask" url="https://widgetservice.test.optadata-one.de/task" method="PUT"></service>
+            <service environment="TEST" type="restful" name="readTasks" url="https://widgetservice.test.optadata-one.de/task" method="GET"></service>
+            <service environment="TEST" type="restful" name="readTask" url="https://widgetservice.test.optadata-one.de/task/{id}" method="GET"></service>
+            <service environment="TEST" type="restful" name="updateTask" url="https://widgetservice.test.optadata-one.de/task/{id}" method="POST"></service>
+            <service environment="TEST" type="restful" name="deleteTask" url="https://widgetservice.test.optadata-one.de/task/{id}" method="DELETE"></service>
+            <service environment="TEST" type="restful" name="completeTask" url="https://widgetservice.test.optadata-one.de/task/{id}/close" method="POST"></service>
+            <service environment="TEST" type="restful" name="createComment" url="https://widgetservice.test.optadata-one.de/comment" method="PUT"></service>
+            <service environment="TEST" type="restful" name="updateComment" url="https://widgetservice.test.optadata-one.de/comment/{id}" method="POST"></service>
+            <service environment="TEST" type="restful" name="deleteComment" url="https://widgetservice.test.optadata-one.de/comment/{id}" method="DELETE"></service>
+            <service environment="TEST" type="restful" name="readUsers" url="https://biz.test.optadata-one.de/users" method="GET"></service>
+            <service environment="TEST" type="restful" name="readUser" url="https://biz.test.optadata-one.de/users/{id}" method="GET"></service>
+            <service environment="TEST" type="restful" name="getCurrentUser" url="https://biz.test.optadata-one.de/users/current" method="GET"></service>
+
         </services>
     </ressources>
 </widget>
