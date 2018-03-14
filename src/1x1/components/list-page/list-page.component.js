@@ -10,8 +10,8 @@
             controllerAs: 'tasklistpage'
         });
 
-    taskListPageController.$inject = ['$log', 'taskService', '$state'];
-    function taskListPageController($log, taskService, $state) {
+    taskListPageController.$inject = ['$log', '$state', 'taskService', 'eventService'];
+    function taskListPageController($log, $state, taskService, eventService) {
         var vm = this;
         vm.loading = false;
         vm.error = false;
@@ -22,6 +22,8 @@
         vm.onStatusChange = onStatusChange;
         vm.onClosedTasksVisibilityChange = onClosedTasksVisibilityChange;
         vm.onSelectTask = onSelectTask;
+
+        eventService.addEventListener();
 
         function $onInit() {
             if (vm.service.getCurrentUser() === null) {

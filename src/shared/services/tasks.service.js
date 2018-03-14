@@ -24,6 +24,7 @@
                 getTasks: getTasks,
                 completeTask: completeTask,
                 addTask: addTask,
+                removeTask: removeTask,
                 createComment: createComment,
                 updateComment: updateComment,
                 deleteComment: deleteComment,
@@ -121,6 +122,16 @@
 
         function addTask(task) {
             _tasks.push(task);
+        }
+
+        function removeTask(taskId) {
+            for(var i = 0; i < _tasks.length; i++) {
+                if(_tasks[i].id === taskId) {
+                    console.log(_tasks[0].id, taskId);
+                    _tasks.splice(i, 1);
+                    break;
+                }
+            }
         }
 
         function createComment(taskId, text) {

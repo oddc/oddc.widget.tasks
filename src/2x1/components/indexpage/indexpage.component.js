@@ -10,8 +10,8 @@
             controllerAs: 'indexpage'
         });
 
-    indexPageController.$inject = ['$log', '$state', 'taskService', 'widgetState'];
-    function indexPageController($log, $state, taskService, widgetState) {
+    indexPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', 'eventService'];
+    function indexPageController($log, $state, taskService, widgetState, eventService) {
         var vm = this;
         vm.service = taskService;
         vm.tasks = [];
@@ -24,6 +24,8 @@
         vm.onStatusChange = onStatusChange;
         vm.onSelectTask = onSelectTask;
         vm.onClosedTasksVisibilityChange = onClosedTasksVisibilityChange;
+
+        eventService.addEventListener();
 
         function $onInit() {
             vm.service.setColumns(2);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget id="oddc.widget.tasks" builder="3.0.0">
+<widget id="oddc.widget.tasks" builder="3.0.0" icon="/ressources/images/icon.png">
     <information>
         <name lang="de-DE">Aufgaben</name>
-        <version>2.0.31</version>
+        <version>2.0.4</version>
         <author>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
@@ -21,7 +21,10 @@
            </text>
         </summary>
         <description lang="de-DE">
-            <image>/ressources/images/big.png</image>
+            <media>
+                <image>/ressources/images/small.png</image>
+                <image>/ressources/images/big.png</image>
+            </media>
             <text type="textile">
                 Das Aufgabenwidget bildet Ihre Arbeitsabläufe übersichtlich ab: Aktuelle Projekte können Sie hier bearbeiten, Aufgaben zuweisen und kommentieren.
             </text>
@@ -31,6 +34,7 @@
             <text-appearance>light</text-appearance>
             <main-color>#DB4C3F</main-color>
         </appearance>
+        <productgroup>odone.interne.widgets</productgroup>
     </information>
     <ressources>
         <templates lang="de-DE">
@@ -42,6 +46,7 @@
                 <scripts>
                     <script>/src/1x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
+                    <script>/src/shared/services/event.service.js</script>
                     <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
                     <script>/src/shared/components/tasklist/tasklist.component.js</script>
                     <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
@@ -62,6 +67,7 @@
                 <scripts>
                     <script>/src/2x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
+                    <script>/src/shared/services/event.service.js</script>
                     <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
                     <script>/src/shared/components/tasklist/tasklist.component.js</script>
                     <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
