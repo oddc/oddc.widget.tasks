@@ -2,7 +2,8 @@
 <widget id="oddc.widget.tasks" builder="3.0.0" icon="/ressources/images/icon.png">
     <information>
         <name lang="de-DE">Aufgaben</name>
-        <version>2.0.4</version>
+		<shortname lang="de-DE">Aufgaben</shortname>
+        <version>2.1.0</version>
         <author>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>

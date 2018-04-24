@@ -42,7 +42,10 @@
                 selectFirstTask: selectFirstTask,
                 deleteSelectedTask: deleteSelectedTask,
                 setColumns: setColumns,
-                getColumns: getColumns
+                getColumns: getColumns,
+                addTaskById: addTaskById,
+                updateDescription: updateDescription,
+                openCloseTask: openCloseTask
             };
 
         function requestTask(taskId) {
@@ -122,16 +125,6 @@
 
         function addTask(task) {
             _tasks.push(task);
-        }
-
-        function removeTask(taskId) {
-            for(var i = 0; i < _tasks.length; i++) {
-                if(_tasks[i].id === taskId) {
-                    console.log(_tasks[0].id, taskId);
-                    _tasks.splice(i, 1);
-                    break;
-                }
-            }
         }
 
         function createComment(taskId, text) {
@@ -247,6 +240,69 @@
             $log.error(error);
             return $q.reject(error);
         }
+
+
+        //==========================================================
+        // Fuer den SocketEventListener
+        //==========================================================
+
+
+        function addTaskById(taskId) {
+            return widgetServices
+                .callService('readTask', {id: taskId})
+                .then(function (response) {
+                    addTask(response);
+                    return response;
+                })
+                .catch(errorCallback);
+        }
+
+
+        function updateDescription(taskId) {
+            return widgetServices
+                .callService('readTask', {id: taskId})
+                .then(function (response) {
+                    for(var i = 0; i < _tasks.length; i++) {
+                        if(_tasks[i].id === taskId) {
+                            _tasks[i].description = response.description;
+                            break;
+                        }
+                    }
+                    return response;
+                })
+                .catch(errorCallback);
+        }
+
+
+        function openCloseTask(taskId, open) {
+            var task = null;
+
+            for(var i = 0; i < _tasks.length; i++) {
+                if(_tasks[i].id === taskId) {
+                   task = _tasks[i];
+                   break;
+                }
+            }
+
+            if(task === null) return $q.reject(false);
+
+            task.open = open;
+            return updateTask(task).then(function () {
+                return task;
+            });
+        }
+
+
+        function removeTask(taskId) {
+            for(var i = 0; i < _tasks.length; i++) {
+                if(_tasks[i].id === taskId) {
+                    _tasks.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+
 
         return _service;
     }

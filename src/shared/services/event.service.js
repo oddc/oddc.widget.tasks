@@ -33,7 +33,8 @@
          */
         function parentEvent(e) {
             var whitelist = [
-                "http://localhost", //Only Development
+                "http://localhost:3000", //Only Development
+                "http://localhost:4200", //Only Development
                 "http://odcweb1.optadata.com",
                 "https://portal.test.optadata-one.de",
                 "https://portal.optadata-one.de"
@@ -44,9 +45,16 @@
                 return false;
             }
 
-            if(e.data.id === "oddc.widget.tasks") {
-                if(e.data.action === "newtask") newTask(e.data.data);
-                else if(e.data.action === "rmtask") rmTask(e.data.data);
+            var data = e.data;
+            console.log(data);
+
+            if(data.widget === "oddc.widget.tasks") {
+                if(data.type === "task.new") taskNew(data.taskid);
+                else if(data.type === "task.delete") taskDelete(data.taskid);
+                else if(data.type === "task.change") taskChange(data.taskid);
+                else if(data.type === "task.solved") taskSolved(data.taskid);
+                else if(data.type === "task.reopen") taskReopen(data.taskid);
+                else if(data.type === "task.newnote") taskNewnote(data.taskid);
                 else {
                     console.log("Warning: Not implemented action!");
                     return false;
@@ -58,22 +66,65 @@
 
 
         /**
-         * Event newTask
-         * @param data
+         * Event taskNew
+         * @param taskid
          */
-        function newTask(data) {
-            taskService.addTask(data);
-            $state.go('.');
+        function taskNew(taskid) {
+            taskService.addTaskById(taskid).then(function(result) {
+                taskService.setSelectedTask(result);
+            });
         }
 
 
         /**
-         * Event rmTask
-         * @param data
+         * Event taskDelete
+         * @param taskid
          */
-        function rmTask(data) {
-            taskService.removeTask(data.id);
-            $state.go('.');
+        function taskDelete(taskid) {
+            taskService.removeTask(taskid);
+            taskService.selectFirstTask();
+        }
+
+
+        /**
+         * Event taskChange
+         * @param taskid
+         */
+        function taskChange(taskid) {
+            console.log('task.change');
+        }
+
+
+        /**
+         * Event taskSolved
+         * @param taskid
+         */
+        function taskSolved(taskid) {
+            taskService.openCloseTask(taskid, false).then(function() {
+                taskService.selectFirstTask();
+            });
+        }
+
+
+        /**
+         * Event taskReopen
+         * @param taskid
+         */
+        function taskReopen(taskid) {
+            taskService.openCloseTask(taskid, true).then(function(result) {
+                taskService.setSelectedTask(result);
+            });
+        }
+
+
+        /**
+         * Event taskNewnote
+         * @param taskid
+         */
+        function taskNewnote(taskid) {
+            taskService.updateDescription(taskid).then(function(result) {
+                taskService.setSelectedTask(result);
+            });
         }
 
 
