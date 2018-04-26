@@ -265,6 +265,9 @@
                     for(var i = 0; i < _tasks.length; i++) {
                         if(_tasks[i].id === taskId) {
                             _tasks[i].description = response.description;
+                            if(_tasks[i].comments.length !== response.comments.length) {
+                                _tasks[i].comments = response.comments;
+                            }
                             break;
                         }
                     }

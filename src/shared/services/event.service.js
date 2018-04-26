@@ -46,7 +46,6 @@
             }
 
             var data = e.data;
-            console.log(data);
 
             if(data.widget === "oddc.widget.tasks") {
                 if(data.type === "task.new") taskNew(data.taskid);
@@ -83,6 +82,7 @@
         function taskDelete(taskid) {
             taskService.removeTask(taskid);
             taskService.selectFirstTask();
+            $state.go('task');
         }
 
 
@@ -91,7 +91,7 @@
          * @param taskid
          */
         function taskChange(taskid) {
-            console.log('task.change');
+            console.log('task.change -> not implemented');
         }
 
 
