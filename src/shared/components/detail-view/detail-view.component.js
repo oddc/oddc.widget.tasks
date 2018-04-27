@@ -25,6 +25,7 @@
         vm.onClickAssign = onClickAssign;
 
         function $onInit() {
+            console.log('state -> ', $stateParams.id);
             if ($stateParams.id === '') {
                 $state.go('task');
                 return;
@@ -32,13 +33,13 @@
             if (vm.service.getColumns < 2) {
                 widgetState.setBackButtonState('task');
             }
-            if (vm.service.getSelectedTask() === null) {
+            //if (vm.service.getSelectedTask() === null) {
                 taskService
                     .requestTask($stateParams.id)
                     .catch(function (error) {
                         $log.error(error);
                     });
-            }
+            //}
         }
 
         function detachUser(event, task, user) {
