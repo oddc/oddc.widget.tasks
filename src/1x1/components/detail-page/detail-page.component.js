@@ -9,15 +9,18 @@
             controllerAs: 'detailPageController'
         });
 
-    detailPageController.$inject = ['widgetState', 'taskService', '$state'];
-    function detailPageController(widgetState, taskService, $state) {
+    detailPageController.$inject = ['widgetState', 'taskService', '$state', '$stateParams'];
+    function detailPageController(widgetState, taskService, $state, $stateParams) {
         var vm = this;
         vm.service = taskService;
         vm.$onInit = $onInit;
 
         function $onInit() {
             if (vm.service.getSelectedTask() === null || typeof vm.service.getSelectedTask() === 'undefined') {
-                $state.go('task');
+                vm.service.requestTask($stateParams.id)
+                    .catch(function (error) {
+                        $log.error(error);
+                    });
             }
             widgetState.setBackButtonState('task');
         }
