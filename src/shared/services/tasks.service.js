@@ -52,7 +52,7 @@
             return widgetServices
                 .callService('readTask', {id: taskId})
                 .then(function (response) {
-                    _selectedTask = response;
+                    return _selectedTask = response;
                 })
                 .catch(errorCallback);
         }

@@ -1,4 +1,4 @@
-<od-widget widget-title="{{ detailPageController.service.getSelectedTask().title }}" template="tpl-small-header">
+<od-widget widget-title="{{ detailPageController.title }}" template="tpl-small-header" ng-if="!detailPageController.isLoading">
     <od-widget-header>
         <navigation-slot>
             <div role="group" class="btn-group tab-group btn-group-sm">
