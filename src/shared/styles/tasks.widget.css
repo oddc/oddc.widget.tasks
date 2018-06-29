@@ -249,3 +249,18 @@ ul.tasklist li.list-group-item {
 oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
     height: 292px !important;
 }
+
+.tasklists-item {
+    display: inline-block;
+    background: url('../../../ressources/images/list.png') no-repeat;
+    background-size: 20px 20px;
+    width: auto;
+    height: 20px;
+    padding-left: 40px;
+}
+
+.tasklists-flag {
+    position: absolute;
+    left: 30px;
+    top: 25px;
+}

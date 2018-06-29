@@ -56,8 +56,12 @@
                     <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
                     <script>/src/shared/components/detail-view/detail-view.component.js</script>
                     <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
+                    <script>/src/shared/components/tasks-groups/tasks-groups.component.js</script>
+                    <script>/src/shared/components/task-add/task-add.component.js</script>
                     <script>/src/1x1/components/detail-page/detail-page.component.js</script>
                     <script>/src/1x1/components/list-page/list-page.component.js</script>
+                    <script>/src/1x1/components/task-page/tasks-page.component.js</script>
+                    <script>/src/1x1/components/add-page/add-page.component.js</script>
                 </scripts>
             </template>
             <template cols="2" rows="1" markup="/src/2x1/app.html">
@@ -82,6 +86,12 @@
             </template>
         </templates>
         <services>
+            <service environment="DEV" type="restful" name="readTaskLists" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="searchTasks" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist" method="POST"></service>
+            <service environment="DEV" type="restful" name="updateTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="createTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist" method="PUT"></service>
+            <service environment="DEV" type="restful" name="deleteTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="DELETE"></service>
             <service environment="DEV" type="restful" name="createTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="PUT"></service>
             <service environment="DEV" type="restful" name="readTasks" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="GET"></service>
             <service environment="DEV" type="restful" name="readTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="GET"></service>
@@ -95,6 +105,12 @@
             <service environment="DEV" type="restful" name="readUser" url="http://crm-test.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
             <service environment="DEV" type="restful" name="getCurrentUser" url="http://crm-test.optadata.com:8080/odone.business/users/current" method="GET"></service>
 
+            <service environment="PROD" type="restful" name="readTaskLists" url="https://widgetservice.optadata-one.de/tasklist" method="GET"></service>
+            <service environment="PROD" type="restful" name="readTaskList" url="https://widgetservice.optadata-one.de/tasklist/{id}" method="GET"></service>
+            <service environment="PROD" type="restful" name="searchTasks" url="https://widgetservice.optadata-one.de/tasklist" method="POST"></service>
+            <service environment="PROD" type="restful" name="updateTaskList" url="https://widgetservice.optadata-one.de/tasklist/{id}" method="POST"></service>
+            <service environment="PROD" type="restful" name="createTaskList" url="https://widgetservice.optadata-one.de/tasklist" method="PUT"></service>
+            <service environment="PROD" type="restful" name="deleteTaskList" url="https://widgetservice.optadata-one.de/tasklist/{id}" method="DELETE"></service>
             <service environment="PROD" type="restful" name="createTask" url="https://widgetservice.optadata-one.de/task" method="PUT"></service>
             <service environment="PROD" type="restful" name="readTasks" url="https://widgetservice.optadata-one.de/task" method="GET"></service>
             <service environment="PROD" type="restful" name="readTask" url="https://widgetservice.optadata-one.de/task/{id}" method="GET"></service>
@@ -108,6 +124,12 @@
             <service environment="PROD" type="restful" name="readUser" url="https://biz.optadata-one.de/users/{id}" method="GET"></service>
             <service environment="PROD" type="restful" name="getCurrentUser" url="https://biz.optadata-one.de/users/current" method="GET"></service>
 
+            <service environment="TEST" type="restful" name="readTaskLists" url="https://widgetservice.test.optadata-one.de/tasklist" method="GET"></service>
+            <service environment="TEST" type="restful" name="readTaskList" url="https://widgetservice.test.optadata-one.de/tasklist/{id}" method="GET"></service>
+            <service environment="TEST" type="restful" name="searchTasks" url="https://widgetservice.test.optadata-one.de/tasklist" method="POST"></service>
+            <service environment="TEST" type="restful" name="updateTaskList" url="https://widgetservice.test.optadata-one.de/tasklist/{id}" method="POST"></service>
+            <service environment="TEST" type="restful" name="createTaskList" url="https://widgetservice.test.optadata-one.de/tasklist" method="PUT"></service>
+            <service environment="TEST" type="restful" name="deleteTaskList" url="https://widgetservice.test.optadata-one.de/tasklist/{id}" method="DELETE"></service>
             <service environment="TEST" type="restful" name="createTask" url="https://widgetservice.test.optadata-one.de/task" method="PUT"></service>
             <service environment="TEST" type="restful" name="readTasks" url="https://widgetservice.test.optadata-one.de/task" method="GET"></service>
             <service environment="TEST" type="restful" name="readTask" url="https://widgetservice.test.optadata-one.de/task/{id}" method="GET"></service>

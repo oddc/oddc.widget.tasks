@@ -10,9 +10,16 @@
     stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function stateMashineConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('task', {
-                url: '/task',
+            .state('tasklist', {
+                url: '/',
                 template: '<task-list-page></task-list-page>',
+                data: {
+                    cssClassNames: 'list'
+                }
+            })
+            .state('tasks', {
+                url: '/tasks/:id',
+                template: '<task-page></task-page>',
                 data: {
                     cssClassNames: 'list'
                 }
@@ -22,6 +29,13 @@
                 template: '<detail-page></detail-page>',
                 data: {
                     cssClassNames: 'detail'
+                }
+            })
+            .state('taskadd', {
+                url: '/task/add/:id',
+                template: '<add-page></add-page>',
+                data: {
+                    cssClassNames: 'detail add'
                 }
             })
             .state('detail.view', {
@@ -53,7 +67,8 @@
                 }
             });
 
-        $urlRouterProvider.otherwise('/task');
+
+        $urlRouterProvider.otherwise('/');
     }
 
     runBlock.$inject = ['$rootScope', 'widgetState'];

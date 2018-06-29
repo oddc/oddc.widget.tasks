@@ -45,8 +45,17 @@
                 getColumns: getColumns,
                 addTaskById: addTaskById,
                 updateDescription: updateDescription,
-                openCloseTask: openCloseTask
+                openCloseTask: openCloseTask,
+                readTaskLists: readTaskLists,
+                readTaskList: readTaskList,
+                searchTasks: searchTasks,
+                updateTaskList: updateTaskList,
+                createTaskList: createTaskList,
+                deleteTaskList: deleteTaskList
             };
+
+
+
 
         function requestTask(taskId) {
             return widgetServices
@@ -239,6 +248,54 @@
         function errorCallback(error) {
             $log.error(error);
             return $q.reject(error);
+        }
+
+
+        function readTaskLists() {
+            return widgetServices
+                .callService('readTaskLists')
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function readTaskList(id) {
+            return widgetServices
+                .callService('readTaskList', {id: id})
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function searchTasks(searchObj) {
+            return widgetServices
+                .callService('searchTasks', searchObj)
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function updateTaskList(obj) {
+            return widgetServices
+                .callService('updateTaskList', obj)
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function createTaskList(obj) {
+            return widgetServices
+                .callService('createTaskList', obj)
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function deleteTaskList(id) {
+            return widgetServices
+                .callService('deleteTaskList', {id: id})
+                .then(getResponse)
+                .catch(errorCallback);
         }
 
 

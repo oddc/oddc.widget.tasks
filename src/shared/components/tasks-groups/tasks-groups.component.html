@@ -1,0 +1,22 @@
+
+<div class="open-task-list" ng-if="ctrl.tasklists.length > 0">
+    <ul class="tasklist list-group">
+        <li ng-repeat="group in ctrl.tasklists" ng-class="" class="list-group-item item-hover" ng-click="ctrl.openList(group.id)">
+            <span class="tasklists-item">
+                <span class="glyphicon glyphicon-star tasklists-flag" ng-if="group.isPrivate"></span>
+                <span class="glyphicon glyphicon-user tasklists-flag" ng-if="group.isTeamlist"></span>
+                <span class="glyphicon glyphicon-tags tasklists-flag" ng-if="group.isProjectgrouplist"></span>
+                <span class="glyphicon glyphicon-asterisk tasklists-flag" ng-if="false"></span><!-- FILTER -->
+                {{group.title}}
+            </span>
+
+            <span class="label label-default pull-right" style="font-size: 14px; font-weight: normal;">{{group.count}} offen</span>
+        </li>
+    </ul>
+
+    <div class="text-center list-group">
+        <a href="javascript:;" class="list-group-item list-group-item-info" ng-click="">
+            + Liste hinzufügen
+        </a>
+    </div>
+</div>

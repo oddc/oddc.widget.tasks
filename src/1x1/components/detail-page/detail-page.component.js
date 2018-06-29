@@ -9,8 +9,8 @@
             controllerAs: 'detailPageController'
         });
 
-    detailPageController.$inject = ['widgetState', 'taskService', '$state', '$stateParams'];
-    function detailPageController(widgetState, taskService, $state, $stateParams) {
+    detailPageController.$inject = ['widgetState', 'taskService', '$stateParams'];
+    function detailPageController(widgetState, taskService, $stateParams) {
         var vm = this;
         vm.service = taskService;
         vm.isLoading = true;
@@ -30,7 +30,7 @@
                 vm.title = vm.service.getSelectedTask().title;
                 vm.isLoading = false;
             }
-            widgetState.setBackButtonState('task');
+            widgetState.setBackButtonState('tasks', {id: 'hallo'});
         }
 
 

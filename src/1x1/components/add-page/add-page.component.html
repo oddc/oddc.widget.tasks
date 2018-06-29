@@ -1,0 +1,10 @@
+<od-widget widget-title="Neue Aufgabe" template="tpl-small-header">
+    <od-widget-header>
+    </od-widget-header>
+    <od-widget-content nospacing>
+        <div ng-if="ctrl.loading">
+            <od-loader></od-loader>
+        </div>
+        <task-add></task-add>
+    </od-widget-content>
+</od-widget>
