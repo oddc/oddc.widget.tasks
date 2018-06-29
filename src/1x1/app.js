@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder'])
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick'])
         .config(stateMashineConfig)
         .run(runBlock);
 

@@ -41,10 +41,14 @@
         <templates lang="de-DE">
             <template cols="1" rows="1" markup="/src/1x1/app.html">
                 <styles>
+                    <style>/src/shared/plugins/angular-slick/slick.css</style>
+                    <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
                     <style>/src/1x1/styles/animations.css</style>
                 </styles>
                 <scripts>
+                    <script>/src/shared/plugins/angular-slick/slick.min.js</script>
+                    <script>/src/shared/plugins/angular-slick/angular-slick.min.js</script>
                     <script>/src/1x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>

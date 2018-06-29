@@ -1,6 +1,46 @@
 
-<div>
+<div class="taskadd row">
+    <div class="col-xs-6">
+        <label class="container">
+            Wichtig
+            <input type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+    <div class="col-xs-6">
+        <span class="pull-right">#UID</span>
+    </div>
+    <div class="col-xs-12">
+        <input type="text" name="name" placeholder="Name" class="form-control">
+    </div>
+    <div class="col-xs-6">
+        <button class="btn btn-default btn-block" type="button" style="height: 34px;">Aufgabe erledigen</button>
+    </div>
+    <div class="col-xs-6">
+        <select name="" id="" class="form-control">
+            <option value="">erledigt</option>
+            <option value="">in Arbeit</option>
+            <option value="">offen</option>
+            <option value="">wartend</option>
+        </select>
+    </div>
+    <div class="col-xs-12 user-slider">
+        <strong>Teilnehmer:</strong>
 
-    JoJo
+        <slick infinite=true slides-to-show="3" slides-to-scroll="1" touch-move="false">
+            <span class="item-box">
+                <span class="item"></span>
+                TEST
+            </span>
 
+            <span class="item-box"><span class="item"></span>Hallo</span>
+            <span class="item-box"><span class="item"></span>Tauchen</span>
+            <span class="item-box"><span class="item"></span>bbb</span>
+            <span class="item-box"><span class="item"></span>cccc</span>
+            <span class="item-box"><span class="item"></span>dddddd</span>
+            <span class="item-box"><span class="item"></span>hhhhhh</span>
+        </slick>
+
+        <a href="javascript:">+ Teilnehmer hinzufügen</a>
+    </div>
 </div>
