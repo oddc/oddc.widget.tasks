@@ -25,7 +25,6 @@
         vm.onClickAssign = onClickAssign;
 
         function $onInit() {
-            console.log('state -> ', $stateParams.id);
             if ($stateParams.id === '') {
                 $state.go('task');
                 return;

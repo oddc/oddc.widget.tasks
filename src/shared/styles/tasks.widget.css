@@ -283,8 +283,13 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
      font-size: 15px;
 }
 
-.user-slider a {
+.user-slider a, p {
     font-size: 15px;
+}
+
+.user-slider p span {
+    font-size: 12px;
+    font-style: italic;
 }
 
 .user-slider .item-box {
@@ -296,13 +301,15 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 .user-slider .item {
     display: block;
     margin: 0 auto;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
     border: 1px solid #cfd3cd;
-    -webkit-border-radius: 70px;
-    -moz-border-radius: 70px;
-    border-radius: 70px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
 }
 
 

@@ -32,7 +32,7 @@
                 }
             })
             .state('taskadd', {
-                url: '/task/add/:id',
+                url: '/task/add/:listid/:taskid',
                 template: '<add-page></add-page>',
                 data: {
                     cssClassNames: 'detail add'

@@ -42,7 +42,6 @@
                 }
             }
 
-            console.log('###> list >>>', self.tasklists);
         });
 
 

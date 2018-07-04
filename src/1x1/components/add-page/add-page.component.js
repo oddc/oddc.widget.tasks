@@ -18,7 +18,7 @@
 
         function $onInit() {
             vm.loading = false;
-            widgetState.setBackButtonState('tasks', {id: $stateParams.id});
+            widgetState.setBackButtonState('tasks', {id: $stateParams.listid});
         }
 
     }

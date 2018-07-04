@@ -25,18 +25,16 @@
         vm.onSelectTask = onSelectTask;
 
         function $onInit() {
-            if (vm.service.getCurrentUser() === null) {
-                vm.loading = true;
-                vm.service
-                    .requestCurrentUser()
-                    .then(onGetCurrentUserSuccess)
-                    .then(onGetTasklist)
-                    .then(onRequestTasksSuccess)
-                    .catch(OnError)
-                    .finally(onDone);
-            } else {
-                vm.loading = false;
-            }
+
+            vm.loading = true;
+            vm.service
+                .requestCurrentUser()
+                .then(onGetCurrentUserSuccess)
+                .then(onGetTasklist)
+                .then(onRequestTasksSuccess)
+                .catch(OnError)
+                .finally(onDone);
+
 
             function onGetCurrentUserSuccess() {
                 if (vm.service.getTasks().length === 0) {
@@ -50,6 +48,7 @@
             }
 
             function onGetTasklist() {
+                console.log('PARAM', $stateParams.id);
                 return vm.service.readTaskList($stateParams.id).then(function (result) {
                     vm.tasklist = result;
                     return vm.tasklist;
@@ -106,14 +105,16 @@
         }
 
         function onSelectTask(task) {
+            console.log('select task => ', task, vm.tasklist);
+
             vm.service.setSelectedTask(task.$task);
-            $state.go('detail.view', { id: task.$task.id });
+            $state.go('taskadd', {listid: $stateParams.id, taskid: task.$task.id});
         }
 
 
         vm.add = function () {
             if ($stateParams.id !== '') {
-                $state.go('taskadd', {id: $stateParams.id});
+                $state.go('taskadd', {listid: $stateParams.id, taskid: ""});
             }
         };
 

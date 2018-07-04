@@ -33,7 +33,6 @@
             self.currentUser = taskService.getCurrentUser();
 
             taskService.readTaskList($stateParams.id).then(function (r) {
-               console.log('##> list >>>', r);
                self.tasklist = r;
             });
         }

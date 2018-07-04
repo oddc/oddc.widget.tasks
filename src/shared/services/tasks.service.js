@@ -51,7 +51,9 @@
                 searchTasks: searchTasks,
                 updateTaskList: updateTaskList,
                 createTaskList: createTaskList,
-                deleteTaskList: deleteTaskList
+                deleteTaskList: deleteTaskList,
+                readProjektGroupUsers: readProjektGroupUsers,
+                readTasklistContacts: readTasklistContacts
             };
 
 
@@ -168,6 +170,7 @@
                 .callService('readUsers')
                 .then(function (users) {
                     _users = users;
+                    return _users;
                 })
                 .catch(errorCallback);
         }
@@ -251,6 +254,14 @@
         }
 
 
+        function readProjektGroupUsers(groupid) {
+            return widgetServices
+                .callService('readProjektGroupUsers', {id: groupid})
+                .then(getResponse)
+                .catch(errorCallback)
+        }
+
+
         function readTaskLists() {
             return widgetServices
                 .callService('readTaskLists')
@@ -294,6 +305,14 @@
         function deleteTaskList(id) {
             return widgetServices
                 .callService('deleteTaskList', {id: id})
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function readTasklistContacts() {
+            return widgetServices
+                .callService('readTasklistContacts')
                 .then(getResponse)
                 .catch(errorCallback);
         }
