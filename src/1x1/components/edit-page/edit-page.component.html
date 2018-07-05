@@ -1,0 +1,14 @@
+<od-widget widget-title="Neue Aufgabe" template="tpl-small-header">
+    <od-widget-header>
+        <navigation-slot>
+            <div role="group" class="btn-group tab-group btn-group-sm">
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="taskedit.view">Details</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="taskedit.comment">Kommentare</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="taskedit.files">Dateien</button>
+            </div>
+        </navigation-slot>
+    </od-widget-header>
+    <od-widget-content nospacing>
+        <ui-view></ui-view>
+    </od-widget-content>
+</od-widget>

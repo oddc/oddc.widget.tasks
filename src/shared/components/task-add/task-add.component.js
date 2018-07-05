@@ -9,8 +9,8 @@
             controllerAs: 'ctrl',
         });
 
-    taskAddController.$inject = ['widgetState', 'taskService', '$state', '$stateParams'];
-    function taskAddController(widgetState, taskService, $state, $stateParams) {
+    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams'];
+    function taskAddController(widgetState, taskService, $stateParams) {
         var vm = this;
         vm.service = taskService;
         vm.$onInit = $onInit;
@@ -18,6 +18,7 @@
         vm.users = [];
         vm.isLoading = true;
         vm.isnew = $stateParams.taskid === '';
+        vm.error = "";
 
         vm.popup = {
             opened: false
@@ -64,10 +65,10 @@
         function loadTaskData() {
             if (!vm.isnew) {
                 console.log('load task');
-                vm.service.requestTask($stateParams.taskid).then(function (result) {
-                   vm.taskObj = result;
-                   //vm.taskObj.dueDate = new Date(vm.taskObj.dueDate);
-                   console.log('date#####>', vm.taskObj);
+                return vm.service.requestTask($stateParams.taskid).then(function (result) {
+                    vm.taskObj = result;
+                    vm.users = vm.taskObj.users;
+                    return true;
                 });
             }
             else {
@@ -77,8 +78,9 @@
                 vm.taskObj.users.push({ userId: user.id, openId: user.openId});
                 vm.taskObj.userIds.push(user.openId);
                 vm.users.push(user);
+                return true;
             }
-            return true;
+            return false;
         }
 
 
@@ -96,11 +98,21 @@
 
 
         vm.saveTask = function () {
-            vm.taskObj.dueDate = Date.parse(vm.taskObj.dueDate);
+            if (!angular.isNumber(vm.taskObj.dueDate)) {
+                vm.taskObj.dueDate = Date.parse(vm.taskObj.dueDate);
+            }
 
             console.log('save task');
             if (!vm.isnew) {
-
+                vm.service.updateTask(vm.taskObj).then(function (result) {
+                    if (!result.error) {
+                        vm.error = '';
+                        widgetState.go('tasks', {id: $stateParams.listid});
+                    }
+                    else {
+                        vm.error = result.message;
+                    }
+                });
             }
             else {
                 console.log('task', vm.taskObj);

@@ -108,7 +108,7 @@
             console.log('select task => ', task, vm.tasklist);
 
             vm.service.setSelectedTask(task.$task);
-            $state.go('taskadd', {listid: $stateParams.id, taskid: task.$task.id});
+            $state.go('taskedit', {listid: $stateParams.id, taskid: task.$task.id});
         }
 
 

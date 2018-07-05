@@ -62,10 +62,12 @@
                     <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
                     <script>/src/shared/components/tasks-groups/tasks-groups.component.js</script>
                     <script>/src/shared/components/task-add/task-add.component.js</script>
+                    <script>/src/shared/components/task-files/task-files.component.js</script>
                     <script>/src/1x1/components/detail-page/detail-page.component.js</script>
                     <script>/src/1x1/components/list-page/list-page.component.js</script>
                     <script>/src/1x1/components/task-page/tasks-page.component.js</script>
                     <script>/src/1x1/components/add-page/add-page.component.js</script>
+                    <script>/src/1x1/components/edit-page/edit-page.component.js</script>
                 </scripts>
             </template>
             <template cols="2" rows="1" markup="/src/2x1/app.html">

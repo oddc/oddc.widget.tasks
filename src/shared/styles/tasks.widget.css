@@ -352,7 +352,7 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #DB4C3F;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -371,8 +371,8 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 .container .checkmark:after {
     left: 9px;
     top: 5px;
-    width: 5px;
-    height: 10px;
+    width: 7px;
+    height: 13px;
     border: solid white;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);

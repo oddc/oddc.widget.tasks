@@ -43,7 +43,7 @@
         };
 
 
-        self.delete = function () {
+        self.delete = function () {/*
             taskService.deleteTaskList($stateParams.id).then(function (r) {
                if (!r.error) {
                    self.error = '';
@@ -51,7 +51,7 @@
                else {
                    self.error = 'Löschen der List: ' + r.message;
                }
-            });
+            });*/
         };
     }
 

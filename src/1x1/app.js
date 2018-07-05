@@ -24,13 +24,6 @@
                     cssClassNames: 'list'
                 }
             })
-            .state('detail', {
-                url: '/task/:id',
-                template: '<detail-page></detail-page>',
-                data: {
-                    cssClassNames: 'detail'
-                }
-            })
             .state('taskadd', {
                 url: '/task/add/:listid/:taskid',
                 template: '<add-page></add-page>',
@@ -38,25 +31,32 @@
                     cssClassNames: 'detail add'
                 }
             })
-            .state('detail.view', {
+            .state('taskedit', {
+                url: '/task/edit/:listid/:taskid',
+                template: '<edit-page></edit-page>',
+                data: {
+                    cssClassNames: 'detail edit'
+                }
+            })
+            .state('taskedit.view', {
                 url: '/view',
-                template: '<detail-view></detail-view>',
+                template: '<task-add></task-add>',
                 data: {
                     cssClassNames: 'detail view'
                 }
             })
-            .state('detail.assign', {
-                url: '/assign',
-                template: '<detail-assign></detail-assign>',
-                data: {
-                    cssClassNames: 'detail assign'
-                }
-            })
-            .state('detail.comment', {
+            .state('taskedit.comment', {
                 url: '/comment',
                 template: '<detail-comment></detail-comment>',
                 data: {
                     cssClassNames: 'detail comment'
+                }
+            })
+            .state('taskedit.files', {
+                url: '/files',
+                template: '<task-files></task-files>',
+                data: {
+                    cssClassNames: 'detail files'
                 }
             })
             .state('detail.delete', {
