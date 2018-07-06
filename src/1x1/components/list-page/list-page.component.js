@@ -10,8 +10,8 @@
             controllerAs: 'ctrl'
         });
 
-    taskListPageController.$inject = ['taskService', 'eventService'];
-    function taskListPageController(taskService, eventService) {
+    taskListPageController.$inject = ['taskService', 'eventService', 'widgetState'];
+    function taskListPageController(taskService, eventService, widgetState) {
         var vm = this;
         vm.loading = false;
         vm.error = false;
@@ -22,6 +22,10 @@
         function $onInit() {
             vm.loading = true;
         }
+
+        vm.openNewList = function () {
+            widgetState.go('addtasklist');
+        };
 
     }
 

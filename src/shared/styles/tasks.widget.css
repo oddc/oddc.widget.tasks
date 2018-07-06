@@ -313,6 +313,16 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 }
 
 
+.tasklist-add {
+    margin: 10px;
+}
+
+.tasklist-add button {
+    margin-top: 10px;
+}
+
+
+
 /* CHECKBOX */
 .container {
     display: block;

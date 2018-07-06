@@ -54,6 +54,7 @@
                     <script>/src/shared/services/event.service.js</script>
                     <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
                     <script>/src/shared/components/tasklist/tasklist.component.js</script>
+                    <script>/src/shared/components/tasklist-add/tasklist-add.component.js</script>
                     <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
                     <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
                     <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
@@ -65,6 +66,7 @@
                     <script>/src/shared/components/task-files/task-files.component.js</script>
                     <script>/src/1x1/components/detail-page/detail-page.component.js</script>
                     <script>/src/1x1/components/list-page/list-page.component.js</script>
+                    <script>/src/1x1/components/add-list-page/add-list-page.component.js</script>
                     <script>/src/1x1/components/task-page/tasks-page.component.js</script>
                     <script>/src/1x1/components/add-page/add-page.component.js</script>
                     <script>/src/1x1/components/edit-page/edit-page.component.js</script>
