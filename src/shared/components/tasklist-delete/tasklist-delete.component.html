@@ -1,0 +1,22 @@
+<div style="padding: 15px;">
+    <div class="alert alert-danger" ng-if="ctrl.error !== ''">
+        <span class="icon icon-exclamation-triangle"></span> {{ctrl.error}}
+    </div>
+
+    <div class="alert alert-warning" ng-if="ctrl.tasklist.tasks.length > 0">
+        <span class="icon icon-exclamation-triangle"></span>
+        <strong>
+            In der Liste befinden sich noch Aufgaben.<br>
+            Wenn Sie die Liste löschen, gehen diese verloren !!!
+        </strong>
+    </div>
+
+    <div class="col-xs-12">
+        <h2><i>'{{ctrl.tasklist.title}}'</i> wirklich löschen?</h2>
+    </div>
+
+    <div class="col-xs-12" style="margin-top: 10px;">
+        <button type="button" class="btn btn-default" ng-click="ctrl.cancel()">Nein, Vorgang abbrechen</button>
+        <button type="button" class="btn btn-primary" ng-click="ctrl.delete()">Ja, bitte entfernen</button>
+    </div>
+</div>

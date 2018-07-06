@@ -45,12 +45,6 @@
         });
 
 
-        self.canDelete = function(listname) {
-            var noDelete = ['Private Liste', 'Team-Liste'];
-            return (noDelete.indexOf(listname) === -1);
-        };
-
-
         self.openList = function(groupid) {
             widgetState.go('tasks', { id: groupid });
         };

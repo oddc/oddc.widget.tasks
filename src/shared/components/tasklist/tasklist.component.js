@@ -17,8 +17,8 @@
             }
         });
 
-    tasklistController.$inject = ['taskService', '$stateParams'];
-    function tasklistController(taskService, $stateParams) {
+    tasklistController.$inject = ['taskService', '$stateParams', 'widgetState'];
+    function tasklistController(taskService, $stateParams, widgetState) {
         var self = this;
         self.service = taskService;
         self.iderror = false;
@@ -39,19 +39,12 @@
 
 
         self.canDelete = function() {
-            return (!self.tasklist.privateList && !self.tasklist.teamList && self.currentUser.openId === self.tasklist.admin);
+            return (!self.tasklist.privateList && !self.tasklist.teamList && !self.tasklist.projectGroupList && self.currentUser.openId === self.tasklist.admin);
         };
 
 
-        self.delete = function () {/*
-            taskService.deleteTaskList($stateParams.id).then(function (r) {
-               if (!r.error) {
-                   self.error = '';
-               }
-               else {
-                   self.error = 'Löschen der List: ' + r.message;
-               }
-            });*/
+        self.delete = function () {
+            widgetState.go('deletetasklist', { id: $stateParams.id });
         };
     }
 

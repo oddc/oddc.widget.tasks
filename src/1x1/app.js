@@ -24,6 +24,13 @@
                     cssClassNames: 'list'
                 }
             })
+            .state('deletetasklist', {
+                url: '/tasklist/delete/:id',
+                template: '<tasklist-delete-page></tasklist-delete-page>',
+                data: {
+                    cssClassNames: 'list'
+                }
+            })
             .state('tasks', {
                 url: '/tasks/:id',
                 template: '<task-page></task-page>',
@@ -64,13 +71,6 @@
                 template: '<task-files></task-files>',
                 data: {
                     cssClassNames: 'detail files'
-                }
-            })
-            .state('detail.delete', {
-                url: '/delete',
-                template: '<detail-delete></detail-delete>',
-                data: {
-                    cssClassNames: 'detail delete'
                 }
             });
 
