@@ -52,9 +52,6 @@
             .then(loadUserData)
             .then(loadTaskData)
             .then(function () {
-                console.log('tasklist', vm.tasklist);
-                console.log('users', vm.users);
-                console.log('taskObj', vm.taskObj);
                 vm.isLoading = false;
             });
 
@@ -64,7 +61,6 @@
 
         function loadTaskData() {
             if (!vm.isnew) {
-                console.log('load task');
                 return vm.service.requestTask($stateParams.taskid).then(function (result) {
                     vm.taskObj = result;
                     vm.users = vm.taskObj.users;
@@ -72,7 +68,6 @@
                 });
             }
             else {
-                console.log('new task');
                 var user = vm.service.getCurrentUser();
                 vm.taskObj.userId = user.id;
                 vm.taskObj.users.push({ userId: user.id, openId: user.openId});
@@ -102,7 +97,6 @@
                 vm.taskObj.dueDate = Date.parse(vm.taskObj.dueDate);
             }
 
-            console.log('save task');
             if (!vm.isnew) {
                 vm.service.updateTask(vm.taskObj).then(function (result) {
                     if (!result.error) {
@@ -115,17 +109,16 @@
                 });
             }
             else {
-                console.log('task', vm.taskObj);
                 vm.service.createTask(vm.taskObj).then(function () {
                     vm.tasklist.tasks.push(vm.taskObj);
-                    console.log('save');
+                    widgetState.go('tasks', {id: $stateParams.listid});
                 });
             }
         };
 
 
         vm.cancel = function () {
-            console.log('cancel task');
+            widgetState.go('tasks', {id: $stateParams.listid});
         };
 
 
