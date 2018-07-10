@@ -65,6 +65,8 @@
                     <script>/src/shared/components/tasks-groups/tasks-groups.component.js</script>
                     <script>/src/shared/components/task-add/task-add.component.js</script>
                     <script>/src/shared/components/task-files/task-files.component.js</script>
+                    <script>/src/shared/components/task-add-subscriber/task-add-subscriber.component.js</script>
+                    <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
                     <script>/src/1x1/components/list-page/list-page.component.js</script>
                     <script>/src/1x1/components/add-list-page/add-list-page.component.js</script>
                     <script>/src/1x1/components/task-page/tasks-page.component.js</script>

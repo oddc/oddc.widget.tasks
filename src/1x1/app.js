@@ -72,6 +72,13 @@
                 data: {
                     cssClassNames: 'detail files'
                 }
+            })
+            .state('taskedit.subscriber', {
+                url: '/add/subscriber',
+                template: '<task-add-subscriber></task-add-subscriber>',
+                data: {
+                    cssClassNames: 'detail subscriber'
+                }
             });
 
 

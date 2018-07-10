@@ -9,14 +9,14 @@
             controllerAs: 'ctrl',
         });
 
-    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams'];
-    function taskAddController(widgetState, taskService, $stateParams) {
+    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams', '$state'];
+    function taskAddController(widgetState, taskService, $stateParams, $state) {
         var vm = this;
         vm.service = taskService;
         vm.$onInit = $onInit;
         vm.tasklist = {};
         vm.users = [];
-        vm.isLoading = true;
+        vm.isLoading = false;
         vm.isnew = $stateParams.taskid === '';
         vm.error = "";
 
@@ -52,7 +52,7 @@
             .then(loadUserData)
             .then(loadTaskData)
             .then(function () {
-                vm.isLoading = false;
+                vm.isLoading = true;
             });
 
 
@@ -122,7 +122,25 @@
         };
 
 
+        vm.removeUser = function (user) {
+            for (var i = 0; i < vm.taskObj.userIds.length; i++) {
+                if (vm.taskObj.userIds[i] === user.openId) {
+                    vm.taskObj.userIds.splice(i, 1);
+                }
+            }
 
+            for (var j = 0; j < vm.users.length; j++) {
+                if (vm.users[j].openId === user.openId) {
+                    vm.users.splice(j, 1);
+                }
+            }
+
+            $state.reload()
+        };
+
+        vm.addSubscriber = function () {
+            widgetState.go('taskedit.subscriber', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+        };
 
 
         function loadUserList() {
