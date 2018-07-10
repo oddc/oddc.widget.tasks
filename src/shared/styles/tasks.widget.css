@@ -353,6 +353,7 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    width: 100%;
 }
 
 /* Hide the browser's default checkbox */

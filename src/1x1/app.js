@@ -17,6 +17,13 @@
                     cssClassNames: 'list'
                 }
             })
+            .state('search', {
+                url: '/search',
+                template: '<search-page></search-page>',
+                data: {
+                    cssClassNames: 'list'
+                }
+            })
             .state('addtasklist', {
                 url: '/tasklist/add',
                 template: '<add-list-page></add-list-page>',

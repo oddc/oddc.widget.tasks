@@ -1,0 +1,51 @@
+
+<div style="margin: 15px;">
+
+    <div class="col-xs-12 input-group input-group-sm">
+        <input type="text" name="search" id="search" class="form-control" placeholder="Suchbegriff">
+    </div>
+
+    <div class="col-xs-12" style="margin-top: 15px;">
+        <label class="container" style="margin-left: 0px;">
+            mir zugeteilt
+            <input type="checkbox" name="assigned_my" id="assigned_my" ng-model="ctrl.data.assigned_my">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-xs-5" style="margin-top: 15px;">
+        <label class="container" style="margin-left: 0px;">
+            zugeteilt an
+            <input type="checkbox" name="assigned_to" id="assigned_to" ng-model="ctrl.data.assigned_to">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-xs-7" style="margin-top: 15px;">
+       <select name="assigned_to_user" name="assigned_to_user" class="form-control" ng-model="ctrl.data.assigned_to_user" ng-disabled="!ctrl.data.assigned_to">
+           <option value="">Bitte wählen...</option>
+           <option value="{{user.openid}}" ng-repeat="user in ctrl.users">{{user.firstname}} {{user.lastname}}</option>
+       </select>
+    </div>
+
+    <div class="col-xs-12" style="margin-top: 15px;">
+        <label class="container" style="margin-left: 0px;">
+            überfällig
+            <input type="checkbox" name="overdue" id="overdue" ng-model="ctrl.data.overdue">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-xs-12" style="margin-top: 15px;">
+        <label class="container" style="margin-left: 0px;">
+            erledigte Aufgaben durchsuchen
+            <input type="checkbox" name="completed_task" id="completed_task" ng-model="ctrl.data.completed_task">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-xs-12" style="margin-top: 15px;">
+        <button class="btn btn-primary btn-block" ng-click="ctrl.search()">Suchen</button>
+    </div>
+
+</div>
