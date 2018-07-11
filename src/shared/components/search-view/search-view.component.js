@@ -12,8 +12,8 @@
             }
         });
 
-    searchViewController.$inject = ['taskService', 'widgetState'];
-    function searchViewController(taskService, widgetState) {
+    searchViewController.$inject = ['taskService', 'widgetState', '$base64'];
+    function searchViewController(taskService, widgetState, $base64) {
         var vm = this;
         vm.$onInit = $onInit;
         vm.users = [];
@@ -34,7 +34,8 @@
 
 
         vm.search = function () {
-            console.log('### search >>>', vm.data);
+            var data = $base64.encode(angular.toJson(vm.data));
+            widgetState.go('searchresult', { search: data })
         };
 
     }

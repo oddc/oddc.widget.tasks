@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder', 'slick'])
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64'])
         .config(stateMashineConfig)
         .run(runBlock);
 
@@ -20,6 +20,13 @@
             .state('search', {
                 url: '/search',
                 template: '<search-page></search-page>',
+                data: {
+                    cssClassNames: 'list'
+                }
+            })
+            .state('searchresult', {
+                url: '/search/result/{search}',
+                template: '<search-result-page></search-result-page>',
                 data: {
                     cssClassNames: 'list'
                 }

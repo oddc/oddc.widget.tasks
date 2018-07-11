@@ -14,9 +14,6 @@
     function searchPageController(widgetState) {
         var vm = this;
 
-        function $onInit() {
-        }
-
     }
 
 })();

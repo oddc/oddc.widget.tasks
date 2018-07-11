@@ -49,6 +49,7 @@
                 <scripts>
                     <script>/src/shared/plugins/angular-slick/slick.min.js</script>
                     <script>/src/shared/plugins/angular-slick/angular-slick.min.js</script>
+                    <script>/src/shared/plugins/angular-base64/angular-base64.min.js</script>
                     <script>/src/1x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
@@ -68,6 +69,7 @@
                     <script>/src/shared/components/task-add-subscriber/task-add-subscriber.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
                     <script>/src/shared/components/search-view/search-view.component.js</script>
+                    <script>/src/shared/components/search-result/search-result.component.js</script>
                     <script>/src/1x1/components/list-page/list-page.component.js</script>
                     <script>/src/1x1/components/add-list-page/add-list-page.component.js</script>
                     <script>/src/1x1/components/task-page/tasks-page.component.js</script>
@@ -75,6 +77,7 @@
                     <script>/src/1x1/components/edit-page/edit-page.component.js</script>
                     <script>/src/1x1/components/tasklist-delete-page/tasklist-delete-page.component.js</script>
                     <script>/src/1x1/components/search-page/search-page.component.js</script>
+                    <script>/src/1x1/components/search-result-page/search-result-page.component.js</script>
                 </scripts>
             </template>
             <template cols="2" rows="1" markup="/src/2x1/app.html">
