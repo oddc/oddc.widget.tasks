@@ -1,0 +1,20 @@
+
+<div style="margin: 15px;">
+
+    <h1>Datei hochladen:</h1>
+
+    <form name="form">
+        <div ngf-drop="ctrl.uploadFiles()"
+             ngf-select="ctrl.uploadFiles()"
+             ng-model="ctrl.files"
+             class="drop-box">
+
+            <span class="glyphicon glyphicon-open drop-box-image"></span>
+        </div>
+    </form>
+
+    <div class="alert alert-danger" style="margin-top: 5px;" ng-if="ctrl.error !== ''">
+        <span class="icon icon-exclamation-triangle"></span> {{ctrl.error}}
+    </div>
+
+</div>

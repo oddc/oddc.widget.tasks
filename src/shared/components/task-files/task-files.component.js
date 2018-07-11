@@ -9,18 +9,33 @@
             controllerAs: 'ctrl',
         });
 
-    taskFilesController.$inject = ['taskService', '$stateParams'];
-    function taskFilesController(taskService, $stateParams) {
+    taskFilesController.$inject = ['taskService', '$stateParams', 'widgetState'];
+    function taskFilesController(taskService, $stateParams, widgetState) {
         var vm = this;
-        vm.service = taskService;
         vm.$onInit = $onInit;
         vm.tasklist = {};
-        vm.isLoading = true;
+        vm.files = [];
 
 
         function $onInit() {
-
+            vm.files = [
+                { name: 'datei0.pdf', path: '/files/datei0.pdf', uploadDate: '11.07.2018' },
+                { name: 'datei1.pdf', path: '/files/datei1.pdf', uploadDate: '10.07.2018' },
+                { name: 'datei2.pdf', path: '/files/datei2.pdf', uploadDate: '09.07.2018' },
+                { name: 'datei3.pdf', path: '/files/datei3.pdf', uploadDate: '08.07.2018' },
+                { name: 'datei4.pdf', path: '/files/datei4.pdf', uploadDate: '07.07.2018' },
+                { name: 'datei5.pdf', path: '/files/datei5.pdf', uploadDate: '06.07.2018' },
+                { name: 'datei6.pdf', path: '/files/datei6.pdf', uploadDate: '05.07.2018' },
+                { name: 'datei7.pdf', path: '/files/datei7.pdf', uploadDate: '04.07.2018' },
+                { name: 'datei8.pdf', path: '/files/datei8.pdf', uploadDate: '03.07.2018' },
+                { name: 'datei9.pdf', path: '/files/datei9.pdf', uploadDate: '02.07.2018' }
+            ];
         }
+
+
+        vm.uploadFile = function () {
+            widgetState.go('taskedit.fileupload');
+        };
     }
 
 

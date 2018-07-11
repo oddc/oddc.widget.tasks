@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64'])
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload'])
         .config(stateMashineConfig)
         .run(runBlock);
 
@@ -83,6 +83,13 @@
             .state('taskedit.files', {
                 url: '/files',
                 template: '<task-files></task-files>',
+                data: {
+                    cssClassNames: 'detail files'
+                }
+            })
+            .state('taskedit.fileupload', {
+                url: '/files/upload',
+                template: '<task-files-upload></task-files-upload>',
                 data: {
                     cssClassNames: 'detail files'
                 }

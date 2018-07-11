@@ -355,6 +355,26 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 }
 
 
+.drop-box {
+    border: 3px dashed lightgray;
+    background-color: #F8F8F8;
+    width: 100%;
+    height: 150px;
+    display: block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.drop-box-image {
+    font-size: 50px;
+    margin-top: 40px;
+    opacity: 0.5;
+}
+
+.dragover {
+    border-color: #ffab5f;
+}
+
 
 /* CHECKBOX */
 .container {
