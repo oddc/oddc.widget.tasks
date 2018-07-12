@@ -69,6 +69,7 @@
                     <script>/src/shared/components/task-add/task-add.component.js</script>
                     <script>/src/shared/components/task-files/task-files.component.js</script>
                     <script>/src/shared/components/task-files-upload/task-files-upload.component.js</script>
+                    <script>/src/shared/components/task-files-details/task-files-details.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/task-add-subscriber.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
                     <script>/src/shared/components/search-view/search-view.component.js</script>

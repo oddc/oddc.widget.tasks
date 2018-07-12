@@ -2,7 +2,7 @@
 <div class="action-box" style="padding: 0px;">
 
 <div class="list-group">
-    <button type="button" class="list-group-item" ng-repeat="file in ctrl.files">
+    <button type="button" class="list-group-item" ng-repeat="file in ctrl.files" ng-click="ctrl.openFile(file.id)">
         {{file.name}}
         <span class="badge">{{file.uploadDate}}</span>
         <!--<span class="glyphicon icon-chevron-right"></span>-->

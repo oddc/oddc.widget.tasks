@@ -87,8 +87,15 @@
                     cssClassNames: 'detail files'
                 }
             })
+            .state('taskedit.filesdetails', {
+                url: '/file/details/{fileid}',
+                template: '<task-files-details></task-files-details>',
+                data: {
+                    cssClassNames: 'detail files'
+                }
+            })
             .state('taskedit.fileupload', {
-                url: '/files/upload',
+                url: '/file/upload',
                 template: '<task-files-upload></task-files-upload>',
                 data: {
                     cssClassNames: 'detail files'
