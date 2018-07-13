@@ -27,7 +27,7 @@
 
 
         vm.cancel = function () {
-            widgetState.go('taskedit.files');
+            widgetState.go('detail.files');
         };
 
     }

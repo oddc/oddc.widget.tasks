@@ -25,15 +25,20 @@
         self.error   = '';
         self.tasklist = {};
         self.currentUser = {};
+        self.tasks = [];
+        self.isLoading = true;
 
-        if($stateParams.id === '') {
+        if($stateParams.listid === '') {
             self.iderror = true;
+            self.isLoading = false;
         }
         else {
             self.currentUser = taskService.getCurrentUser();
 
-            taskService.readTaskList($stateParams.id).then(function (r) {
+            taskService.readTaskList($stateParams.listid).then(function (r) {
                self.tasklist = r;
+               self.tasks = self.tasklist.tasks;
+               self.isLoading = false;
             });
         }
 
@@ -44,7 +49,7 @@
 
 
         self.delete = function () {
-            widgetState.go('deletetasklist', { id: $stateParams.id });
+            widgetState.go('deletetasklist', { id: $stateParams.listid });
         };
     }
 

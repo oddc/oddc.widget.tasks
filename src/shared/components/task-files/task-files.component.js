@@ -34,11 +34,11 @@
 
 
         vm.uploadFile = function () {
-            widgetState.go('taskedit.fileupload');
+            widgetState.go('detail.fileupload');
         };
 
         vm.openFile = function (fileid) {
-            widgetState.go('taskedit.filesdetails', { fileid: fileid});
+            widgetState.go('detail.filesdetails', { fileid: fileid});
         };
     }
 

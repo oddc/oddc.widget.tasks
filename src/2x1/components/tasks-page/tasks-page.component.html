@@ -1,0 +1,44 @@
+<od-widget widget-title="Aufgaben" template="tpl-small-header">
+    <od-widget-header>
+        <h1 style="color: rgba(255, 255, 255, 0.8);">
+            <i class="icon-folder-open" style="vertical-align: middle; margin-right: 5px;"></i>
+            {{ctrl.tasklist.title}}
+        </h1>
+        <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
+            <div role="group" class="btn-group tab-group btn-group-sm" style="margin-left: 42%;">
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.view">Details</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.comments" ng-if="!ctrl.createTask">Kommentare</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.files" ng-if="!ctrl.createTask">Dateien</button>
+            </div>
+            <button class="button-add icon-widget-plus" ng-click="ctrl.add()"></button>
+        </navigation-slot>
+    </od-widget-header>
+    <od-widget-content nospacing>
+        <div class="alert alert-danger" ng-if="!ctrl.loading && ctrl.error"
+             ng-bind="ctrl.errorMessage"></div>
+        <div class="col-xs-5" style="height:100%;">
+            <od-scrollbar>
+
+                <oddc-tasklist ng-if="!ctrl.loading && !ctrl.error"
+                               on-select-task="ctrl.onSelectTask({ $task })"
+                               selected-task="ctrl.service.getSelectedTask()"
+                               tasks="ctrl.service.getTasks()"
+                               on-closed-tasks-visibility-change="ctrl.onClosedTasksVisibilityChange($visibility)"
+                               on-status-change="ctrl.onStatusChange($task)"></oddc-tasklist>
+
+            </od-scrollbar>
+        </div>
+        <div ng-if="ctrl.taskid === ''" class="col-xs-7">
+            <div class="alert alert-warning" style="margin: 30px;">
+                <span class="icon icon-info"></span> Bitte wählen Sie eine Aufgabe aus!
+            </div>
+        </div>
+        <div ng-if="ctrl.taskid !== ''" class="col-xs-7" style="height:340px;overflow:auto;">
+            <od-scrollbar>
+
+                <ui-view></ui-view>
+
+            </od-scrollbar>
+        </div>
+    </od-widget-content>
+</od-widget>

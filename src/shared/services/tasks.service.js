@@ -53,7 +53,8 @@
                 createTaskList: createTaskList,
                 deleteTaskList: deleteTaskList,
                 readProjektGroupUsers: readProjektGroupUsers,
-                readTasklistContacts: readTasklistContacts
+                readTasklistContacts: readTasklistContacts,
+                searchTasklist: searchTasklist
             };
 
 
@@ -313,6 +314,14 @@
         function readTasklistContacts() {
             return widgetServices
                 .callService('readTasklistContacts')
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function searchTasklist(search) {
+            return widgetServices
+                .callService('searchTasklist', search)
                 .then(getResponse)
                 .catch(errorCallback);
         }

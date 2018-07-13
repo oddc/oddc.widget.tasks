@@ -17,7 +17,7 @@
         vm.tasklist = {};
         vm.users = [];
         vm.isLoading = false;
-        vm.isnew = $stateParams.taskid === '';
+        vm.isnew = $stateParams.taskid === '' || $stateParams.taskid === 'new';
         vm.error = "";
 
         vm.popup = {
@@ -101,7 +101,7 @@
                 vm.service.updateTask(vm.taskObj).then(function (result) {
                     if (!result.error) {
                         vm.error = '';
-                        widgetState.go('tasks', {id: $stateParams.listid});
+                        widgetState.go('detail.view', {listid: $stateParams.listid});
                     }
                     else {
                         vm.error = result.message;
@@ -109,16 +109,18 @@
                 });
             }
             else {
-                vm.service.createTask(vm.taskObj).then(function () {
+                vm.service.createTask(vm.taskObj).then(function (result) {
+                    console.log('createtask #### ', result);
                     vm.tasklist.tasks.push(vm.taskObj);
-                    widgetState.go('tasks', {id: $stateParams.listid});
+                    widgetState.go('detail.view', {listid: $stateParams.listid});
+                    $state.reload();
                 });
             }
         };
 
 
         vm.cancel = function () {
-            widgetState.go('tasks', {id: $stateParams.listid});
+            widgetState.go('detail.view', {listid: $stateParams.listid});
         };
 
 
@@ -139,39 +141,9 @@
         };
 
         vm.addSubscriber = function () {
-            widgetState.go('taskedit.subscriber', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+            widgetState.go('detail.subscriber', { listid: $stateParams.listid, taskid: $stateParams.taskid });
         };
 
-
-        function loadUserList() {
-            vm.users = [];
-
-            if (vm.tasklist.privateList) {
-                return true;
-            }
-            else if (vm.tasklist.projectGroupList) {
-                return vm.service.readProjektGroupUsers(vm.tasklist.projectGroupId).then(function (result) {
-                    for (var i = 0; i < result.length; i++) {
-                        vm.users.push(result[i].user);
-                    }
-                    return true;
-                });
-            }
-            else if(vm.tasklist.teamList) {
-                return vm.service.requestUsers().then(function (result) {
-                    vm.users = result;
-                    return true;
-                });
-            }
-            else {
-                return vm.service.readTasklistContacts().then(function (result) {
-                    vm.users = result;
-                    return true;
-                });
-            }
-
-            return false;
-        }
 
     }
 

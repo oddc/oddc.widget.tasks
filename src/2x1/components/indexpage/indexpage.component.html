@@ -1,35 +1,12 @@
-<od-widget widget-title="{{indexpage.service.getSelectedTask().title || 'Aufgaben'}}"
+<od-widget widget-title="Aufgaben"
            template="tpl-small-header" icon="ressources/images/icon.png">
     <od-widget-header>
-        <div ng-if="!indexpage.loading && !indexpage.error" class="col-xs-5">
-            <form ng-submit="indexpage.addTask(indexpage.newTask)">
-                <input style="position:absolute;z-index:99;width:calc(100% - 15px);"
-                       type="text"
-                       class="form-control"
-                       ng-model="indexpage.newTask"
-                       name="add-task"
-                       placeholder="+ Aufgabe hinzufügen..."
-                       autocomplete="off"/>
-                <button style="right:16px;" ng-show="indexpage.newTask.length > 0" type="submit"
-                        class="btn btn-success ok-button">OK
-                </button>
-            </form>
-        </div>
         <navigation-slot ng-if="!indexpage.loading && !indexpage.error">
-            <div class="col-xs-push-5 col-xs-7">
-                <div role="group" class="btn-group tab-group btn-group-sm">
-                    <button class="tab"
-                            type="button"
-                            ui-sref-active="active"
-                            ui-sref="detail.view({ id: indexpage.service.getSelectedTask().id })">Aufgabe
-                    </button>
-                    <button class="tab"
-                            type="button"
-                            ui-sref-active="active"
-                            ui-sref="detail.comments({ id: indexpage.service.getSelectedTask().id })">Kommentare
-                    </button>
-                </div>
+            <div role="group" class="btn-group tab-group btn-group-sm">
+                <button class="tab active" type="button">Meine Listen</button>
+                <button class="tab" type="button" ui-sref="search">Suche</button>
             </div>
+            <button class="button-add icon-widget-plus" ng-click="ctrl.openNewList()"></button>
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
@@ -40,16 +17,24 @@
              ng-bind="indexpage.errorMessage"></div>
         <div class="col-xs-5" style="height:100%;">
             <od-scrollbar>
-                <oddc-tasklist ng-if="!indexpage.loading && !indexpage.error"
-                               tasks="indexpage.service.getTasks()"
-                               selected-task="indexpage.service.getSelectedTask()"
-                               on-select-task="indexpage.onSelectTask({ $task })"
-                               on-closed-tasks-visibility-change="indexpage.onClosedTasksVisibilityChange($visibility)"
-                               on-status-change="indexpage.onStatusChange($task)"></oddc-tasklist>
+                <oddc-tasks-groups on-select-tasklist="indexpage.onSelectTasklist(id)"></oddc-tasks-groups>
             </od-scrollbar>
         </div>
         <div ng-show="!indexpage.loading && !indexpage.error" class="col-xs-7" style="height:340px;overflow:auto;">
-            <ui-view></ui-view>
+            <div style="display: block; width: 100%; margin-top: 5px; border-bottom: 1px solid lightgrey;">
+                <h1>Aufgaben</h1>
+            </div>
+
+            <od-scrollbar>
+
+                <oddc-tasklist ng-if="!indexpage.loading && !indexpage.error"
+                               on-select-task="indexpage.onSelectTask({ $task })"
+                               selected-task="indexpage.service.getSelectedTask()"
+                               tasks="indexpage.service.getTasks()"
+                               on-closed-tasks-visibility-change="indexpage.onClosedTasksVisibilityChange($visibility)"
+                               on-status-change="indexpage.onStatusChange($task)"></oddc-tasklist>
+
+            </od-scrollbar>
         </div>
     </od-widget-content>
 </od-widget>

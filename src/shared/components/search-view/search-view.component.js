@@ -18,6 +18,7 @@
         vm.$onInit = $onInit;
         vm.users = [];
         vm.data = {
+            text: '',
             assigned_my: false,
             assigned_to: false,
             assigned_to_user: '',
@@ -35,7 +36,7 @@
 
         vm.search = function () {
             var data = $base64.encode(angular.toJson(vm.data));
-            widgetState.go('searchresult', { search: data })
+            widgetState.go('search.result', { search: data })
         };
 
     }

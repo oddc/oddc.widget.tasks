@@ -43,7 +43,7 @@
                     vm.error = result.message;
                     return;
                 }
-                widgetState.go('taskedit.view', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+                widgetState.go('detail.view', { listid: $stateParams.listid, taskid: $stateParams.taskid });
             });
         };
 

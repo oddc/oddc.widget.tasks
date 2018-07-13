@@ -4,29 +4,34 @@
 
     angular
         .module('oddc.widget.tasks')
-        .component('taskPage', {
-            templateUrl: 'src/1x1/components/task-page/tasks-page.component.html',
-            controller: taskPageController,
-            controllerAs: 'tasklistpage'
+        .component('tasksPage', {
+            templateUrl: 'src/2x1/components/tasks-page/tasks-page.component.html',
+            controller: tasksPageController,
+            controllerAs: 'ctrl'
         });
 
-    taskPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', '$stateParams'];
-    function taskPageController($log, $state, taskService, widgetState, $stateParams) {
+    tasksPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', '$stateParams'];
+    function tasksPageController($log, $state, taskService, widgetState, $stateParams) {
         var vm = this;
-        vm.loading = false;
+        vm.service = taskService;
+        vm.tasks = [];
+        vm.newTask = '';
+        vm.loading = true;
         vm.error = false;
         vm.errorMessage = null;
-        vm.service = taskService;
         vm.tasklist = {};
+        vm.taskid = '';
         vm.$onInit = $onInit;
         vm.addTask = addTask;
         vm.onStatusChange = onStatusChange;
-        vm.onClosedTasksVisibilityChange = onClosedTasksVisibilityChange;
         vm.onSelectTask = onSelectTask;
+        vm.onClosedTasksVisibilityChange = onClosedTasksVisibilityChange;
+
 
         function $onInit() {
+            vm.taskid = $stateParams.taskid;
+            vm.service.setColumns(2);
 
-            vm.loading = true;
             vm.service
                 .requestCurrentUser()
                 .then(onGetCurrentUserSuccess)
@@ -36,38 +41,45 @@
                 .finally(onDone);
 
 
+            widgetState.setBackButtonState('task');
+
             function onGetCurrentUserSuccess() {
                 if (vm.service.getTasks().length === 0) {
                     return vm.service.requestTasks();
                 }
             }
 
-            function onRequestTasksSuccess() {
-                vm.error = false;
-                vm.errorMessage = null;
-            }
-
             function onGetTasklist() {
-                return vm.service.readTaskList($stateParams.id).then(function (result) {
+                console.log('listid', $stateParams.listid);
+                return vm.service.readTaskList($stateParams.listid).then(function (result) {
                     vm.tasklist = result;
                     return vm.tasklist;
                 });
             }
 
+            function onRequestTasksSuccess() {
+                if (vm.service.getSelectedTask() === null) {
+                    vm.service.selectFirstTask();
+                }
+                if (vm.service.getSelectedTask() !== null) {
+                    vm.loading = false;
+                    vm.error = false;
+                    vm.errorMessage = null;
+                    //$state.go('detail.view', {id: vm.service.getSelectedTask().id});
+                }
+            }
+
             function OnError(error) {
-                vm.error = true;
                 $log.error(error);
+                vm.error = true;
                 if (error.data === null && error.status === -1) {
                     vm.errorMessage = 'Es konnte keine Verbindung zum Server aufgebaut werden.';
                 }
             }
 
             function onDone() {
-                console.log('tasklist -> ', vm.tasklist);
                 vm.loading = false;
             }
-
-            widgetState.setBackButtonState('tasklist');
         }
 
         function addTask(title) {
@@ -75,24 +87,28 @@
                 var task = { title: title };
                 vm.service
                     .createTask(task)
-                    .then(onCreateTaskSuccess)
-                    .catch(onCreateTaskError);
+                    .catch(onCreateTaskError)
+                    .finally(onCreateTaskDone);
             }
-
-            function onCreateTaskSuccess(result) {
-                vm.service.addTask(result);
-                vm.newTask = '';
-            }
-
             function onCreateTaskError(error) {
                 $log.error(error);
             }
+
+            function onCreateTaskDone() {
+                vm.newTask = '';
+            }
         }
 
-        function onStatusChange(task) {
+        function onStatusChange($task) {
+            console.log('onStatusChange($task): ', $task.title);
             vm.service
-                .updateTask(task)
+                .updateTask($task)
+                .then(onUpdateTaskSuccess)
                 .catch(onUpdateTaskError);
+
+            function onUpdateTaskSuccess(result) {
+                $task.modifiedAt = Date.now();
+            }
 
             function onUpdateTaskError(error) {
                 $log.error(error);
@@ -104,16 +120,13 @@
         }
 
         function onSelectTask(task) {
-            console.log('select task => ', task, vm.tasklist);
-
             vm.service.setSelectedTask(task.$task);
-            $state.go('taskedit', {listid: $stateParams.id, taskid: task.$task.id});
+            $state.go('detail.view', { taskid: task.$task.id });
         }
 
-
         vm.add = function () {
-            if ($stateParams.id !== '') {
-                $state.go('taskadd', {listid: $stateParams.id, taskid: ""});
+            if ($stateParams.listid !== '') {
+                $state.go('detail.view', {listid: $stateParams.listid, taskid: "new"});
             }
         };
 

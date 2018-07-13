@@ -7,7 +7,10 @@
         .component('oddcTasksGroups', {
             templateUrl: 'src/shared/components/tasks-groups/tasks-groups.component.html',
             controller: tasksGroupsController,
-            controllerAs: 'ctrl'
+            controllerAs: 'ctrl',
+            bindings: {
+                onSelectTasklist: '&'
+            }
         });
 
     tasksGroupsController.$inject = ['taskService', 'widgetState'];
@@ -46,7 +49,7 @@
 
 
         self.openList = function(groupid) {
-            widgetState.go('tasks', { id: groupid });
+            self.onSelectTasklist({ id: groupid });
         };
     }
 

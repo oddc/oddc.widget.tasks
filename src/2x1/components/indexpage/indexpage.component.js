@@ -10,8 +10,8 @@
             controllerAs: 'indexpage'
         });
 
-    indexPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', 'eventService'];
-    function indexPageController($log, $state, taskService, widgetState, eventService) {
+    indexPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', 'eventService', '$timeout'];
+    function indexPageController($log, $state, taskService, widgetState, eventService, $timeout) {
         var vm = this;
         vm.service = taskService;
         vm.tasks = [];
@@ -19,6 +19,7 @@
         vm.loading = true;
         vm.error = false;
         vm.errorMessage = null;
+        vm.tasklist = null;
         vm.$onInit = $onInit;
         vm.addTask = addTask;
         vm.onStatusChange = onStatusChange;
@@ -57,7 +58,7 @@
                     vm.loading = false;
                     vm.error = false;
                     vm.errorMessage = null;
-                    $state.go('detail.view', {id: vm.service.getSelectedTask().id});
+                    //$state.go('detail.view', {id: vm.service.getSelectedTask().id});
                 }
             }
 
@@ -113,8 +114,22 @@
 
         function onSelectTask(task) {
             vm.service.setSelectedTask(task.$task);
-            $state.go('detail.view', { id: task.$task.id });
+            console.log('id', task.$task);
+            $state.go('detail.view', { listid: vm.tasklist.id, taskid: task.$task.id });
         }
+
+
+        vm.onSelectTasklist = function(id) {
+            taskService.readTaskList(id).then(function (result) {
+                vm.tasklist = result;
+                taskService.setTasks([]);
+                $timeout(function () {
+                    taskService.setTasks(result.tasks);
+                });
+
+                console.log('tasks', taskService.getTasks());
+            });
+        };
     }
 
 })();

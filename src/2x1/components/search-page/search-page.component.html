@@ -1,0 +1,28 @@
+<od-widget widget-title="Aufgaben"
+           template="tpl-small-header" icon="ressources/images/icon.png">
+    <od-widget-header>
+        <navigation-slot ng-if="!indexpage.loading && !indexpage.error">
+            <div role="group" class="btn-group tab-group btn-group-sm">
+                <button class="tab" type="button" ui-sref="task">Meine Listen</button>
+                <button class="tab active" type="button">Suche</button>
+            </div>
+            <button class="button-add icon-widget-plus" ng-click="ctrl.openNewList()"></button>
+        </navigation-slot>
+    </od-widget-header>
+    <od-widget-content nospacing>
+        <div class="col-xs-5" style="height:100%;">
+            <od-scrollbar>
+
+                <search-view></search-view>
+
+            </od-scrollbar>
+        </div>
+        <div ng-show="!indexpage.loading && !indexpage.error" class="col-xs-7" style="height:340px;overflow:auto;">
+            <od-scrollbar>
+
+                <search-result></search-result>
+
+            </od-scrollbar>
+        </div>
+    </od-widget-content>
+</od-widget>

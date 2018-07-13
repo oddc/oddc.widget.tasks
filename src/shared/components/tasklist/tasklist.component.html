@@ -6,10 +6,10 @@
     <span class="icon icon-exclamation-triangle"></span> {{tasklist.error}}
 </div>
 
-<div ng-if="!tasklist.iderror">
-    <div class="open-task-list" ng-if="(tasklist.tasklist.tasks | filter: { open: true }).length > 0">
+<div ng-if="!tasklist.iderror && !tasklist.isLoading">
+    <div class="open-task-list" ng-if="(tasklist.tasks | filter: { open: true }).length > 0">
         <ul class="tasklist list-group">
-            <li ng-repeat="openTask in (tasklist.tasklist.tasks | filter: { open: true } | orderBy: '-modifiedAt')" ng-class="{ active: openTask.id === tasklist.selectedTask.id }" class="list-group-item item-hover">
+            <li ng-repeat="openTask in (tasklist.tasks | filter: { open: true } | orderBy: '-modifiedAt')" ng-class="{ active: openTask.id === tasklist.selectedTask.id }" class="list-group-item item-hover">
                 <oddc-tasklist-item on-select-task="tasklist.onSelectTask({ $task })"
                                     on-status-change="tasklist.onStatusChange({ $task })"
                                     task="openTask"></oddc-tasklist-item>
@@ -17,13 +17,13 @@
         </ul>
     </div>
 
-    <div class="panel-spacing" ng-if="(tasklist.tasklist.tasks | filter: { open: true }).length === 0">
+    <div class="panel-spacing" ng-if="(tasklist.tasks | filter: { open: true }).length === 0">
         <div class="alert alert-warning">
             <span class="icon icon-info"></span> Sie haben keine unerledigten Aufgaben.
         </div>
     </div>
 
-    <div class="text-center list-group" ng-if="(tasklist.tasklist.tasks | filter: { open: false }).length">
+    <div class="text-center list-group" ng-if="(tasklist.tasks | filter: { open: false }).length">
         <a href="javascript:;" class="list-group-item list-group-item-info" ng-click="tasklist.onClosedTasksVisibilityChange({ $visibility: !tasklist.service.isClosedTasksVisible() })">Erledigte Aufgabe
             <span ng-if="!tasklist.service.isClosedTasksVisible()">anzeigen</span>
             <span ng-if="tasklist.service.isClosedTasksVisible()">ausblenden</span>
@@ -32,7 +32,7 @@
 
     <div ng-if="tasklist.service.isClosedTasksVisible()">
         <ul class="tasklist list-group">
-            <li ng-repeat="completedTask in (tasklist.tasklist.tasks | filter: { open: false } | orderBy: '-modifiedAt')" ng-class="{ active: completedTask === tasklist.selectedTask }" class="list-group-item item-hover">
+            <li ng-repeat="completedTask in (tasklist.tasks | filter: { open: false } | orderBy: '-modifiedAt')" ng-class="{ active: completedTask === tasklist.selectedTask }" class="list-group-item item-hover">
                 <oddc-tasklist-item on-select-task="tasklist.onSelectTask({ $task })"
                                     on-status-change="tasklist.onStatusChange({ $task })"
                                     task="completedTask"></oddc-tasklist-item>

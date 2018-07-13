@@ -39,12 +39,13 @@
     </information>
     <ressources>
         <templates lang="de-DE">
-            <template cols="1" rows="1" markup="/src/1x1/app.html">
+
+            <template cols="2" rows="1" markup="/src/2x1/app.html">
                 <styles>
                     <style>/src/shared/plugins/angular-slick/slick.css</style>
                     <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
-                    <style>/src/1x1/styles/animations.css</style>
+                    <style>/src/2x1/styles/animations.css</style>
                 </styles>
                 <scripts>
                     <script>/src/shared/plugins/angular-slick/slick.min.js</script>
@@ -52,7 +53,7 @@
                     <script>/src/shared/plugins/angular-base64/angular-base64.min.js</script>
                     <script>/src/shared/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
                     <script>/src/shared/plugins/angular-file-upload/ng-file-upload.min.js</script>
-                    <script>/src/1x1/app.js</script>
+                    <script>/src/2x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
                     <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
@@ -74,34 +75,9 @@
                     <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
                     <script>/src/shared/components/search-view/search-view.component.js</script>
                     <script>/src/shared/components/search-result/search-result.component.js</script>
-                    <script>/src/1x1/components/list-page/list-page.component.js</script>
-                    <script>/src/1x1/components/add-list-page/add-list-page.component.js</script>
-                    <script>/src/1x1/components/task-page/tasks-page.component.js</script>
-                    <script>/src/1x1/components/add-page/add-page.component.js</script>
-                    <script>/src/1x1/components/edit-page/edit-page.component.js</script>
-                    <script>/src/1x1/components/tasklist-delete-page/tasklist-delete-page.component.js</script>
-                    <script>/src/1x1/components/search-page/search-page.component.js</script>
-                    <script>/src/1x1/components/search-result-page/search-result-page.component.js</script>
-                </scripts>
-            </template>
-            <template cols="2" rows="1" markup="/src/2x1/app.html">
-                <styles>
-                    <style>/src/shared/styles/tasks.widget.css</style>
-                    <style>/src/2x1/styles/animations.css</style>
-                </styles>
-                <scripts>
-                    <script>/src/2x1/app.js</script>
-                    <script>/src/shared/services/tasks.service.js</script>
-                    <script>/src/shared/services/event.service.js</script>
-                    <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
-                    <script>/src/shared/components/tasklist/tasklist.component.js</script>
-                    <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
-                    <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
-                    <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
-                    <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
-                    <script>/src/shared/components/detail-view/detail-view.component.js</script>
-                    <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
                     <script>/src/2x1/components/indexpage/indexpage.component.js</script>
+                    <script>/src/2x1/components/tasks-page/tasks-page.component.js</script>
+                    <script>/src/2x1/components/search-page/search-page.component.js</script>
                 </scripts>
             </template>
         </templates>
@@ -126,6 +102,7 @@
             <service environment="DEV" type="restful" name="readUsers" url="http://crm-test.optadata.com:8080/odone.business/users" method="GET"></service>
             <service environment="DEV" type="restful" name="readUser" url="http://crm-test.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
             <service environment="DEV" type="restful" name="getCurrentUser" url="http://crm-test.optadata.com:8080/odone.business/users/current" method="GET"></service>
+            <service environment="DEV" type="restful" name="searchTasklist" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/search" method="POST"></service>
 
             <service environment="PROD" type="restful" name="readTasklistContacts" url="https://widgetservice.optadata-one.de/tasklist/contacts" method="GET"></service>
             <service environment="PROD" type="restful" name="readProjektGroupUsers" url="https://biz.optadata-one.de/projectgroupusers/{id}" method="GET"></service>
@@ -147,6 +124,7 @@
             <service environment="PROD" type="restful" name="readUsers" url="https://biz.optadata-one.de/users" method="GET"></service>
             <service environment="PROD" type="restful" name="readUser" url="https://biz.optadata-one.de/users/{id}" method="GET"></service>
             <service environment="PROD" type="restful" name="getCurrentUser" url="https://biz.optadata-one.de/users/current" method="GET"></service>
+            <service environment="PROD" type="restful" name="searchTasklist" url="https://widgetservice.optadata-one.de/tasklist/search" method="POST"></service>
 
             <service environment="TEST" type="restful" name="readTasklistContacts" url="https://widgetservice.test.optadata-one.de/tasklist/contacts" method="GET"></service>
             <service environment="TEST" type="restful" name="readProjektGroupUsers" url="https://biz.test.optadata-one.de/projectgroupusers/{id}" method="GET"></service>
@@ -168,6 +146,7 @@
             <service environment="TEST" type="restful" name="readUsers" url="https://biz.test.optadata-one.de/users" method="GET"></service>
             <service environment="TEST" type="restful" name="readUser" url="https://biz.test.optadata-one.de/users/{id}" method="GET"></service>
             <service environment="TEST" type="restful" name="getCurrentUser" url="https://biz.test.optadata-one.de/users/current" method="GET"></service>
+            <service environment="TEST" type="restful" name="searchTasklist" url="https://widgetservice.test.optadata-one.de/tasklist/search" method="POST"></service>
 
         </services>
     </ressources>

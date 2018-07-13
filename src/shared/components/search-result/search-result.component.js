@@ -9,45 +9,71 @@
             controllerAs: 'ctrl',
         });
 
-    searchResultController.$inject = ['widgetState', 'taskService', '$stateParams', '$base64', '$timeout'];
-    function searchResultController(widgetState, taskService, $stateParams, $base64, $timeout) {
+    searchResultController.$inject = ['widgetState', 'taskService', '$stateParams', '$base64', '$timeout', '$scope'];
+    function searchResultController(widgetState, taskService, $stateParams, $base64, $timeout, $scope) {
         var vm = this;
         vm.$onInit = $onInit;
         vm.search = '';
-        vm.data = [];
+        vm.data = [{huhu: 'huhu'}];
+        vm.isLoading = false;
 
         function $onInit() {
-            vm.search = JSON.parse($base64.decode($stateParams.search));
+            $scope.$watch(function () { return $stateParams; }, function(newValue, oldValue) {
+                vm.isLoading = true;
+                vm.search = JSON.parse($base64.decode(newValue.search));
+                console.log(vm.search);
 
-            //DEMO-DATEN
-            vm.data = [
-                {
-                    title: 'Team Liste',
-                    tasks: [
-                        { title: 'Aufgabe 1', id: 'asdasdasdasd1', checked: false },
-                        { title: 'Aufgabe 2', id: 'asdasdasdasd2', checked: false },
-                        { title: 'Aufgabe 3', id: 'asdasdasdasd3', checked: false }
-                    ]
-                },
-                {
-                    title: 'Private Liste',
-                    tasks: [
-                        { title: 'Aufgabe 4', id: 'asdasdasdasd4', checked: false },
-                        { title: 'Aufgabe 5', id: 'asdasdasdasd5', checked: false },
-                        { title: 'Aufgabe 6', id: 'asdasdasdasd6', checked: false }
-                    ]
-                },
-                {
-                    title: 'Cave Diver',
-                    tasks: [
-                        { title: 'Aufgabe 7', id: 'asdasdasdasd7', checked: false },
-                        { title: 'Aufgabe 8', id: 'asdasdasdasd8', checked: false },
-                        { title: 'Aufgabe 9', id: 'asdasdasdasd9', checked: false }
-                    ]
-                }
-            ];
+                /*
+                text: '',
+                assigned_my: false,
+                assigned_to: false,
+                assigned_to_user: '',
+                overdue: false,
+                completed_task: false
+                */
 
-            console.log(vm.search);
+                var searchObj = {
+                    "searchString": vm.search.text,
+                    "inTitle": true,
+                    "inDescription": true,
+                    "selfAssigned": vm.search.assigned_my,
+                    "assignedTo": vm.search.assigned_to_user,
+                    "isDone": vm.search.completed_task
+                    //"saveSearch": true,
+                    //"saveTitle": "string"
+                };
+
+
+                vm.data = [];
+
+                taskService.readTaskLists().then(function (lists) {
+                   for (var i = 0; i < lists.length; i++) {
+                       if(vm.data[lists[i].id] === undefined) {
+                           vm.data[lists[i].id] = {
+                               title: lists[i].title,
+                               tasks: []
+                           };
+                       }
+                   }
+
+                   taskService.searchTasklist(searchObj).then(function (tasks) {
+                       for (var i = 0; i < tasks.length; i++) {
+                           if (vm.data[tasks[i].taskListId] !== undefined) {
+                               vm.data[tasks[i].taskListId].tasks.push(tasks[i]);
+                           }
+                       }
+
+                       console.log(vm.data);
+                       vm.isLoading = false;
+                   });
+                });
+
+
+
+            }, true);
+
+            //vm.search = JSON.parse($base64.decode($stateParams.search));
+
         }
 
 
@@ -86,6 +112,7 @@
             if (vm.data.length === 0) return true;
 
             for (var i = 0; i < vm.data.length; i++) {
+                console.log('OOOOOOOOOOOO>>>>', vm.data[i].tasks);
                 if (vm.data[i].tasks.length > 0) {
                     return false;
                 }
