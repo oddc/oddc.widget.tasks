@@ -7,14 +7,7 @@
         .component('oddcTasklist', {
             templateUrl: 'src/shared/components/tasklist/tasklist.component.html',
             controller: tasklistController,
-            controllerAs: 'tasklist',
-            bindings: {
-                tasks: '<',
-                selectedTask: '<',
-                onClosedTasksVisibilityChange: '&',
-                onSelectTask: '&',
-                onStatusChange: '&'
-            }
+            controllerAs: 'tasklist'
         });
 
     tasklistController.$inject = ['taskService', '$stateParams', 'widgetState'];
@@ -27,6 +20,43 @@
         self.currentUser = {};
         self.tasks = [];
         self.isLoading = true;
+
+
+        // tasks
+        // indexpage.service.getTasks()
+
+
+        // selectedTask
+        // indexpage.service.getSelectedTask()
+
+
+        self.onClosedTasksVisibilityChange = function(visibility) {
+            vm.service.setClosedTasksVisibility(visibility);
+        };
+
+
+        self.onStatusChange = function($task) {
+            self.service
+                .updateTask($task)
+                .then(onUpdateTaskSuccess)
+                .catch(onUpdateTaskError);
+
+            function onUpdateTaskSuccess(result) {
+                $task.modifiedAt = Date.now();
+            }
+
+            function onUpdateTaskError(error) {
+                $log.error(error);
+            }
+        };
+
+
+
+        self.onSelectTask = function(task) {
+            self.service.setSelectedTask(task.$task);
+            widgetState.go('detail.view', { listid: self.tasklist.id, taskid: task.$task.id });
+        };
+
 
 
         if($stateParams.listid === '' || $stateParams.listid === undefined) {

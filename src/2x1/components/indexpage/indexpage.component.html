@@ -6,29 +6,19 @@
                 <button class="tab active" type="button">Meine Listen</button>
                 <button class="tab" type="button" ui-sref="search">Suche</button>
             </div>
-            <button class="button-add icon-widget-plus" ng-click="ctrl.openNewList()"></button>
+            <button class="button-add icon-widget-plus" ng-click="indexpage.addNewList()"></button>
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
-        <div ng-if="indexpage.loading">
-            <od-loader></od-loader>
-        </div>
-        <div class="alert alert-danger" ng-if="!indexpage.loading && indexpage.error"
-             ng-bind="indexpage.errorMessage"></div>
         <div class="col-xs-5" style="height:100%;">
             <od-scrollbar>
                 <oddc-tasks-groups on-select-tasklist="indexpage.onSelectTasklist(id)"></oddc-tasks-groups>
             </od-scrollbar>
         </div>
-        <div ng-show="!indexpage.loading && !indexpage.error" class="col-xs-7" style="height:340px;overflow:auto;">
+        <div class="col-xs-7" style="height:340px;overflow:auto;">
             <od-scrollbar>
 
-                <oddc-tasklist ng-if="!indexpage.loading && !indexpage.error"
-                               on-select-task="indexpage.onSelectTask({ $task })"
-                               selected-task="indexpage.service.getSelectedTask()"
-                               tasks="indexpage.service.getTasks()"
-                               on-closed-tasks-visibility-change="indexpage.onClosedTasksVisibilityChange($visibility)"
-                               on-status-change="indexpage.onStatusChange($task)"></oddc-tasklist>
+                <oddc-tasklist></oddc-tasklist>
 
             </od-scrollbar>
         </div>

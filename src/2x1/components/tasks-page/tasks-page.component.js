@@ -22,10 +22,6 @@
         vm.tasklist = {};
         vm.taskid = '';
         vm.$onInit = $onInit;
-        vm.addTask = addTask;
-        vm.onStatusChange = onStatusChange;
-        vm.onSelectTask = onSelectTask;
-        vm.onClosedTasksVisibilityChange = onClosedTasksVisibilityChange;
 
 
         function $onInit() {
@@ -41,7 +37,7 @@
                 .finally(onDone);
 
 
-            widgetState.setBackButtonState('task');
+            widgetState.setBackButtonState('task', { listid: $stateParams.listid });
 
             function onGetCurrentUserSuccess() {
                 if (vm.service.getTasks().length === 0) {
@@ -82,47 +78,6 @@
             }
         }
 
-        function addTask(title) {
-            if (typeof title != 'undefined' && title.length) {
-                var task = { title: title };
-                vm.service
-                    .createTask(task)
-                    .catch(onCreateTaskError)
-                    .finally(onCreateTaskDone);
-            }
-            function onCreateTaskError(error) {
-                $log.error(error);
-            }
-
-            function onCreateTaskDone() {
-                vm.newTask = '';
-            }
-        }
-
-        function onStatusChange($task) {
-            console.log('onStatusChange($task): ', $task.title);
-            vm.service
-                .updateTask($task)
-                .then(onUpdateTaskSuccess)
-                .catch(onUpdateTaskError);
-
-            function onUpdateTaskSuccess(result) {
-                $task.modifiedAt = Date.now();
-            }
-
-            function onUpdateTaskError(error) {
-                $log.error(error);
-            }
-        }
-
-        function onClosedTasksVisibilityChange(visibility) {
-            vm.service.setClosedTasksVisibility(visibility);
-        }
-
-        function onSelectTask(task) {
-            vm.service.setSelectedTask(task.$task);
-            $state.go('detail.view', { taskid: task.$task.id });
-        }
 
         vm.add = function () {
             if ($stateParams.listid !== '') {

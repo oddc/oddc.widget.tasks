@@ -21,10 +21,6 @@
         vm.errorMessage = null;
         vm.tasklist = null;
         vm.$onInit = $onInit;
-        vm.addTask = addTask;
-        vm.onStatusChange = onStatusChange;
-        vm.onSelectTask = onSelectTask;
-        vm.onClosedTasksVisibilityChange = onClosedTasksVisibilityChange;
 
         eventService.addEventListener();
 
@@ -75,49 +71,6 @@
             }
         }
 
-        function addTask(title) {
-            if (typeof title != 'undefined' && title.length) {
-                var task = { title: title };
-                vm.service
-                    .createTask(task)
-                    .catch(onCreateTaskError)
-                    .finally(onCreateTaskDone);
-            }
-            function onCreateTaskError(error) {
-                $log.error(error);
-            }
-
-            function onCreateTaskDone() {
-                vm.newTask = '';
-            }
-        }
-
-        function onStatusChange($task) {
-            console.log('onStatusChange($task): ', $task.title);
-            vm.service
-                .updateTask($task)
-                .then(onUpdateTaskSuccess)
-                .catch(onUpdateTaskError);
-
-            function onUpdateTaskSuccess(result) {
-                $task.modifiedAt = Date.now();
-            }
-
-            function onUpdateTaskError(error) {
-                $log.error(error);
-            }
-        }
-
-        function onClosedTasksVisibilityChange(visibility) {
-            vm.service.setClosedTasksVisibility(visibility);
-        }
-
-        function onSelectTask(task) {
-            console.log('id', vm.tasklist.id, task.$task.id);
-            vm.service.setSelectedTask(task.$task);
-            $state.go('detail.view', { listid: vm.tasklist.id, taskid: task.$task.id });
-        }
-
 
         vm.onSelectTasklist = function(id) {
             taskService.readTaskList(id).then(function (result) {
@@ -129,6 +82,11 @@
 
                 $state.go('task', { listid: vm.tasklist.id });
             });
+        };
+
+
+        vm.addNewList = function () {
+            console.log('######newlist');
         };
     }
 

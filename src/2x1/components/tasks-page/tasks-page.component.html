@@ -19,12 +19,7 @@
         <div class="col-xs-5" style="height:100%;">
             <od-scrollbar>
 
-                <oddc-tasklist ng-if="!ctrl.loading && !ctrl.error"
-                               on-select-task="ctrl.onSelectTask({ $task })"
-                               selected-task="ctrl.service.getSelectedTask()"
-                               tasks="ctrl.service.getTasks()"
-                               on-closed-tasks-visibility-change="ctrl.onClosedTasksVisibilityChange($visibility)"
-                               on-status-change="ctrl.onStatusChange($task)"></oddc-tasklist>
+                <oddc-tasklist ng-if="!ctrl.loading && !ctrl.error"></oddc-tasklist>
 
             </od-scrollbar>
         </div>
