@@ -1,17 +1,13 @@
 
 <div style="margin: 15px;" ng-if="!isLoading">
-
-    {{ctrl.data | json}}
-
     <div class="alert alert-warning" ng-if="ctrl.noResults()" style="margin-top: 5px;">
         <span class="icon icon-info"></span> Ihr Suche führte zu keine Ergebnis!
     </div>
 
     <div class="searchlist" ng-repeat="dataset in ctrl.data">
-        {{dataset | json}}
         <div class="title" ng-if="dataset.tasks.length > 0"><span>{{dataset.title}}</span></div>
         <div class="tasks">
-            <div class="col-xs-12" style="margin-top: 15px;" ng-repeat="task in dataset.tasks">
+            <div class="col-xs-12" style="margin-bottom: 15px;" ng-repeat="task in dataset.tasks">
                 <label class="container" style="margin-left: 0px;">
                     {{task.title}}
                     <input type="checkbox" name="{{task.id}}" id="{{task.id}}" ng-model="task.checked" ng-click="ctrl.taskClose(dataset.tasks, task)">

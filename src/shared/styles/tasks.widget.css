@@ -352,6 +352,7 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
     border: 1px solid #979DAD;
     text-align: center;
     font-size: 16px;
+    margin-bottom: 15px;
 }
 
 
@@ -376,12 +377,22 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 }
 
 
+#assigned_to_user {
+    top: 10px;
+    font-size: 12px;
+}
+
+#save_search_to {
+    top: 10px;
+}
+
+
 /* CHECKBOX */
 .container {
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     cursor: pointer;
     font-size: 16px;
     font-weight: normal;
@@ -404,8 +415,8 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
     position: absolute;
     top: 0;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-color: #eee;
 }
 
@@ -433,8 +444,8 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-    left: 9px;
-    top: 5px;
+    left: 7px;
+    top: 2px;
     width: 7px;
     height: 13px;
     border: solid white;

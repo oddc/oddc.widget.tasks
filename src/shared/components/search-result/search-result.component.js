@@ -14,66 +14,68 @@
         var vm = this;
         vm.$onInit = $onInit;
         vm.search = '';
-        vm.data = [{huhu: 'huhu'}];
+        vm.data = [];
         vm.isLoading = false;
 
         function $onInit() {
             $scope.$watch(function () { return $stateParams; }, function(newValue, oldValue) {
                 vm.isLoading = true;
-                vm.search = JSON.parse($base64.decode(newValue.search));
-                console.log(vm.search);
+                if (newValue.search === '' || newValue.search === undefined) {
+                    vm.isLoading = false;
+                    return;
+                }
+                console.log('###', newValue.search);
 
-                /*
-                text: '',
-                assigned_my: false,
-                assigned_to: false,
-                assigned_to_user: '',
-                overdue: false,
-                completed_task: false
-                */
+                vm.search = JSON.parse($base64.decode(newValue.search));
 
                 var searchObj = {
                     "searchString": vm.search.text,
                     "inTitle": true,
                     "inDescription": true,
                     "selfAssigned": vm.search.assigned_my,
-                    "assignedTo": vm.search.assigned_to_user,
-                    "isDone": vm.search.completed_task
-                    //"saveSearch": true,
-                    //"saveTitle": "string"
+                    "assignedTo":  vm.search.assigned_to ? vm.search.assigned_to_user : '',
+                    "isOverdue": vm.search.overdue,
+                    "isDone": vm.search.completed_task,
+                    "saveSearch": vm.search.save_search,
+                    "saveTitle": vm.search.save_search ? vm.search.save_search_to : ''
                 };
+                console.log(searchObj);
 
 
                 vm.data = [];
-
                 taskService.readTaskLists().then(function (lists) {
                    for (var i = 0; i < lists.length; i++) {
-                       if(vm.data[lists[i].id] === undefined) {
-                           vm.data[lists[i].id] = {
+                       if(getListItem(lists[i].id) === null) {
+                           vm.data.push({
+                               listid: lists[i].id,
                                title: lists[i].title,
                                tasks: []
-                           };
+                           });
                        }
                    }
 
                    taskService.searchTasklist(searchObj).then(function (tasks) {
                        for (var i = 0; i < tasks.length; i++) {
-                           if (vm.data[tasks[i].taskListId] !== undefined) {
-                               vm.data[tasks[i].taskListId].tasks.push(tasks[i]);
+                           var item = getListItem(tasks[i].taskListId);
+                           if (item !== null) {
+                               item.tasks.push(tasks[i]);
                            }
                        }
-
-                       console.log(vm.data);
                        vm.isLoading = false;
                    });
                 });
-
-
-
             }, true);
 
-            //vm.search = JSON.parse($base64.decode($stateParams.search));
+        }
 
+
+        function getListItem(listid) {
+            for (var i = 0; i < vm.data.length; i++) {
+                if (vm.data[i].listid === listid) {
+                    return vm.data[i];
+                }
+            }
+            return null;
         }
 
 
@@ -112,7 +114,6 @@
             if (vm.data.length === 0) return true;
 
             for (var i = 0; i < vm.data.length; i++) {
-                console.log('OOOOOOOOOOOO>>>>', vm.data[i].tasks);
                 if (vm.data[i].tasks.length > 0) {
                     return false;
                 }

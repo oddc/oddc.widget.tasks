@@ -19,6 +19,7 @@
 
         self.tasklists = [];
         taskService.readTaskLists().then(function (result) {
+            console.log('#### tasklist ####', result);
             self.tasklists = [];
 
             for (var i = 0; i < result.length; i++) {
@@ -40,7 +41,13 @@
             }
 
             for (var i = 0; i < result.length; i++) {
-                if (!result[i].isPrivate && !result[i].isTeamlist && !result[i].isProjectgrouplist) {
+                if (result[i].isSearchList) {
+                    self.tasklists.push(result[i]);
+                }
+            }
+
+            for (var i = 0; i < result.length; i++) {
+                if (!result[i].isPrivate && !result[i].isTeamlist && !result[i].isProjectgrouplist && !result[i].isSearchList) {
                     self.tasklists.push(result[i]);
                 }
             }

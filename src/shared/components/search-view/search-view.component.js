@@ -23,7 +23,9 @@
             assigned_to: false,
             assigned_to_user: '',
             overdue: false,
-            completed_task: false
+            completed_task: false,
+            save_search: false,
+            save_search_to: ''
         };
 
 

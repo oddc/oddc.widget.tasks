@@ -21,8 +21,8 @@
         </label>
     </div>
 
-    <div class="col-xs-7" style="margin-top: 15px;">
-       <select name="assigned_to_user" name="assigned_to_user" class="form-control" ng-model="ctrl.data.assigned_to_user" ng-disabled="!ctrl.data.assigned_to">
+    <div class="col-xs-7 input-group input-group-sm" style="margin-top: 15px;">
+       <select name="assigned_to_user" name="assigned_to_user" id="assigned_to_user" class="form-control" ng-model="ctrl.data.assigned_to_user" ng-disabled="!ctrl.data.assigned_to">
            <option value="">Bitte wählen...</option>
            <option value="{{user.openid}}" ng-repeat="user in ctrl.users">{{user.firstname}} {{user.lastname}}</option>
        </select>
@@ -42,6 +42,18 @@
             <input type="checkbox" name="completed_task" id="completed_task" ng-model="ctrl.data.completed_task">
             <span class="checkmark"></span>
         </label>
+    </div>
+
+    <div class="col-xs-5" style="margin-top: 15px;">
+        <label class="container" style="margin-left: 0px;">
+            Filterliste anlegen?
+            <input type="checkbox" name="save_search" id="save_search" ng-model="ctrl.data.save_search">
+            <span class="checkmark"></span>
+        </label>
+    </div>
+
+    <div class="col-xs-7 input-group input-group-sm" style="margin-top: 15px;">
+        <input type="text" class="form-control" placeholder="Listenname" name="save_search_to" id="save_search_to" ng-model="ctrl.data.save_search_to" ng-disabled="!ctrl.data.save_search">
     </div>
 
     <div class="col-xs-12" style="margin-top: 15px;">

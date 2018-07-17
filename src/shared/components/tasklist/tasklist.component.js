@@ -28,7 +28,8 @@
         self.tasks = [];
         self.isLoading = true;
 
-        if($stateParams.listid === '') {
+
+        if($stateParams.listid === '' || $stateParams.listid === undefined) {
             self.iderror = true;
             self.isLoading = false;
         }

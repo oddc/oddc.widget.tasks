@@ -10,8 +10,12 @@
     function stateMashineConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('task', {
-                url: '/tasklist',
+                url: '/tasklist/:listid',
                 template: '<index-page></index-page>'
+            })
+            .state('deletetasklist', {
+                url: '/tasklist/delete/:listid',
+                template: '<tasklist-delete-page></tasklist-delete-page>',
             })
             .state('detail', {
                 url: '/task/:listid/:taskid',
@@ -58,7 +62,7 @@
                 template: '<search-page></search-page>',
             });
 
-        $urlRouterProvider.otherwise('/tasklist');
+        $urlRouterProvider.otherwise('/tasklist/');
     }
 
 })();

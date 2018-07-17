@@ -113,8 +113,8 @@
         }
 
         function onSelectTask(task) {
+            console.log('id', vm.tasklist.id, task.$task.id);
             vm.service.setSelectedTask(task.$task);
-            console.log('id', task.$task);
             $state.go('detail.view', { listid: vm.tasklist.id, taskid: task.$task.id });
         }
 
@@ -127,7 +127,7 @@
                     taskService.setTasks(result.tasks);
                 });
 
-                console.log('tasks', taskService.getTasks());
+                $state.go('task', { listid: vm.tasklist.id });
             });
         };
     }
