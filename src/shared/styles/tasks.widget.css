@@ -252,7 +252,7 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
 
 .tasklists-item {
     display: inline-block;
-    background: url('../../../ressources/images/list.png') no-repeat;
+    background: url('/ressources/images/list.png') no-repeat;
     background-size: 20px 20px;
     width: auto;
     height: 20px;

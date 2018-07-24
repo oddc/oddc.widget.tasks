@@ -17,11 +17,11 @@
         vm.tasks = [];
         vm.newTask = '';
         vm.loading = true;
-        vm.error = false;
+        vm.error = '';
         vm.errorMessage = null;
         vm.tasklist = null;
         vm.$onInit = $onInit;
-        vm.error = '';
+        vm.errorStr = '';
 
         eventService.addEventListener();
 
@@ -74,7 +74,7 @@
 
 
         vm.onSelectTasklist = function(id) {
-            vm.error = '';
+            vm.errorStr = '';
             taskService.readTaskList(id).then(function (result) {
                 vm.tasklist = result;
                 if (result.error === undefined) {
@@ -84,10 +84,10 @@
                         taskService.setTasks(result.tasks);
                     });
 
-                    $state.go('task.view', {listid: vm.tasklist.id});
+                    $state.go('task.edit', {listid: vm.tasklist.id});
                 }
                 else {
-                    vm.error = error.message;
+                    vm.errorStr = error.message;
                 }
             });
         };

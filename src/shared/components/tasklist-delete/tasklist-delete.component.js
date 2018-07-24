@@ -23,14 +23,14 @@
 
 
         self.cancel = function () {
-            widgetState.go('task.view', { listid: $stateParams.listid });
+            widgetState.go('task.edit', { listid: $stateParams.listid });
         };
 
 
         self.delete = function () {
             self.error = "";
             taskService.deleteTaskList($stateParams.listid).then(function () {
-                widgetState.go('task.view', { listid: '' });
+                widgetState.go('task.edit', { listid: '' });
             }, function () {
                 self.error = "Beim löschen der Liste ist ein Fehler aufgetreten!";
             });

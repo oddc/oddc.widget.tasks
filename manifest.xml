@@ -59,6 +59,7 @@
                     <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
                     <script>/src/shared/components/tasklist/tasklist.component.js</script>
                     <script>/src/shared/components/tasklist-add/tasklist-add.component.js</script>
+                    <script>/src/shared/components/tasklist-edit/tasklist-edit.component.js</script>
                     <script>/src/shared/components/tasklist-delete/tasklist-delete.component.js</script>
                     <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
                     <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
