@@ -386,6 +386,12 @@ oddc-commentlist .odsb-scroll-area.ng-isolate-scope {
     top: 10px;
 }
 
+.taskdelbtn {
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 
 /* CHECKBOX */
 .container {

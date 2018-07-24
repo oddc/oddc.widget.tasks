@@ -13,9 +13,17 @@
                 url: '/tasklist/:listid',
                 template: '<index-page></index-page>'
             })
-            .state('deletetasklist', {
-                url: '/tasklist/delete/:listid',
-                template: '<tasklist-delete-page></tasklist-delete-page>',
+            .state('task.view', {
+                url: '/tasklist/view',
+                template: '<oddc-tasklist></oddc-tasklist>'
+            })
+            .state('task.delete', {
+                url: '/tasklist/delete',
+                template: '<tasklist-delete></tasklist-delete>',
+            })
+            .state('task.add', {
+                url: '/tasklist/add',
+                template: '<tasklist-add></tasklist-add>',
             })
             .state('detail', {
                 url: '/task/:listid/:taskid',

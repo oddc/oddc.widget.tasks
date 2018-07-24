@@ -37,7 +37,7 @@
                 .finally(onDone);
 
 
-            widgetState.setBackButtonState('task', { listid: $stateParams.listid });
+            widgetState.setBackButtonState('task.view', { listid: $stateParams.listid });
 
             function onGetCurrentUserSuccess() {
                 if (vm.service.getTasks().length === 0) {

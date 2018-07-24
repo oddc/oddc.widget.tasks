@@ -18,7 +18,11 @@
         <div class="col-xs-7" style="height:340px;overflow:auto;">
             <od-scrollbar>
 
-                <oddc-tasklist></oddc-tasklist>
+                <div class="alert alert-danger" id="error" ng-if="indexpage.error !== ''" style="margin-top: 5px;">
+                    <span class="icon icon-exclamation-triangle"></span> {{indexpage.error}}
+                </div>
+
+                <ui-view></ui-view>
 
             </od-scrollbar>
         </div>

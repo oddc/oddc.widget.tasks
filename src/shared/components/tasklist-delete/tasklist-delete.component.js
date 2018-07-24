@@ -16,21 +16,21 @@
         self.tasklist = null;
 
 
-        widgetState.setBackButtonState('tasks', { id: $stateParams.id });
-        taskService.readTaskList($stateParams.id).then(function (result) {
+        widgetState.setBackButtonState('tasks', { listid: $stateParams.listid });
+        taskService.readTaskList($stateParams.listid).then(function (result) {
             self.tasklist = result;
         });
 
 
         self.cancel = function () {
-            widgetState.go('tasks', { id: $stateParams.id });
+            widgetState.go('task.view', { listid: $stateParams.listid });
         };
 
 
         self.delete = function () {
             self.error = "";
-            taskService.deleteTaskList($stateParams.id).then(function () {
-                widgetState.go('tasklist');
+            taskService.deleteTaskList($stateParams.listid).then(function () {
+                widgetState.go('task.view', { listid: '' });
             }, function () {
                 self.error = "Beim löschen der Liste ist ein Fehler aufgetreten!";
             });

@@ -102,6 +102,7 @@
                     if (!result.error) {
                         vm.error = '';
                         widgetState.go('detail.view', {listid: $stateParams.listid});
+                        $state.reload();
                     }
                     else {
                         vm.error = result.message;
@@ -112,15 +113,14 @@
                 vm.service.createTask(vm.taskObj).then(function (result) {
                     console.log('createtask #### ', result);
                     vm.tasklist.tasks.push(vm.taskObj);
-                    widgetState.go('detail.view', {listid: $stateParams.listid});
-                    $state.reload();
+                    widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
                 });
             }
         };
 
 
         vm.cancel = function () {
-            widgetState.go('detail.view', {listid: $stateParams.listid});
+            widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
         };
 
 
@@ -142,6 +142,11 @@
 
         vm.addSubscriber = function () {
             widgetState.go('detail.subscriber', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+        };
+
+
+        vm.deleteTask = function () {
+            widgetState.go('detail.delete', { listid: $stateParams.listid, taskid: $stateParams.taskid });
         };
 
 

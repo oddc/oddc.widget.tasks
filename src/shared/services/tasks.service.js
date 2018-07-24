@@ -102,12 +102,15 @@
         }
 
         function deleteTask(taskId) {
+            console.log('### DELETE TASK >>>', taskId);
+
             return widgetServices
                 .callService('deleteTask', {id: taskId})
                 .then(onDeleteTaskSuccess)
                 .catch(errorCallback);
 
             function onDeleteTaskSuccess(response) {
+                console.log('### DELETE TASK - DONE >>>', response);
                 if (!response.error) {
                     _tasks.forEach(function (task, index, tasks) {
                         if (task.id === taskId) {

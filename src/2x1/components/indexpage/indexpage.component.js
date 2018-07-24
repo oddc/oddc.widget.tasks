@@ -21,6 +21,7 @@
         vm.errorMessage = null;
         vm.tasklist = null;
         vm.$onInit = $onInit;
+        vm.error = '';
 
         eventService.addEventListener();
 
@@ -73,20 +74,27 @@
 
 
         vm.onSelectTasklist = function(id) {
+            vm.error = '';
             taskService.readTaskList(id).then(function (result) {
                 vm.tasklist = result;
-                taskService.setTasks([]);
-                $timeout(function () {
-                    taskService.setTasks(result.tasks);
-                });
+                if (result.error === undefined) {
 
-                $state.go('task', { listid: vm.tasklist.id });
+                    taskService.setTasks([]);
+                    $timeout(function () {
+                        taskService.setTasks(result.tasks);
+                    });
+
+                    $state.go('task.view', {listid: vm.tasklist.id});
+                }
+                else {
+                    vm.error = error.message;
+                }
             });
         };
 
 
         vm.addNewList = function () {
-            console.log('######newlist');
+            $state.go('task.add');
         };
     }
 

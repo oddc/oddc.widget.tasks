@@ -9,17 +9,14 @@
             controllerAs: 'detailDeleteController'
         });
 
-    detailDeleteController.$inject = ['widgetState', 'taskService', '$state'];
-    function detailDeleteController(widgetState, taskService, $state) {
+    detailDeleteController.$inject = ['widgetState', 'taskService', '$state', '$stateParams'];
+    function detailDeleteController(widgetState, taskService, $state, $stateParams) {
         var vm = this;
         vm.service = taskService;
         vm.deleteSelectedTask = deleteSelectedTask;
         vm.$onInit = $onInit;
 
         function $onInit() {
-            if (vm.service.getColumns() < 2) {
-                widgetState.setBackButtonState('task');
-            }
         }
 
         function deleteSelectedTask() {
@@ -28,7 +25,7 @@
                 .then(onDeleteSelectedTaskSuccess);
 
             function onDeleteSelectedTaskSuccess() {
-                $state.go('task');
+                $state.go('detail.view', { listid: $stateParams.listid, taskid: '' });
             }
         }
     }

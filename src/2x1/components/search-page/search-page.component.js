@@ -21,6 +21,9 @@
         }
 
 
+        vm.back = function () {
+            widgetState.go('task.view', {listid: ''});
+        };
 
     }
 

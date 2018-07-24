@@ -26,7 +26,7 @@
             }
 
             taskService.createTaskList({ title: self.name }).then(function () {
-                widgetState.go('tasklist');
+                widgetState.go('task.view', {listid: ''});
             }, function () {
                 self.error = "Es ist ein Fehler beim speichern aufgetreten!";
             });
@@ -34,7 +34,7 @@
 
 
         self.cancel = function () {
-            widgetState.go('tasklist');
+            widgetState.go('task.view');
         };
 
     }

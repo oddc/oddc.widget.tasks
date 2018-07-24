@@ -14,6 +14,7 @@
     <div class="col-xs-6">
         <span class="pull-right" ng-if="!ctrl.isnew">{{ctrl.taskObj.id}}</span>
         <span class="pull-right" ng-if="ctrl.isnew">#UID (auto)</span>
+        <span class="glyphicon glyphicon-trash pull-right taskdelbtn" title="Löschen" ng-click="ctrl.deleteTask()" ng-if="!ctrl.isnew"></span>
     </div>
     <div class="col-xs-12 input-group input-group-sm">
         <input type="text" name="title" id="title" placeholder="Name" class="form-control" ng-model="ctrl.taskObj.title">
