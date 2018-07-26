@@ -53,6 +53,7 @@
                     <script>/src/shared/plugins/angular-base64/angular-base64.min.js</script>
                     <script>/src/shared/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
                     <script>/src/shared/plugins/angular-file-upload/ng-file-upload.min.js</script>
+                    <script>/src/shared/plugins/angular-ng-storage/ngStorage.min.js</script>
                     <script>/src/2x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
@@ -104,6 +105,7 @@
             <service environment="DEV" type="restful" name="readUser" url="http://crm-test.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
             <service environment="DEV" type="restful" name="getCurrentUser" url="http://crm-test.optadata.com:8080/odone.business/users/current" method="GET"></service>
             <service environment="DEV" type="restful" name="searchTasklist" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/search" method="POST"></service>
+            <service environment="DEV" type="restful" name="readDocuments" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}/documents" method="GET"></service>
 
             <service environment="PROD" type="restful" name="readTasklistContacts" url="https://widgetservice.optadata-one.de/tasklist/contacts" method="GET"></service>
             <service environment="PROD" type="restful" name="readProjektGroupUsers" url="https://biz.optadata-one.de/projectgroupusers/{id}" method="GET"></service>
@@ -126,6 +128,7 @@
             <service environment="PROD" type="restful" name="readUser" url="https://biz.optadata-one.de/users/{id}" method="GET"></service>
             <service environment="PROD" type="restful" name="getCurrentUser" url="https://biz.optadata-one.de/users/current" method="GET"></service>
             <service environment="PROD" type="restful" name="searchTasklist" url="https://widgetservice.optadata-one.de/tasklist/search" method="POST"></service>
+            <service environment="PROD" type="restful" name="readDocuments" url="https://widgetservice.optadata-one.de/task/{id}/documents" method="GET"></service>
 
             <service environment="TEST" type="restful" name="readTasklistContacts" url="https://widgetservice.test.optadata-one.de/tasklist/contacts" method="GET"></service>
             <service environment="TEST" type="restful" name="readProjektGroupUsers" url="https://biz.test.optadata-one.de/projectgroupusers/{id}" method="GET"></service>
@@ -148,6 +151,7 @@
             <service environment="TEST" type="restful" name="readUser" url="https://biz.test.optadata-one.de/users/{id}" method="GET"></service>
             <service environment="TEST" type="restful" name="getCurrentUser" url="https://biz.test.optadata-one.de/users/current" method="GET"></service>
             <service environment="TEST" type="restful" name="searchTasklist" url="https://widgetservice.test.optadata-one.de/tasklist/search" method="POST"></service>
+            <service environment="TEST" type="restful" name="readDocuments" url="https://widgetservice.test.optadata-one.de/task/{id}/documents" method="GET"></service>
 
         </services>
     </ressources>

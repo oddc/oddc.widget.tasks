@@ -4,18 +4,18 @@
     <div class="well">
         <div style="font-size: 20px;">
             <span class="glyphicon glyphicon-file"></span>
-            datei0.pdf
+            {{ctrl.file.filename}}
         </div>
 
         <table style="font-size: 15px; margin-top: 20px;">
-            <tr><td>Type:</td><td>PDF</td></tr>
-            <tr><td>Größe:</td><td>2.5 MB</td></tr>
+            <tr><td style="padding-right: 20px;">Type:</td><td>{{ctrl.file.mimeType}}</td></tr>
+            <tr><td>Größe:</td><td>{{(ctrl.file.sizeInBytes / 1024 / 1024) | number: 2}} MB</td></tr>
         </table>
 
     </div>
 
     <div class="col-xs-6">
-        <button class="btn btn-primary btn-block" ng-click="ctrl.download()">Download</button>
+        <a class="btn btn-primary btn-block" target="_self" href="{{ctrl.file.fullPath}}" download="{{ctrl.file.filename}}">Download</a>
     </div>
 
     <div class="col-xs-6">

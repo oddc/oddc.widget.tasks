@@ -80,7 +80,7 @@
 
 
         self.delete = function () {
-            widgetState.go('task.delete', { id: $stateParams.listid });
+            widgetState.go('detail.listdelete', { listid: $stateParams.listid, taskid: 'none' });
         };
     }
 

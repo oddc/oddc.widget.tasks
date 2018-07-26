@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload'])
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload', 'ngStorage'])
         .config(stateMashineConfig);
 
     stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -28,6 +28,10 @@
             .state('detail', {
                 url: '/task/:listid/:taskid',
                 template: '<tasks-page></tasks-page>'
+            })
+            .state('detail.listdelete', {
+                url: '/tasklist/delete',
+                template: '<tasklist-delete></tasklist-delete>',
             })
             .state('detail.view', {
                 url: '/view',

@@ -54,7 +54,8 @@
                 deleteTaskList: deleteTaskList,
                 readProjektGroupUsers: readProjektGroupUsers,
                 readTasklistContacts: readTasklistContacts,
-                searchTasklist: searchTasklist
+                searchTasklist: searchTasklist,
+                readDocuments: readDocuments
             };
 
 
@@ -325,6 +326,14 @@
         function searchTasklist(search) {
             return widgetServices
                 .callService('searchTasklist', search)
+                .then(getResponse)
+                .catch(errorCallback);
+        }
+
+
+        function readDocuments(taskId) {
+            return widgetServices
+                .callService('readDocuments', {id: taskId})
                 .then(getResponse)
                 .catch(errorCallback);
         }

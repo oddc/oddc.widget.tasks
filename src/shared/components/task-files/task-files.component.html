@@ -2,16 +2,19 @@
 <div class="action-box" style="padding: 0px;">
 
 <div class="list-group">
+    <div class="alert alert-warning" style="margin-top: 5px;" ng-if="ctrl.error !== ''">
+        <span class="icon icon-exclamation-triangle"></span> {{ctrl.error}}
+    </div>
+
     <button type="button" class="list-group-item" ng-repeat="file in ctrl.files" ng-click="ctrl.openFile(file.id)">
-        {{file.name}}
-        <span class="badge">{{file.uploadDate}}</span>
+        {{file.filename}}
+        <span class="badge">{{file.createdAt | date:'dd.MM.yyyy'}}</span>
         <!--<span class="glyphicon icon-chevron-right"></span>-->
     </button>
 
     <button class="list-group-item list-group-item-info" style="text-align: center;" ng-click="ctrl.uploadFile()">
         Datei hochladen
     </button>
-
 </div>
 
 </div>
