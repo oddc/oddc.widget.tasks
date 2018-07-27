@@ -57,6 +57,10 @@
                 url: '/files/upload',
                 template: '<task-files-upload></task-files-upload>',
             })
+            .state('detail.filedelete', {
+                url: '/files/delete/{fileid}',
+                template: '<task-files-delete></task-files-delete>'
+            })
             .state('detail.subscriber', {
                 url: '/add/subscriber',
                 template: '<task-add-subscriber></task-add-subscriber>',

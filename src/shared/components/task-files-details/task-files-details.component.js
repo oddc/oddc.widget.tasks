@@ -32,15 +32,14 @@
         }
 
 
-        vm.download = function () {
-            console.log('downlaod');
-        };
-
-
         vm.cancel = function () {
             widgetState.go('detail.files');
         };
 
+
+        vm.delete = function () {
+            widgetState.go('detail.filedelete', { fileid: $stateParams.fileid });
+        };
     }
 
 
