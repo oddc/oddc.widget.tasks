@@ -19,6 +19,8 @@
 
 
         function $onInit() {
+            widgetState.setBackButtonState('task.edit', { listid: $stateParams.listid });
+
             vm.error = '';
             taskService.readDocuments($stateParams.taskid).then(function (result) {
                 if (result.error === undefined) {

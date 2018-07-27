@@ -19,18 +19,26 @@
         vm.updateSuccess = false;
         vm.isUploading = false;
         vm.progress = 0;
-
+        vm.api = '';
 
 
         function $onInit() {
+            var apiUrls = {
+                DEV: 'http://crm-test.optadata.com:8080',
+                TEST: 'https://widgetservice.test.optadata-one.de',
+                PROD: 'https://widgetservice.optadata-one.de'
+            };
+
+            vm.api = apiUrls[CONFIG.ENV];
         }
+
 
         vm.uploadFiles = function() {
             vm.updateSuccess = false;
             vm.filename = vm.file.name;
             vm.isUploading = true;
             Upload.upload({
-                url: 'http://crm-test.optadata.com:8080/odone.fileserver/upload',
+                url: vm.api + '/odone.fileserver/upload',
                 autoUpload: true,
                 data: {
                     type: 'taskattachement',
