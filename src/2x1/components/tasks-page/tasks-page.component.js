@@ -81,7 +81,7 @@
 
         vm.add = function () {
             if ($stateParams.listid !== '') {
-                $state.go('detail.view', {listid: $stateParams.listid, taskid: "new"});
+                $state.go('detail.edit', {listid: $stateParams.listid, taskid: "new"});
             }
         };
 

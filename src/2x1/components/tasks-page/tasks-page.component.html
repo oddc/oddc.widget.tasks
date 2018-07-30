@@ -6,7 +6,7 @@
         </h1>
         <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
             <div role="group" class="btn-group tab-group btn-group-sm" style="margin-left: 42%;">
-                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.view">Details</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.edit">Details</button>
                 <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.comments" ng-if="!ctrl.createTask">Kommentare</button>
                 <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.files" ng-if="!ctrl.createTask">Dateien</button>
             </div>
@@ -23,12 +23,7 @@
 
             </od-scrollbar>
         </div>
-        <div ng-if="ctrl.taskid === ''" class="col-xs-7">
-            <div class="alert alert-warning" style="margin: 30px;">
-                <span class="icon icon-info"></span> Bitte wählen Sie eine Aufgabe aus!
-            </div>
-        </div>
-        <div ng-if="ctrl.taskid !== ''" class="col-xs-7" style="height:340px;overflow:auto;">
+        <div class="col-xs-7" style="height:340px;overflow:auto;">
             <od-scrollbar>
 
                 <ui-view></ui-view>

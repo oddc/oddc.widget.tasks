@@ -10,13 +10,34 @@
     stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function stateMashineConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('tasklist', {
+            .state('task', {
                 url: '/',
                 template: '<task-list-page></task-list-page>',
-                data: {
-                    cssClassNames: 'list'
-                }
             })
+            .state('task.edit', {
+                url: 'tasklist/edit/{listid}',
+                template: '<tasklist-edit></tasklist-edit>',
+            })
+            .state('detail', {
+                url: '/tasks/{listid}/{taskid}',
+                template: '<task-list-page></task-list-page>'
+            })
+            .state('detail.view', {
+                url: '/view',
+                template: ''
+            })
+
+
+
+
+
+
+
+
+
+
+
+
             .state('search', {
                 url: '/search',
                 template: '<search-page></search-page>',

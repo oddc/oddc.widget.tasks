@@ -10,22 +10,49 @@
             controllerAs: 'ctrl'
         });
 
-    taskListPageController.$inject = ['taskService', 'eventService', 'widgetState'];
-    function taskListPageController(taskService, eventService, widgetState) {
+    taskListPageController.$inject = ['taskService', 'eventService', 'widgetState', '$timeout', '$state'];
+    function taskListPageController(taskService, eventService, widgetState, $timeout, $state) {
         var vm = this;
         vm.loading = false;
         vm.error = false;
         vm.errorMessage = null;
+        vm.state = $state;
 
         eventService.addEventListener();
 
-        function $onInit() {
-            vm.loading = true;
-        }
 
         vm.openNewList = function () {
             widgetState.go('addtasklist');
         };
+
+
+        vm.back = function () {
+            $state.go('task');
+            $state.reload();
+        };
+
+
+        vm.onSelectTasklist = function(id) {
+            console.log('############################');
+
+            vm.errorStr = '';
+            taskService.readTaskList(id).then(function (result) {
+                vm.tasklist = result;
+                if (result.error === undefined) {
+
+                    taskService.setTasks([]);
+                    $timeout(function () {
+                        taskService.setTasks(result.tasks);
+                    });
+
+                    $state.go('task.edit', {listid: vm.tasklist.id});
+                }
+                else {
+                    vm.errorStr = error.message;
+                }
+            });
+        };
+
 
     }
 

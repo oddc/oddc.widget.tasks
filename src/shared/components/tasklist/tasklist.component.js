@@ -54,7 +54,7 @@
 
         self.onSelectTask = function(task) {
             self.service.setSelectedTask(task.$task);
-            widgetState.go('detail.view', { listid: self.tasklist.id, taskid: task.$task.id });
+            widgetState.go('detail.edit', { listid: self.tasklist.id, taskid: task.$task.id });
         };
 
 

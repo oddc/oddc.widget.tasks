@@ -35,6 +35,10 @@
             })
             .state('detail.view', {
                 url: '/view',
+                template: '<task-view></task-view>'
+            })
+            .state('detail.edit', {
+                url: '/edit',
                 template: '<task-add></task-add>'
             })
             .state('detail.files', {
