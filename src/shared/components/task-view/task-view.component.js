@@ -9,10 +9,11 @@
             controllerAs: 'ctrl',
         });
 
-    taskViewController.$inject = [];
-    function taskViewController() {
+    taskViewController.$inject = ['widgetState'];
+    function taskViewController(widgetState) {
         var vm = this;
 
+        widgetState.setBackButtonState('task', {listid: ''});
     }
 
 
