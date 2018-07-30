@@ -10,17 +10,37 @@
             controllerAs: 'ctrl'
         });
 
-    editPageController.$inject = ['$stateParams', 'widgetState'];
-    function editPageController($stateParams, widgetState) {
+    editPageController.$inject = ['$stateParams', 'widgetState', '$state', 'taskService', '$scope'];
+    function editPageController($stateParams, widgetState, $state, taskService, $scope) {
         var vm = this;
+        vm.state = $state;
         vm.loading = true;
+        vm.tasklist = null;
         vm.$onInit = $onInit
 
         function $onInit() {
             vm.loading = false;
-            widgetState.setBackButtonState('tasks', {id: $stateParams.listid});
-            widgetState.go('taskedit.view');
+            loadTasklist();
+
+            $scope.$watch(function () { return $state; }, function () {
+               console.log('###', $state.current.name);
+            });
         }
+
+
+        function loadTasklist() {
+            taskService.readTaskList($stateParams.listid).then(function (result) {
+                console.log(result);
+                vm.tasklist = result;
+            });
+        }
+
+
+        vm.add = function () {
+            if ($stateParams.listid !== '') {
+                $state.go('detail.edit', {listid: $stateParams.listid, taskid: "new"});
+            }
+        };
 
     }
 

@@ -30,7 +30,7 @@
         self.delete = function () {
             self.error = "";
             taskService.deleteTaskList($stateParams.listid).then(function () {
-                widgetState.go('task.edit', { listid: '' });
+                widgetState.go('task', { listid: '' });
             }, function () {
                 self.error = "Beim löschen der Liste ist ein Fehler aufgetreten!";
             });

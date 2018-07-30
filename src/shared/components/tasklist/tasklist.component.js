@@ -21,6 +21,7 @@
         self.tasks = [];
         self.isLoading = true;
 
+        widgetState.setBackButtonState('task', {listid: ''});
 
         // tasks
         // indexpage.service.getTasks()

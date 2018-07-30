@@ -22,19 +22,16 @@
 
 
         vm.openNewList = function () {
-            widgetState.go('addtasklist');
+            widgetState.go('task.add');
         };
 
 
-        vm.back = function () {
-            $state.go('task');
-            $state.reload();
+        vm.goToList = function () {
+            $state.go('task', {listid: ''});
         };
 
 
         vm.onSelectTasklist = function(id) {
-            console.log('############################');
-
             vm.errorStr = '';
             taskService.readTaskList(id).then(function (result) {
                 vm.tasklist = result;

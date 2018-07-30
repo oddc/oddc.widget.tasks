@@ -39,7 +39,50 @@
     </information>
     <ressources>
         <templates lang="de-DE">
-
+            <template cols="1" rows="1" markup="/src/1x1/app.html">
+                <styles>
+                    <style>/src/shared/plugins/angular-slick/slick.css</style>
+                    <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
+                    <style>/src/shared/styles/tasks.widget.css</style>
+                    <style>/src/2x1/styles/animations.css</style>
+                </styles>
+                <scripts>
+                    <script>/src/shared/plugins/angular-slick/slick.min.js</script>
+                    <script>/src/shared/plugins/angular-slick/angular-slick.min.js</script>
+                    <script>/src/shared/plugins/angular-base64/angular-base64.min.js</script>
+                    <script>/src/shared/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
+                    <script>/src/shared/plugins/angular-file-upload/ng-file-upload.min.js</script>
+                    <script>/src/shared/plugins/angular-ng-storage/ngStorage.min.js</script>
+                    <script>/src/1x1/app.js</script>
+                    <script>/src/shared/services/tasks.service.js</script>
+                    <script>/src/shared/services/event.service.js</script>
+                    <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
+                    <script>/src/shared/components/tasklist/tasklist.component.js</script>
+                    <script>/src/shared/components/tasklist-add/tasklist-add.component.js</script>
+                    <script>/src/shared/components/tasklist-edit/tasklist-edit.component.js</script>
+                    <script>/src/shared/components/tasklist-delete/tasklist-delete.component.js</script>
+                    <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
+                    <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
+                    <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
+                    <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
+                    <script>/src/shared/components/detail-view/detail-view.component.js</script>
+                    <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
+                    <script>/src/shared/components/tasks-groups/tasks-groups.component.js</script>
+                    <script>/src/shared/components/task-view/task-view.component.js</script>
+                    <script>/src/shared/components/task-add/task-add.component.js</script>
+                    <script>/src/shared/components/task-files/task-files.component.js</script>
+                    <script>/src/shared/components/task-files-upload/task-files-upload.component.js</script>
+                    <script>/src/shared/components/task-files-details/task-files-details.component.js</script>
+                    <script>/src/shared/components/task-files-delete/task-files-delete.component.js</script>
+                    <script>/src/shared/components/task-add-subscriber/task-add-subscriber.component.js</script>
+                    <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
+                    <script>/src/shared/components/search-view/search-view.component.js</script>
+                    <script>/src/shared/components/search-result/search-result.component.js</script>
+                    <script>/src/1x1/components/list-page/list-page.component.js</script>
+                    <script>/src/1x1/components/task-page/tasks-page.component.js</script>
+                    <script>/src/1x1/components/edit-page/edit-page.component.js</script>
+                </scripts>
+            </template>
             <template cols="2" rows="1" markup="/src/2x1/app.html">
                 <styles>
                     <style>/src/shared/plugins/angular-slick/slick.css</style>

@@ -19,7 +19,7 @@
 
 
         function $onInit() {
-            widgetState.setBackButtonState('task.edit', { listid: $stateParams.listid });
+            widgetState.setBackButtonState('detail.view', { listid: $stateParams.listid });
 
             vm.error = '';
             taskService.readDocuments($stateParams.taskid).then(function (result) {

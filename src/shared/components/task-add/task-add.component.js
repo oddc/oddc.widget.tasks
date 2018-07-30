@@ -45,6 +45,8 @@
         };
 
 
+        widgetState.setBackButtonState('detail.view', { listid: $stateParams.listid });
+
         function $onInit() {
             vm.service.readTaskList($stateParams.listid).then(function (result) {
                 vm.tasklist = result;

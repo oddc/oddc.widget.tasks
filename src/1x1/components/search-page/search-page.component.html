@@ -2,15 +2,15 @@
     <od-widget-header>
         <navigation-slot>
             <div role="group" class="btn-group tab-group btn-group-sm">
-                <button class="tab" type="button" ui-sref="task">Meine Listen</button>
-                <button class="tab active" type="button">Suche</button>
+                <button class="tab" type="button" ng-click="ctrl.goToList()">Meine Listen</button>
+                <button class="tab active" type="button" ui-sref="search.view">Suche</button>
             </div>
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
         <od-scrollbar>
 
-            <search-view></search-view>
+            <ui-view></ui-view>
 
         </od-scrollbar>
     </od-widget-content>

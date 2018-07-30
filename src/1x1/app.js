@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload'])
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload', 'ngStorage'])
         .config(stateMashineConfig)
         .run(runBlock);
 
@@ -11,127 +11,80 @@
     function stateMashineConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('task', {
-                url: '/',
+                url: '/tasklist/:listid',
                 template: '<task-list-page></task-list-page>',
             })
             .state('task.edit', {
-                url: 'tasklist/edit/{listid}',
+                url: '/edit',
                 template: '<tasklist-edit></tasklist-edit>',
+            })
+            .state('task.delete', {
+                url: '/delete',
+                template: '<tasklist-delete></tasklist-delete>',
+            })
+            .state('task.add', {
+                url: '/add',
+                template: '<tasklist-add></tasklist-add>',
             })
             .state('detail', {
                 url: '/tasks/{listid}/{taskid}',
-                template: '<task-list-page></task-list-page>'
+                template: '<edit-page></edit-page>'
+            })
+            .state('detail.listdelete', {
+                url: '/tasklist/delete',
+                template: '<tasklist-delete></tasklist-delete>',
             })
             .state('detail.view', {
                 url: '/view',
-                template: ''
+                template: '<oddc-tasklist></oddc-tasklist>'
             })
-
-
-
-
-
-
-
-
-
-
-
-
+            .state('detail.edit', {
+                url: '/edit',
+                template: '<task-add></task-add>'
+            })
+            .state('detail.files', {
+                url: '/files',
+                template: '<task-files></task-files>'
+            })
+            .state('detail.comments', {
+                url: '/comments',
+                template: '<detail-comment></detail-comment>'
+            })
+            .state('detail.delete', {
+                url: '/delete',
+                template: '<detail-delete></detail-delete>'
+            })
+            .state('detail.filesdetails', {
+                url: '/files/details/{fileid}',
+                template: '<task-files-details></task-files-details>',
+            })
+            .state('detail.fileupload', {
+                url: '/files/upload',
+                template: '<task-files-upload></task-files-upload>',
+            })
+            .state('detail.filedelete', {
+                url: '/files/delete/{fileid}',
+                template: '<task-files-delete></task-files-delete>'
+            })
+            .state('detail.subscriber', {
+                url: '/add/subscriber',
+                template: '<task-add-subscriber></task-add-subscriber>',
+            })
             .state('search', {
                 url: '/search',
                 template: '<search-page></search-page>',
-                data: {
-                    cssClassNames: 'list'
-                }
             })
-            .state('searchresult', {
-                url: '/search/result/{search}',
-                template: '<search-result-page></search-result-page>',
-                data: {
-                    cssClassNames: 'list'
-                }
-            })
-            .state('addtasklist', {
-                url: '/tasklist/add',
-                template: '<add-list-page></add-list-page>',
-                data: {
-                    cssClassNames: 'list'
-                }
-            })
-            .state('deletetasklist', {
-                url: '/tasklist/delete/:id',
-                template: '<tasklist-delete-page></tasklist-delete-page>',
-                data: {
-                    cssClassNames: 'list'
-                }
-            })
-            .state('tasks', {
-                url: '/tasks/:id',
-                template: '<task-page></task-page>',
-                data: {
-                    cssClassNames: 'list'
-                }
-            })
-            .state('taskadd', {
-                url: '/task/add/:listid/:taskid',
-                template: '<add-page></add-page>',
-                data: {
-                    cssClassNames: 'detail add'
-                }
-            })
-            .state('taskedit', {
-                url: '/task/edit/:listid/:taskid',
-                template: '<edit-page></edit-page>',
-                data: {
-                    cssClassNames: 'detail edit'
-                }
-            })
-            .state('taskedit.view', {
+            .state('search.view', {
                 url: '/view',
-                template: '<task-add></task-add>',
-                data: {
-                    cssClassNames: 'detail view'
-                }
+                template: '<search-view></search-view>',
             })
-            .state('taskedit.comment', {
-                url: '/comment',
-                template: '<detail-comment></detail-comment>',
-                data: {
-                    cssClassNames: 'detail comment'
-                }
-            })
-            .state('taskedit.files', {
-                url: '/files',
-                template: '<task-files></task-files>',
-                data: {
-                    cssClassNames: 'detail files'
-                }
-            })
-            .state('taskedit.filesdetails', {
-                url: '/file/details/{fileid}',
-                template: '<task-files-details></task-files-details>',
-                data: {
-                    cssClassNames: 'detail files'
-                }
-            })
-            .state('taskedit.fileupload', {
-                url: '/file/upload',
-                template: '<task-files-upload></task-files-upload>',
-                data: {
-                    cssClassNames: 'detail files'
-                }
-            })
-            .state('taskedit.subscriber', {
-                url: '/add/subscriber',
-                template: '<task-add-subscriber></task-add-subscriber>',
-                data: {
-                    cssClassNames: 'detail subscriber'
-                }
+            .state('search.result', {
+                url: '/result/{search}',
+                template: '<search-result></search-result>',
             });
 
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/tasklist/');
     }
 
     runBlock.$inject = ['$rootScope', 'widgetState'];
