@@ -20,7 +20,7 @@
         <input type="text" name="title" id="title" placeholder="Name" class="form-control" ng-model="ctrl.taskObj.title">
     </div>
     <div class="col-xs-6">
-        <button class="btn btn-sm btn-default btn-block" type="button" style="height: 30px;" ng-disabled="ctrl.isnew">Aufgabe erledigen</button>
+        <button class="btn btn-sm btn-default btn-block" type="button" style="height: 30px;" ng-disabled="ctrl.isnew" ng-click="ctrl.done()">Aufgabe {{ctrl.taskObj.state !== 'done' ? 'erledigen' : 'wieder öffnen'}}</button>
     </div>
     <div class="col-xs-6 input-group input-group-sm">
         <select name="state" id="state" class="form-control" ng-model="ctrl.taskObj.state" ng-disabled="ctrl.isnew">

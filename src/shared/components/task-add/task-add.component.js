@@ -98,6 +98,8 @@
             }
 
             if (!vm.isnew) {
+                vm.taskObj.open = vm.taskObj.state !== 'done';
+
                 vm.service.updateTask(vm.taskObj).then(function (result) {
                     if (!result.error) {
                         vm.error = '';
@@ -137,7 +139,16 @@
                 }
             }
 
-            $state.reload()
+
+            vm.service.updateTask(vm.taskObj).then(function (result) {
+                if (!result.error) {
+                    vm.error = '';
+                    window.location.reload();
+                }
+                else {
+                    vm.error = result.message;
+                }
+            });
         };
 
         vm.addSubscriber = function () {
@@ -149,6 +160,11 @@
             widgetState.go('detail.delete', { listid: $stateParams.listid, taskid: $stateParams.taskid });
         };
 
+
+        vm.done = function () {
+            vm.taskObj.state = vm.taskObj.state !== 'done' ? 'done' : 'open';
+            vm.saveTask();
+        };
 
     }
 

@@ -31,7 +31,7 @@
 
 
         self.onClosedTasksVisibilityChange = function(visibility) {
-            vm.service.setClosedTasksVisibility(visibility);
+            self.service.setClosedTasksVisibility(visibility);
         };
 
 
