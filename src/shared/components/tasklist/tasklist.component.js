@@ -10,8 +10,8 @@
             controllerAs: 'tasklist'
         });
 
-    tasklistController.$inject = ['taskService', '$stateParams', 'widgetState'];
-    function tasklistController(taskService, $stateParams, widgetState) {
+    tasklistController.$inject = ['taskService', '$stateParams', 'widgetState', '$sessionStorage'];
+    function tasklistController(taskService, $stateParams, widgetState, $sessionStorage) {
         var self = this;
         self.service = taskService;
         self.iderror = false;
@@ -67,11 +67,10 @@
         else {
             self.currentUser = taskService.getCurrentUser();
 
-            taskService.readTaskList($stateParams.listid).then(function (r) {
-               self.tasklist = r;
-               self.tasks = self.tasklist.tasks;
-               self.isLoading = false;
-            });
+            self.tasklist = $sessionStorage.tasklist;
+            console.log(self.tasklist);
+            self.tasks = self.tasklist.tasks;
+            self.isLoading = false;
         }
 
 

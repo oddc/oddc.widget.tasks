@@ -9,14 +9,14 @@
             controllerAs: 'ctrl',
         });
 
-    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams', '$state'];
-    function taskAddController(widgetState, taskService, $stateParams, $state) {
+    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams', '$state', '$sessionStorage', '$q'];
+    function taskAddController(widgetState, taskService, $stateParams, $state, $sessionStorage, $q) {
         var vm = this;
         vm.service = taskService;
         vm.$onInit = $onInit;
-        vm.tasklist = {};
+        vm.tasklist = $sessionStorage.tasklist;
         vm.users = [];
-        vm.isLoading = false;
+        vm.isLoading = true;
         vm.isnew = $stateParams.taskid === '' || $stateParams.taskid === 'new';
         vm.error = "";
 
@@ -48,13 +48,10 @@
         widgetState.setBackButtonState('detail.view', { listid: $stateParams.listid });
 
         function $onInit() {
-            vm.service.readTaskList($stateParams.listid).then(function (result) {
-                vm.tasklist = result;
-            })
-            .then(loadUserData)
+            loadUserData()
             .then(loadTaskData)
             .then(function () {
-                vm.isLoading = true;
+                vm.isLoading = false;
             });
 
 
@@ -66,6 +63,7 @@
                 return vm.service.requestTask($stateParams.taskid).then(function (result) {
                     vm.taskObj = result;
                     vm.users = vm.taskObj.users;
+                    $sessionStorage.task = vm.taskObj;
                     return true;
                 });
             }
@@ -75,9 +73,9 @@
                 vm.taskObj.users.push({ userId: user.id, openId: user.openId});
                 vm.taskObj.userIds.push(user.openId);
                 vm.users.push(user);
-                return true;
+                return $q.resolve(true);
             }
-            return false;
+            return $q.resolve(false);
         }
 
 
@@ -85,7 +83,18 @@
             if (vm.service.getCurrentUser() === null) {
                 return vm.service.requestCurrentUser();
             }
-            return true;
+
+            return $q.resolve(true);
+        }
+
+
+        function changeTitle() {
+            for (var i = 0; i < vm.tasklist.tasks.length; i++) {
+                if (vm.tasklist.tasks[i].id === vm.taskObj.id) {
+                    vm.tasklist.tasks[i].title = vm.taskObj.title;
+                    break;
+                }
+            }
         }
 
 
@@ -105,8 +114,9 @@
                 vm.service.updateTask(vm.taskObj).then(function (result) {
                     if (!result.error) {
                         vm.error = '';
-                        widgetState.go('detail.view', {listid: $stateParams.listid});
-                        $state.reload();
+                        $sessionStorage.task = vm.taskObj;
+                        changeTitle();
+                        widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
                     }
                     else {
                         vm.error = result.message;
@@ -115,7 +125,6 @@
             }
             else {
                 vm.service.createTask(vm.taskObj).then(function (result) {
-                    console.log('createtask #### ', result);
                     vm.tasklist.tasks.push(vm.taskObj);
                     widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
                 });

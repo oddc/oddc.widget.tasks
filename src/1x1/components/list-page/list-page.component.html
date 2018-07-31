@@ -9,10 +9,6 @@
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
-        <div ng-if="ctrl.loading">
-            <od-loader></od-loader>
-        </div>
-        <div ng-if="!ctrl.loading && ctrl.error" class="alert alert-danger" ng-bind="ctrl.errorMessage"></div>
         <od-scrollbar>
 
             <ui-view></ui-view>

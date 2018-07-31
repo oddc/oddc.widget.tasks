@@ -9,17 +9,14 @@
             controllerAs: 'ctrl'
         });
 
-    tasklistDeleteController.$inject = ['$stateParams', 'taskService', 'widgetState'];
-    function tasklistDeleteController($stateParams, taskService, widgetState) {
+    tasklistDeleteController.$inject = ['$stateParams', 'taskService', 'widgetState', '$sessionStorage'];
+    function tasklistDeleteController($stateParams, taskService, widgetState, $sessionStorage) {
         var self = this;
         self.error = "";
-        self.tasklist = null;
+        self.tasklist = $sessionStorage.tasklist;
 
 
         widgetState.setBackButtonState('tasks', { listid: $stateParams.listid });
-        taskService.readTaskList($stateParams.listid).then(function (result) {
-            self.tasklist = result;
-        });
 
 
         self.cancel = function () {

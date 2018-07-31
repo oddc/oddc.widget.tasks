@@ -1,9 +1,11 @@
 
+<od-loader ng-if="ctrl.isLoading"></od-loader>
+
 <div class="alert alert-danger" id="error" ng-if="ctrl.error !== ''" style="margin-top: 5px;">
     <span class="icon icon-exclamation-triangle"></span> {{ctrl.error}}
 </div>
 
-<div class="taskadd">
+<div class="taskadd" ng-if="!ctrl.isLoading">
     <div class="col-xs-6">
         <label class="container">
             Wichtig
@@ -33,7 +35,7 @@
     <div class="col-xs-12 user-slider">
         <strong>Teilnehmer:</strong>
 
-        <slick infinite=true slides-to-show="3" slides-to-scroll="1" touch-move="false" ng-if="ctrl.isLoading">
+        <slick infinite=true slides-to-show="3" slides-to-scroll="1" touch-move="false" ng-if="!ctrl.isLoading">
             <span class="item-box" ng-repeat="user in ctrl.users">
                 <span class="item" style="background-image: url('{{user.image}}');">
                     <span class="itembtn" title="User entfernen" ng-click="ctrl.removeUser(user)"><span class="glyphicon glyphicon-ban-circle"></span></span>

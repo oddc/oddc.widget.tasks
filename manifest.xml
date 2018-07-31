@@ -44,7 +44,7 @@
                     <style>/src/shared/plugins/angular-slick/slick.css</style>
                     <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
-                    <style>/src/2x1/styles/animations.css</style>
+                    <style>/src/1x1/styles/animations.css</style>
                 </styles>
                 <scripts>
                     <script>/src/shared/plugins/angular-slick/slick.min.js</script>
@@ -79,7 +79,7 @@
                     <script>/src/shared/components/search-view/search-view.component.js</script>
                     <script>/src/shared/components/search-result/search-result.component.js</script>
                     <script>/src/1x1/components/list-page/list-page.component.js</script>
-                    <script>/src/1x1/components/task-page/tasks-page.component.js</script>
+                    <script>/src/1x1/components/search-page/search-page.component.js</script>
                     <script>/src/1x1/components/edit-page/edit-page.component.js</script>
                 </scripts>
             </template>
@@ -88,7 +88,6 @@
                     <style>/src/shared/plugins/angular-slick/slick.css</style>
                     <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
-                    <style>/src/2x1/styles/animations.css</style>
                 </styles>
                 <scripts>
                     <script>/src/shared/plugins/angular-slick/slick.min.js</script>

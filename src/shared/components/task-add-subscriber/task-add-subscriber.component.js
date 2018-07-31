@@ -9,29 +9,22 @@
             controllerAs: 'ctrl'
         });
 
-    taskAddSubscriberController.$inject = ['$stateParams', 'taskService', 'widgetState'];
-    function taskAddSubscriberController($stateParams, taskService, widgetState) {
+    taskAddSubscriberController.$inject = ['$stateParams', 'taskService', 'widgetState', '$sessionStorage'];
+    function taskAddSubscriberController($stateParams, taskService, widgetState, $sessionStorage) {
         var vm = this;
         vm.$onInit = $onInit;
         vm.users = [];
-        vm.tasklist = {};
-        vm.currentUsers = [];
-        vm.task = {};
+        vm.tasklist = $sessionStorage.tasklist;
+        vm.currentUsers = $sessionStorage.task.userIds;
+        vm.task = $sessionStorage.task;
         vm.error = '';
 
         function $onInit() {
-            taskService.readTaskList($stateParams.listid).then(function (tasklist) {
-               vm.tasklist = tasklist;
-               loadUserList();
+            loadUserList();
 
-               for (var i = 0; i < vm.tasklist.tasks.length; i++) {
-                   if (vm.tasklist.tasks[i].id === $stateParams.taskid) {
-                       vm.currentUsers = vm.tasklist.tasks[i].userIds;
-                       vm.task = vm.tasklist.tasks[i];
-                       break;
-                   }
-               }
-            });
+            console.log('#0>', vm.currentUsers);
+            console.log('#1>', vm.task);
+
         }
 
 
@@ -43,7 +36,7 @@
                     vm.error = result.message;
                     return;
                 }
-                widgetState.go('detail.view', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+                widgetState.go('detail.edit', { listid: $stateParams.listid, taskid: $stateParams.taskid });
             });
         };
 

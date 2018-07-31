@@ -10,8 +10,8 @@
             controllerAs: 'ctrl'
         });
 
-    tasklistEditController.$inject = ['taskService', 'widgetState', '$stateParams'];
-    function tasklistEditController(taskService, widgetState, $stateParams) {
+    tasklistEditController.$inject = ['taskService', 'widgetState', '$stateParams', '$sessionStorage'];
+    function tasklistEditController(taskService, widgetState, $stateParams, $sessionStorage) {
         var self = this;
         self.tasklist = null;
         self.error = '';
@@ -20,9 +20,7 @@
             self.error = 'Bitte wählen Sie eine Liste aus!';
         }
         else {
-            taskService.readTaskList($stateParams.listid).then(function (result) {
-                self.tasklist = result;
-            });
+            self.tasklist = $sessionStorage.tasklist;
         }
 
 
