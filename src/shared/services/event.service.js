@@ -41,7 +41,7 @@
             ];
 
             if(whitelist.indexOf(e.origin) < 0) {
-                console.log("Error: Unauthorized Domain '" + e.origin + "'");
+                console.error("Error: Unauthorized Domain '" + e.origin + "'");
                 return false;
             }
 
@@ -55,7 +55,7 @@
                 else if(data.type === "task.reopen") taskReopen(data.taskid);
                 else if(data.type === "task.newnote") taskNewnote(data.taskid);
                 else {
-                    console.log("Warning: Not implemented action!");
+                    console.error("Warning: Not implemented action!");
                     return false;
                 }
             }
@@ -91,7 +91,7 @@
          * @param taskid
          */
         function taskChange(taskid) {
-            console.log('task.change -> not implemented');
+            console.error('task.change -> not implemented');
         }
 
 

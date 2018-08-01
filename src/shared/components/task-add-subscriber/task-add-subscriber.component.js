@@ -21,10 +21,6 @@
 
         function $onInit() {
             loadUserList();
-
-            console.log('#0>', vm.currentUsers);
-            console.log('#1>', vm.task);
-
         }
 
 

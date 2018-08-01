@@ -18,8 +18,6 @@
 
 
         function $onInit() {
-            console.log($sessionStorage.files, $stateParams.fileid);
-
             if ($sessionStorage.files !== undefined) {
                 for (var i = 0; i < $sessionStorage.files.length; i++) {
                     if ($sessionStorage.files[i].id === $stateParams.fileid) {

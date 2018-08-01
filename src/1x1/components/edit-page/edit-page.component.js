@@ -21,16 +21,11 @@
         function $onInit() {
             vm.loading = false;
             loadTasklist();
-
-            $scope.$watch(function () { return $state; }, function () {
-               console.log('###', $state.current.name);
-            });
         }
 
 
         function loadTasklist() {
             taskService.readTaskList($stateParams.listid).then(function (result) {
-                console.log(result);
                 vm.tasklist = result;
             });
         }

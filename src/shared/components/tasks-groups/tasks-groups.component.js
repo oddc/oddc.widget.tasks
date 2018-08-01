@@ -60,7 +60,6 @@
             }
 
             self.isLoading = false;
-            console.log('#### tasklist ####', self.tasklists);
         });
 
 

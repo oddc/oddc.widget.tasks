@@ -22,7 +22,6 @@
         }
         else {
             self.tasklist = $sessionStorage.tasklist;
-            console.log(self.tasklist);
         }
 
 

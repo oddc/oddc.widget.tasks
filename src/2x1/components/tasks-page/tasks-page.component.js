@@ -46,7 +46,6 @@
             }
 
             function onGetTasklist() {
-                console.log('listid', $stateParams.listid);
                 return vm.service.readTaskList($stateParams.listid).then(function (result) {
                     vm.tasklist = result;
                     return vm.tasklist;

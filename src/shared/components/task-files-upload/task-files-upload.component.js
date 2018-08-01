@@ -50,7 +50,6 @@
                 vm.isUploading = false;
                 vm.progress = 0;
 
-                console.log(resp);
                 if (resp.status === 200 && resp.data.result === 'success') {
                     saveUpload(resp);
                 }
@@ -58,7 +57,6 @@
             }, function () {
                 vm.isUploading = false;
                 vm.progress = 0;
-                console.log(error);
             }, function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 vm.progress = progressPercentage;

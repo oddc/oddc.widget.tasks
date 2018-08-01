@@ -9,8 +9,8 @@
             controllerAs: 'ctrl',
         });
 
-    searchResultController.$inject = ['widgetState', 'taskService', '$stateParams', '$base64', '$timeout', '$scope'];
-    function searchResultController(widgetState, taskService, $stateParams, $base64, $timeout, $scope) {
+    searchResultController.$inject = ['taskService', '$stateParams', '$base64', '$timeout', '$scope'];
+    function searchResultController(taskService, $stateParams, $base64, $timeout, $scope) {
         var vm = this;
         vm.$onInit = $onInit;
         vm.search = '';
@@ -24,7 +24,6 @@
                     vm.isLoading = false;
                     return;
                 }
-                console.log('###', newValue.search);
 
                 vm.search = JSON.parse($base64.decode(newValue.search));
 
@@ -39,7 +38,6 @@
                     "saveSearch": vm.search.save_search,
                     "saveTitle": vm.search.save_search ? vm.search.save_search_to : ''
                 };
-                console.log(searchObj);
 
 
                 vm.data = [];
