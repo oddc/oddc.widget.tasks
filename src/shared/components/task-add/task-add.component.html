@@ -38,7 +38,9 @@
         <slick infinite=true slides-to-show="3" slides-to-scroll="1" touch-move="false" ng-if="!ctrl.isLoading">
             <span class="item-box" ng-repeat="user in ctrl.users">
                 <span class="item" style="background-image: url('{{user.image}}');">
-                    <span class="itembtn" title="User entfernen" ng-click="ctrl.removeUser(user)"><span class="glyphicon glyphicon-ban-circle"></span></span>
+                    <span class="itembtn" title="User entfernen" ng-click="ctrl.removeUser(user)" ng-if="ctrl.canRemove()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>
+                    </span>
                 </span>
                 {{user.firstName}} {{user.lastName}}
             </span>

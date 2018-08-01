@@ -179,6 +179,11 @@
             vm.saveTask();
         };
 
+
+        vm.canRemove = function () {
+            return vm.users.length > 1;
+        };
+
     }
 
 })();
