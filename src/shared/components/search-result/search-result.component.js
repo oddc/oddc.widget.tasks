@@ -80,30 +80,23 @@
 
 
         vm.taskClose = function (tasks, task) {
-            console.log(tasks, task);
             if (task.checked) {
                 $timeout(function () {
 
-                    /*
-                     * Warten auf Backend
-                     *
+                    task.open  = false;
+                    task.state = 'done';
+
                     taskService.updateTask(task).then(function (result) {
-                        for (var i = 0; i < tasks.length; i++) {
-                            if (tasks[i].id === task.id) {
-                                tasks.splice(i, 1);
-                                return true;
+                        if (!result.error) {
+                            for (var i = 0; i < tasks.length; i++) {
+                                if (tasks[i].id === task.id) {
+                                    tasks.splice(i, 1);
+                                    return true;
+                                }
                             }
                         }
                     });
-                    */
 
-
-                    for (var i = 0; i < tasks.length; i++) {
-                        if (tasks[i].id === task.id) {
-                            tasks.splice(i, 1);
-                            return true;
-                        }
-                    }
                 }, 300);
             }
             return false;

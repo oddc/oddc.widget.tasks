@@ -10,17 +10,19 @@
             controllerAs: 'ctrl'
         });
 
-    tasklistEditController.$inject = ['taskService', 'widgetState', '$stateParams', '$sessionStorage'];
-    function tasklistEditController(taskService, widgetState, $stateParams, $sessionStorage) {
+    tasklistEditController.$inject = ['taskService', 'widgetState', '$stateParams', '$sessionStorage', '$state'];
+    function tasklistEditController(taskService, widgetState, $stateParams, $sessionStorage, $state) {
         var self = this;
         self.tasklist = null;
         self.error = '';
+
 
         if($stateParams.listid === '') {
             self.error = 'Bitte wählen Sie eine Liste aus!';
         }
         else {
             self.tasklist = $sessionStorage.tasklist;
+            console.log(self.tasklist);
         }
 
 
@@ -30,7 +32,15 @@
 
 
         self.save = function () {
+            var data = {
+                id: self.tasklist.id,
+                title: self.tasklist.title
+            };
 
+            taskService.updateTaskList(data).then(function () {
+                $sessionStorage.tasklist.title = data.title;
+                $state.reload();
+            });
         };
 
 

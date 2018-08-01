@@ -88,10 +88,12 @@
         }
 
 
-        function changeTitle() {
+        function changeValues() {
             for (var i = 0; i < vm.tasklist.tasks.length; i++) {
                 if (vm.tasklist.tasks[i].id === vm.taskObj.id) {
                     vm.tasklist.tasks[i].title = vm.taskObj.title;
+                    vm.tasklist.tasks[i].open = vm.taskObj.open;
+                    vm.tasklist.tasks[i].state = vm.taskObj.state;
                     break;
                 }
             }
@@ -115,7 +117,7 @@
                     if (!result.error) {
                         vm.error = '';
                         $sessionStorage.task = vm.taskObj;
-                        changeTitle();
+                        changeValues();
                         widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
                     }
                     else {

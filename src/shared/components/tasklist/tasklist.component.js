@@ -37,8 +37,10 @@
 
 
         self.onStatusChange = function($task) {
+            $task.$task.state = !$task.$task.open ? 'done' : 'open';
+
             self.service
-                .updateTask($task)
+                .updateTask($task.$task)
                 .then(onUpdateTaskSuccess)
                 .catch(onUpdateTaskError);
 
