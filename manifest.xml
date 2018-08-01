@@ -41,18 +41,18 @@
         <templates lang="de-DE">
             <template cols="1" rows="1" markup="/src/1x1/app.html">
                 <styles>
-                    <style>/src/shared/plugins/angular-slick/slick.css</style>
-                    <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
+                    <style>/ressources/plugins/angular-slick/slick.css</style>
+                    <style>/ressources/plugins/angular-slick/slick-theme.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
                     <style>/src/1x1/styles/animations.css</style>
                 </styles>
                 <scripts>
-                    <script>/src/shared/plugins/angular-slick/slick.min.js</script>
-                    <script>/src/shared/plugins/angular-slick/angular-slick.min.js</script>
-                    <script>/src/shared/plugins/angular-base64/angular-base64.min.js</script>
-                    <script>/src/shared/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
-                    <script>/src/shared/plugins/angular-file-upload/ng-file-upload.min.js</script>
-                    <script>/src/shared/plugins/angular-ng-storage/ngStorage.min.js</script>
+                    <script>/ressources/plugins/angular-slick/slick.min.js</script>
+                    <script>/ressources/plugins/angular-slick/angular-slick.min.js</script>
+                    <script>/ressources/plugins/angular-base64/angular-base64.min.js</script>
+                    <script>/ressources/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
+                    <script>/ressources/plugins/angular-file-upload/ng-file-upload.min.js</script>
+                    <script>/ressources/plugins/angular-ng-storage/ngStorage.min.js</script>
                     <script>/src/1x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
@@ -85,17 +85,17 @@
             </template>
             <template cols="2" rows="1" markup="/src/2x1/app.html">
                 <styles>
-                    <style>/src/shared/plugins/angular-slick/slick.css</style>
-                    <style>/src/shared/plugins/angular-slick/slick-theme.css</style>
+                    <style>/ressources/plugins/angular-slick/slick.css</style>
+                    <style>/ressources/plugins/angular-slick/slick-theme.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
                 </styles>
                 <scripts>
-                    <script>/src/shared/plugins/angular-slick/slick.min.js</script>
-                    <script>/src/shared/plugins/angular-slick/angular-slick.min.js</script>
-                    <script>/src/shared/plugins/angular-base64/angular-base64.min.js</script>
-                    <script>/src/shared/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
-                    <script>/src/shared/plugins/angular-file-upload/ng-file-upload.min.js</script>
-                    <script>/src/shared/plugins/angular-ng-storage/ngStorage.min.js</script>
+                    <script>/ressources/plugins/angular-slick/slick.min.js</script>
+                    <script>/ressources/plugins/angular-slick/angular-slick.min.js</script>
+                    <script>/ressources/plugins/angular-base64/angular-base64.min.js</script>
+                    <script>/ressources/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
+                    <script>/ressources/plugins/angular-file-upload/ng-file-upload.min.js</script>
+                    <script>/ressources/plugins/angular-ng-storage/ngStorage.min.js</script>
                     <script>/src/2x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
