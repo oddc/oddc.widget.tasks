@@ -14,15 +14,15 @@
                 template: '<index-page></index-page>'
             })
             .state('task.delete', {
-                url: '/tasklist/delete',
+                url: '/delete',
                 template: '<tasklist-delete></tasklist-delete>',
             })
             .state('task.add', {
-                url: '/tasklist/add',
+                url: '/add',
                 template: '<tasklist-add></tasklist-add>',
             })
             .state('task.edit', {
-                url: '/tasklist/edit',
+                url: '/edit',
                 template: '<tasklist-edit></tasklist-edit>',
             })
             .state('detail', {

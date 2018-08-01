@@ -32,7 +32,7 @@
 
 
         vm.onSelectTasklist = function(errorStr) {
-            vm.errorStr = errorStr
+            vm.errorStr = errorStr;
         };
 
 

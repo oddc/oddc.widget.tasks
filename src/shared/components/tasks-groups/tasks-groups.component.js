@@ -72,10 +72,7 @@
                 $sessionStorage.tasklist = result;
                 if (result.error === undefined) {
 
-                    taskService.setTasks([]);
-                    $timeout(function () {
-                        taskService.setTasks(result.tasks);
-                    });
+                    taskService.setTasks(result.tasks);
 
                     widgetState.go('task.edit', {listid: result.id});
                 }
