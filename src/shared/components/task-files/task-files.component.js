@@ -16,6 +16,7 @@
         vm.tasklist = {};
         vm.files = [];
         vm.error = '';
+        vm.isLoading = true;
 
 
         function $onInit() {
@@ -30,6 +31,7 @@
                 else {
                     vm.error = result.message;
                 }
+                vm.isLoading = false;
             });
         }
 

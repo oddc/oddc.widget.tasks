@@ -10,8 +10,8 @@
             controllerAs: 'indexpage'
         });
 
-    indexPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', 'eventService', '$timeout'];
-    function indexPageController($log, $state, taskService, widgetState, eventService, $timeout) {
+    indexPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', 'eventService'];
+    function indexPageController($log, $state, taskService, widgetState, eventService) {
         var vm = this;
         vm.service = taskService;
         vm.tasks = [];
@@ -22,6 +22,7 @@
         vm.tasklist = null;
         vm.$onInit = $onInit;
         vm.errorStr = '';
+        vm.state = $state;
 
         eventService.addEventListener();
 

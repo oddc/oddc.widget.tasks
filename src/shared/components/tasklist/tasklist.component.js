@@ -68,7 +68,6 @@
             self.currentUser = taskService.getCurrentUser();
 
             self.tasklist = $sessionStorage.tasklist;
-            console.log(self.tasklist);
             self.tasks = self.tasklist.tasks;
             self.isLoading = false;
         }
