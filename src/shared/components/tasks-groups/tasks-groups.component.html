@@ -1,6 +1,10 @@
 
 <od-loader ng-if="ctrl.isLoading"></od-loader>
 
+<div class="alert alert-warning" ng-if="ctrl.tasklists.length === 0 && !ctrl.isLoading" style="margin: 25px;">
+    <span class="icon icon-exclamation-triangle"></span> Es wurde keine Listen gefunden!
+</div>
+
 <div class="open-task-list" ng-if="ctrl.tasklists.length > 0">
     <ul class="tasklist list-group">
         <li ng-repeat="group in ctrl.tasklists" ng-class="" class="list-group-item item-hover" ng-click="ctrl.openList(group)">

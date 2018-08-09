@@ -91,6 +91,7 @@
                     result.modifiedAt = Date.now();
                     _tasks.push(result);
                     _service.setSelectedTask(result);
+                    return result;
                 })
                 .catch(errorCallback);
         }

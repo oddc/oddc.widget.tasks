@@ -30,13 +30,14 @@
         };
 
         vm.taskObj = {
-            users: [],
+            //users: [],
             userIds: [],
             description: "",
             id: "",
             title: "",
             userId: "",
             open: true,
+            disabled: false,
             projectGroupId: 0,
             taskListId: $stateParams.listid,
             dueDate: new Date(),
@@ -69,8 +70,8 @@
             }
             else {
                 var user = vm.service.getCurrentUser();
-                vm.taskObj.userId = user.id;
-                vm.taskObj.users.push({ userId: user.id, openId: user.openId});
+                vm.taskObj.userId = user.openId;
+                //vm.taskObj.users.push({ userId: user.userId, openId: user.openId});
                 vm.taskObj.userIds.push(user.openId);
                 vm.users.push(user);
                 return $q.resolve(true);
@@ -127,6 +128,7 @@
             }
             else {
                 vm.service.createTask(vm.taskObj).then(function (result) {
+                    vm.taskObj = result;
                     vm.tasklist.tasks.push(vm.taskObj);
                     widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
                 });
