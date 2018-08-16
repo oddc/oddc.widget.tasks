@@ -68,11 +68,25 @@
         }
         else {
             self.currentUser = taskService.getCurrentUser();
+            if (self.currentUser === null) {
+                taskService.requestCurrentUser().then(function (user) {
+                    self.currentUser = user;
+                    loadTasklist();
+                });
+            }
+            else {
+                loadTasklist();
+            }
+        }
 
+
+        function loadTasklist() {
             self.tasklist = $sessionStorage.tasklist;
             self.tasks = self.tasklist.tasks;
             self.isLoading = false;
+            console.log('### USER | TAKS ###', self.currentUser, self.tasks);
         }
+
 
 
         self.canDelete = function() {
