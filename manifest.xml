@@ -3,7 +3,7 @@
     <information>
         <name lang="de-DE">Aufgaben</name>
 		<shortname lang="de-DE">Aufgaben</shortname>
-        <version>2.1.4</version>
+        <version>2.1.5</version>
         <author>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
@@ -82,18 +82,18 @@
             </template>
         </templates>
         <services>
-            <service environment="DEV" type="restful" name="createTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="PUT"></service>
-            <service environment="DEV" type="restful" name="readTasks" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="GET"></service>
-            <service environment="DEV" type="restful" name="readTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="GET"></service>
-            <service environment="DEV" type="restful" name="updateTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="POST"></service>
-            <service environment="DEV" type="restful" name="deleteTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="DELETE"></service>
-            <service environment="DEV" type="restful" name="completeTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}/close" method="POST"></service>
-            <service environment="DEV" type="restful" name="createComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment" method="PUT"></service>
-            <service environment="DEV" type="restful" name="updateComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment/{id}" method="POST"></service>
-            <service environment="DEV" type="restful" name="deleteComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment/{id}" method="DELETE"></service>
-            <service environment="DEV" type="restful" name="readUsers" url="http://crm-test.optadata.com:8080/odone.business/users" method="GET"></service>
-            <service environment="DEV" type="restful" name="readUser" url="http://crm-test.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
-            <service environment="DEV" type="restful" name="getCurrentUser" url="http://crm-test.optadata.com:8080/odone.business/users/current" method="GET"></service>
+            <service environment="DEV" type="restful" name="createTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task" method="PUT"></service>
+            <service environment="DEV" type="restful" name="readTasks" url="http://wildfly.optadata.com:8080/odone.widgetservices/task" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="updateTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="deleteTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="completeTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}/close" method="POST"></service>
+            <service environment="DEV" type="restful" name="createComment" url="http://wildfly.optadata.com:8080/odone.widgetservices/comment" method="PUT"></service>
+            <service environment="DEV" type="restful" name="updateComment" url="http://wildfly.optadata.com:8080/odone.widgetservices/comment/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="deleteComment" url="http://wildfly.optadata.com:8080/odone.widgetservices/comment/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="readUsers" url="http://wildfly.optadata.com:8080/odone.business/users" method="GET"></service>
+            <service environment="DEV" type="restful" name="readUser" url="http://wildfly.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="getCurrentUser" url="http://wildfly.optadata.com:8080/odone.business/users/current" method="GET"></service>
 
             <service environment="PROD" type="restful" name="createTask" url="https://widgetservice.optadata-one.de/task" method="PUT"></service>
             <service environment="PROD" type="restful" name="readTasks" url="https://widgetservice.optadata-one.de/task" method="GET"></service>
