@@ -9,8 +9,8 @@
             controllerAs: 'ctrl',
         });
 
-    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams', '$state', '$sessionStorage', '$q'];
-    function taskAddController(widgetState, taskService, $stateParams, $state, $sessionStorage, $q) {
+    taskAddController.$inject = ['widgetState', 'taskService', '$stateParams', '$state', '$sessionStorage', '$q', '$timeout'];
+    function taskAddController(widgetState, taskService, $stateParams, $state, $sessionStorage, $q, $timeout) {
         var vm = this;
         vm.service = taskService;
         vm.$onInit = $onInit;
@@ -51,11 +51,24 @@
         function $onInit() {
             loadUserData()
             .then(loadTaskData)
+            .then(loadSubData)
             .then(function () {
-                vm.isLoading = false;
+                $timeout(function () {
+                    vm.isLoading = false;
+                }, 500);
             });
 
 
+        }
+
+
+
+        function loadSubData() {
+            angular.forEach(vm.taskObj.userIds, function(obj) {
+                vm.service.readUser(obj).then(function (user) {
+                    vm.users.push(user);
+                });
+            });
         }
 
 
@@ -63,7 +76,6 @@
             if (!vm.isnew) {
                 return vm.service.requestTask($stateParams.taskid).then(function (result) {
                     vm.taskObj = result;
-                    vm.users = vm.taskObj.users;
                     $sessionStorage.task = vm.taskObj;
                     return true;
                 });
@@ -72,7 +84,7 @@
                 var user = vm.service.getCurrentUser();
                 vm.taskObj.userId = user.openId;
                 //vm.taskObj.users.push({ userId: user.userId, openId: user.openId});
-                vm.taskObj.userIds.push(user.openId);
+                vm.taskObj.userIds.push(user.userId);
                 vm.users.push(user);
                 return $q.resolve(true);
             }
@@ -143,7 +155,7 @@
 
         vm.removeUser = function (user) {
             for (var i = 0; i < vm.taskObj.userIds.length; i++) {
-                if (vm.taskObj.userIds[i] === user.openId) {
+                if (vm.taskObj.userIds[i] === user.userId) {
                     vm.taskObj.userIds.splice(i, 1);
                 }
             }

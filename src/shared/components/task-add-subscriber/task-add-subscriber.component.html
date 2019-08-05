@@ -4,7 +4,7 @@
     </div>
     <od-scrollbar>
         <ul class="list-group users">
-            <li ng-repeat="user in ctrl.users | notInArray:ctrl.currentUsers:'openid'"
+            <li ng-repeat="user in ctrl.users | notInArray:ctrl.currentUsers:'userId'"
                 class="ellipsify user list-group-item item-hover"
                 ng-click="ctrl.addUser(user)">
                 <img class="attach-img img-circle" ng-src="{{ user.image }}"

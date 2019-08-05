@@ -3,7 +3,7 @@
     <information>
         <name lang="de-DE">Aufgaben</name>
 		<shortname lang="de-DE">Aufgaben</shortname>
-        <version>2.1.2</version>
+        <version>3.0.1</version>
         <author>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
@@ -128,28 +128,28 @@
             </template>
         </templates>
         <services>
-            <service environment="DEV" type="restful" name="readTasklistContacts" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/contacts" method="GET"></service>
-            <service environment="DEV" type="restful" name="readProjektGroupUsers" url="http://crm-test.optadata.com:8080/odone.business/projectgroupusers/{id}" method="GET"></service>
-            <service environment="DEV" type="restful" name="readTaskLists" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist" method="GET"></service>
-            <service environment="DEV" type="restful" name="readTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="GET"></service>
-            <service environment="DEV" type="restful" name="searchTasks" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist" method="POST"></service>
-            <service environment="DEV" type="restful" name="updateTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="POST"></service>
-            <service environment="DEV" type="restful" name="createTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist" method="PUT"></service>
-            <service environment="DEV" type="restful" name="deleteTaskList" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="DELETE"></service>
-            <service environment="DEV" type="restful" name="createTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="PUT"></service>
-            <service environment="DEV" type="restful" name="readTasks" url="http://crm-test.optadata.com:8080/odone.widgetservices/task" method="GET"></service>
-            <service environment="DEV" type="restful" name="readTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="GET"></service>
-            <service environment="DEV" type="restful" name="updateTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="POST"></service>
-            <service environment="DEV" type="restful" name="deleteTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}" method="DELETE"></service>
-            <service environment="DEV" type="restful" name="completeTask" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}/close" method="POST"></service>
-            <service environment="DEV" type="restful" name="createComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment" method="PUT"></service>
-            <service environment="DEV" type="restful" name="updateComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment/{id}" method="POST"></service>
-            <service environment="DEV" type="restful" name="deleteComment" url="http://crm-test.optadata.com:8080/odone.widgetservices/comment/{id}" method="DELETE"></service>
-            <service environment="DEV" type="restful" name="readUsers" url="http://crm-test.optadata.com:8080/odone.business/users" method="GET"></service>
-            <service environment="DEV" type="restful" name="readUser" url="http://crm-test.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
-            <service environment="DEV" type="restful" name="getCurrentUser" url="http://crm-test.optadata.com:8080/odone.business/users/current" method="GET"></service>
-            <service environment="DEV" type="restful" name="searchTasklist" url="http://crm-test.optadata.com:8080/odone.widgetservices/tasklist/search" method="POST"></service>
-            <service environment="DEV" type="restful" name="readDocuments" url="http://crm-test.optadata.com:8080/odone.widgetservices/task/{id}/documents" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTasklistContacts" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist/contacts" method="GET"></service>
+            <service environment="DEV" type="restful" name="readProjektGroupUsers" url="http://wildfly.optadata.com:8080/odone.business/projectgroupusers/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTaskLists" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTaskList" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="searchTasks" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist" method="POST"></service>
+            <service environment="DEV" type="restful" name="updateTaskList" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="createTaskList" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist" method="PUT"></service>
+            <service environment="DEV" type="restful" name="deleteTaskList" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="createTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task" method="PUT"></service>
+            <service environment="DEV" type="restful" name="readTasks" url="http://wildfly.optadata.com:8080/odone.widgetservices/task" method="GET"></service>
+            <service environment="DEV" type="restful" name="readTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="updateTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="deleteTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="completeTask" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}/close" method="POST"></service>
+            <service environment="DEV" type="restful" name="createComment" url="http://wildfly.optadata.com:8080/odone.widgetservices/comment" method="PUT"></service>
+            <service environment="DEV" type="restful" name="updateComment" url="http://wildfly.optadata.com:8080/odone.widgetservices/comment/{id}" method="POST"></service>
+            <service environment="DEV" type="restful" name="deleteComment" url="http://wildfly.optadata.com:8080/odone.widgetservices/comment/{id}" method="DELETE"></service>
+            <service environment="DEV" type="restful" name="readUsers" url="http://wildfly.optadata.com:8080/odone.business/users" method="GET"></service>
+            <service environment="DEV" type="restful" name="readUser" url="http://wildfly.optadata.com:8080/odone.business/users/{id}" method="GET"></service>
+            <service environment="DEV" type="restful" name="getCurrentUser" url="http://wildfly.optadata.com:8080/odone.business/users/current" method="GET"></service>
+            <service environment="DEV" type="restful" name="searchTasklist" url="http://wildfly.optadata.com:8080/odone.widgetservices/tasklist/search" method="POST"></service>
+            <service environment="DEV" type="restful" name="readDocuments" url="http://wildfly.optadata.com:8080/odone.widgetservices/task/{id}/documents" method="GET"></service>
 
             <service environment="PROD" type="restful" name="readTasklistContacts" url="https://widgetservice.optadata-one.de/tasklist/contacts" method="GET"></service>
             <service environment="PROD" type="restful" name="readProjektGroupUsers" url="https://biz.optadata-one.de/projectgroupusers/{id}" method="GET"></service>

@@ -24,7 +24,7 @@
 
         function $onInit() {
             var apiUrls = {
-                DEV: 'http://crm-test.optadata.com:8080',
+                DEV: 'http://wildfly.optadata.com:8080',
                 TEST: 'https://widgetservice.test.optadata-one.de',
                 PROD: 'https://widgetservice.optadata-one.de'
             };
@@ -34,6 +34,8 @@
 
 
         vm.uploadFiles = function() {
+            if (vm.file === null) return;
+
             vm.updateSuccess = false;
             vm.filename = vm.file.name;
             vm.isUploading = true;

@@ -24,8 +24,24 @@
         }
 
 
+        function clearList() {
+            var tmp = angular.copy(vm.task.userIds);
+            vm.task.userIds = [];
+
+            angular.forEach(tmp, function(obj) {
+                if (obj !== null) {
+                    vm.task.userIds.push(obj);
+                }
+            });
+        }
+
+
         vm.addUser = function (user) {
-            vm.task.userIds.push(user.openid);
+            clearList();
+
+            if (vm.task.userIds.indexOf(user.userIds) === -1) {
+                vm.task.userIds.push(user.userId);
+            }
 
             taskService.updateTask(vm.task).then(function (result) {
                 if (result.error) {
