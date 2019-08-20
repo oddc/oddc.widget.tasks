@@ -39,8 +39,8 @@
         vm.addUser = function (user) {
             clearList();
 
-            if (vm.task.userIds.indexOf(user.userIds) === -1) {
-                vm.task.userIds.push(user.userId);
+            if (vm.task.userIds.indexOf(user.id) === -1) {
+                vm.task.userIds.push(user.id);
             }
 
             taskService.updateTask(vm.task).then(function (result) {

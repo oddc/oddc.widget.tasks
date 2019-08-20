@@ -68,7 +68,7 @@
         }
         else {
             self.currentUser = taskService.getCurrentUser();
-            if (self.currentUser === null) {
+            if (self.currentUser.error) {
                 taskService.requestCurrentUser().then(function (user) {
                     self.currentUser = user;
                     loadTasklist();

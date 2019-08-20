@@ -45,7 +45,6 @@
             important: false
         };
 
-
         widgetState.setBackButtonState('detail.view', { listid: $stateParams.listid });
 
         function $onInit() {
@@ -85,7 +84,7 @@
                 vm.taskObj.userId = user.openId;
                 //vm.taskObj.users.push({ userId: user.userId, openId: user.openId});
                 vm.taskObj.userIds.push(user.userId);
-                vm.users.push(user);
+
                 return $q.resolve(true);
             }
             return $q.resolve(false);

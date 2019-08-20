@@ -50,7 +50,7 @@
 
         self.canEdit = function () {
             if (self.tasklist === null) return false;
-            return (!self.tasklist.privateList && !self.tasklist.projectGroupList && !self.tasklist.teamList);
+            return (!self.tasklist.isDefault && !self.tasklist.privateList && !self.tasklist.projectGroupList && !self.tasklist.teamList);
         };
     }
 
