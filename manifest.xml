@@ -3,7 +3,7 @@
     <information>
         <name lang="de-DE">Aufgaben</name>
 		<shortname lang="de-DE">Aufgaben</shortname>
-        <version>2.1.5</version>
+        <version>2.1.6</version>
         <author>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
@@ -36,6 +36,15 @@
             <main-color>#DB4C3F</main-color>
         </appearance>
         <productgroup>odone.interne.widgets</productgroup>
+        <tutorial>
+            <helptext lang="de-DE">
+                Im Aufgabenwidget können Sie Aufgaben für sich und Nutzer Ihrers Intranets einstellen. Schreiben Sie einfach eine neue Aufgabe in das Textfeld und bestätigen Sie die Aufgabe.
+                Die erstellte Aufgabe ist nur für Sie sichtbar. Erst wenn Sie die Aufgabe jemandem zuteilen wird er diese Aufgabe sehen.
+                Klicken Sie dazu auf eine Aufgabe und dann auf „Jemandem zuteilen“ um die Aufgabe jemandem zuzuteilen.
+                Die Person wird über die Zuteilung benachrichtigt, Sie wiederrum bekommen eine Benachrichtigung, wenn eine zugeteilte Aufgabe erledigt wurde.
+            </helptext>
+            <image>/ressources/images/small.png</image>
+        </tutorial>
     </information>
     <ressources>
         <templates lang="de-DE">
