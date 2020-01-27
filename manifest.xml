@@ -3,12 +3,13 @@
     <information>
         <name lang="de-DE">Aufgaben</name>
 		<shortname lang="de-DE">Aufgaben</shortname>
-        <version>2.1.6</version>
+        <version>2.1.7</version>
         <author>
+            <name>opta data digital communication GmbH</name>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
             <fax>0201 89074499</fax>
-            <email>service@optadata-gruppe.de</email>
+            <email>od1-support@optadata.de</email>
             <web>http://www.optadata-gruppe.de</web>
         </author>
         <developer>
