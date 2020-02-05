@@ -23,6 +23,29 @@
 
         widgetState.setBackButtonState('tasklist.view', {listid: ''});
 
+
+        self.$onInit = function() {
+            console.log('TTT');
+
+            if($stateParams.listid === '' || $stateParams.listid === undefined) {
+                self.iderror = true;
+                self.isLoading = false;
+            }
+            else {
+                self.currentUser = taskService.getCurrentUser();
+                if (self.currentUser.error) {
+                    taskService.requestCurrentUser().then(function (user) {
+                        self.currentUser = user;
+                        loadTasklist();
+                    });
+                }
+                else {
+                    loadTasklist();
+                }
+            }
+        };
+
+
         // tasks
         // indexpage.service.getTasks()
 
@@ -54,34 +77,13 @@
         };
 
 
-
         self.onSelectTask = function(task) {
             self.service.setSelectedTask(task.$task);
             widgetState.go('tasks.task', { listid: self.tasklist.id, taskid: task.$task.id });
         };
 
 
-
-        if($stateParams.listid === '' || $stateParams.listid === undefined) {
-            self.iderror = true;
-            self.isLoading = false;
-        }
-        else {
-            self.currentUser = taskService.getCurrentUser();
-            if (self.currentUser.error) {
-                taskService.requestCurrentUser().then(function (user) {
-                    self.currentUser = user;
-                    loadTasklist();
-                });
-            }
-            else {
-                loadTasklist();
-            }
-        }
-
-
         function loadTasklist() {
-            console.log('>>>', $sessionStorage);
             if ($sessionStorage.tasklist === undefined || $sessionStorage.tasklist === null) {
                 taskService.readTaskList($stateParams.listid).then(function (result) {
                     $sessionStorage.tasklist = result;

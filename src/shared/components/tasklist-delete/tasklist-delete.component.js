@@ -20,7 +20,7 @@
 
 
         self.cancel = function () {
-            widgetState.go('tasks', { listid: $stateParams.listid });
+            widgetState.go('tasks.task', { listid: $stateParams.listid, taskid: '' });
         };
 
 

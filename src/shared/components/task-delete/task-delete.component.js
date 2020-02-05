@@ -9,8 +9,8 @@
             controllerAs: 'detailDeleteController'
         });
 
-    detailDeleteController.$inject = ['widgetState', 'taskService', '$state', '$stateParams'];
-    function detailDeleteController(widgetState, taskService, $state, $stateParams) {
+    detailDeleteController.$inject = ['widgetState', 'taskService', '$state', '$stateParams', '$sessionStorage'];
+    function detailDeleteController(widgetState, taskService, $state, $stateParams, $sessionStorage) {
         var vm = this;
 
         vm.error = false;
@@ -18,6 +18,7 @@
 
         vm.service = taskService;
         vm.$onInit = $onInit;
+        vm.tasklist = $sessionStorage.tasklist;
 
         function $onInit() {
         }
@@ -31,7 +32,14 @@
                     vm.error    = typeof result.error === 'undefined' ? false : result.error;
 
                     if (!vm.error) {
-                        $state.go('tasks', {listid: $stateParams.listid});
+                        for (var i = 0; i < vm.tasklist.tasks.length; i++) {
+                            if (vm.tasklist.tasks[i].id === $stateParams.taskid) {
+                                vm.tasklist.tasks.splice(i, 1);
+                                break;
+                            }
+                        }
+
+                        $state.go('tasks.task', {listid: $stateParams.listid, taskid: ''});
                     }
 
                 });

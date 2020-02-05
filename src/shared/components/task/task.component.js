@@ -17,7 +17,8 @@
         vm.tasklist = $sessionStorage.tasklist;
         vm.users = [];
         vm.isLoading = true;
-        vm.isnew = $stateParams.taskid === '' || $stateParams.taskid === 'new';
+        vm.isnew = $stateParams.taskid === 'new';
+        vm.isempty = $stateParams.taskid === '';
         vm.error = "";
 
         vm.popup = {
@@ -48,6 +49,10 @@
         widgetState.setBackButtonState('tasklist.view', { listid: '' });
 
         function $onInit() {
+            if (vm.isempty) {
+                return;
+            }
+
             loadUserData()
             .then(loadTaskData)
             .then(loadSubData)

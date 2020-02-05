@@ -1,81 +1,85 @@
 
-<od-loader ng-if="ctrl.isLoading"></od-loader>
+<div ng-if="!ctrl.isempty">
 
-<div class="alert alert-danger" id="error" ng-if="ctrl.error !== ''" style="margin-top: 5px;">
-    <span class="icon icon-exclamation-triangle"></span> {{ctrl.error}}
-</div>
+    <od-loader ng-if="ctrl.isLoading"></od-loader>
 
-<div class="taskadd" ng-if="!ctrl.isLoading">
-    <div class="col-xs-6">
-        <label class="container">
-            Wichtig
-            <input type="checkbox" name="important" id="important" ng-model="ctrl.taskObj.important">
-            <span class="checkmark"></span>
-        </label>
+    <div class="alert alert-danger" id="error" ng-if="ctrl.error !== ''" style="margin-top: 5px;">
+        <span class="icon icon-exclamation-triangle"></span> {{ctrl.error}}
     </div>
-    <div class="col-xs-6">
-        <span class="pull-right" ng-if="!ctrl.isnew">{{ctrl.taskObj.id}}</span>
-        <span class="pull-right" ng-if="ctrl.isnew">#UID (auto)</span>
-        <span class="glyphicon glyphicon-trash pull-right taskdelbtn" title="Löschen" ng-click="ctrl.deleteTask()" ng-if="!ctrl.isnew"></span>
-    </div>
-    <div class="col-xs-12 input-group input-group-sm">
-        <input type="text" name="title" id="title" placeholder="Name" class="form-control" ng-model="ctrl.taskObj.title">
-    </div>
-    <div class="col-xs-6">
-        <button class="btn btn-sm btn-default btn-block" type="button" style="height: 30px;" ng-disabled="ctrl.isnew" ng-click="ctrl.done()">Aufgabe {{ctrl.taskObj.state !== 'done' ? 'erledigen' : 'wieder öffnen'}}</button>
-    </div>
-    <div class="col-xs-6 input-group input-group-sm">
-        <select name="state" id="state" class="form-control" ng-model="ctrl.taskObj.state" ng-disabled="ctrl.isnew">
-            <option value="done">erledigt</option>
-            <option value="in_progress">in Arbeit</option>
-            <option value="open">offen</option>
-            <option value="waiting">wartend</option>
-        </select>
-    </div>
-    <div class="col-xs-12 user-slider">
-        <strong>Teilnehmer:</strong>
 
-        <slick infinite=true slides-to-show="3" slides-to-scroll="1" touch-move="false" ng-if="!ctrl.isLoading">
-            <span class="item-box" ng-repeat="user in ctrl.users">
-                <span class="item" style="background-image: url('{{user.image}}');">
-                    <span class="itembtn" title="User entfernen" ng-click="ctrl.removeUser(user)" ng-if="ctrl.canRemove()">
-                        <span class="glyphicon glyphicon-ban-circle"></span>
+    <div class="taskadd" ng-if="!ctrl.isLoading">
+        <div class="col-xs-6">
+            <label class="container">
+                Wichtig
+                <input type="checkbox" name="important" id="important" ng-model="ctrl.taskObj.important">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="col-xs-6">
+            <span class="pull-right" ng-if="!ctrl.isnew">{{ctrl.taskObj.id}}</span>
+            <span class="pull-right" ng-if="ctrl.isnew">#UID (auto)</span>
+            <span class="glyphicon glyphicon-trash pull-right taskdelbtn" title="Löschen" ng-click="ctrl.deleteTask()" ng-if="!ctrl.isnew"></span>
+        </div>
+        <div class="col-xs-12 input-group input-group-sm">
+            <input type="text" name="title" id="title" placeholder="Name" class="form-control" ng-model="ctrl.taskObj.title">
+        </div>
+        <div class="col-xs-6">
+            <button class="btn btn-sm btn-default btn-block" type="button" style="height: 30px;" ng-disabled="ctrl.isnew" ng-click="ctrl.done()">Aufgabe {{ctrl.taskObj.state !== 'done' ? 'erledigen' : 'wieder öffnen'}}</button>
+        </div>
+        <div class="col-xs-6 input-group input-group-sm">
+            <select name="state" id="state" class="form-control" ng-model="ctrl.taskObj.state" ng-disabled="ctrl.isnew">
+                <option value="done">erledigt</option>
+                <option value="in_progress">in Arbeit</option>
+                <option value="open">offen</option>
+                <option value="waiting">wartend</option>
+            </select>
+        </div>
+        <div class="col-xs-12 user-slider">
+            <strong>Teilnehmer:</strong>
+
+            <slick infinite=true slides-to-show="3" slides-to-scroll="1" touch-move="false" ng-if="!ctrl.isLoading">
+                <span class="item-box" ng-repeat="user in ctrl.users">
+                    <span class="item" style="background-image: url('{{user.image}}');">
+                        <span class="itembtn" title="User entfernen" ng-click="ctrl.removeUser(user)" ng-if="ctrl.canRemove()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>
+                        </span>
                     </span>
+                    {{user.firstName}} {{user.lastName}}
                 </span>
-                {{user.firstName}} {{user.lastName}}
-            </span>
-        </slick>
+            </slick>
 
-        <a href="javascript:" ng-if="!ctrl.isnew" ng-click="ctrl.addSubscriber()">+ Teilnehmer hinzufügen</a>
-        <p ng-if="ctrl.isnew">
-            + Teilnehmer hinzufügen
-            <span>(Erst nach dem erstellen möglich)</span>
-        </p>
-    </div>
-    <div class="col-xs-2" style="font-size: 14px; line-height: 40px;">
-        Fällig:
-    </div>
-    <div class="col-xs-10">
-        <div class="input-group input-group-sm">
-            <input type="text" class="form-control" uib-datepicker-popup="dd.MM.yyyy" ng-model="ctrl.taskObj.dueDate" is-open="ctrl.popup.opened" datepicker-options="ctrl.dateOptions" ng-required="true" close-text="Close" />
-            <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="ctrl.openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
+            <a href="javascript:" ng-if="!ctrl.isnew" ng-click="ctrl.addSubscriber()">+ Teilnehmer hinzufügen</a>
+            <p ng-if="ctrl.isnew">
+                + Teilnehmer hinzufügen
+                <span>(Erst nach dem erstellen möglich)</span>
+            </p>
+        </div>
+        <div class="col-xs-2" style="font-size: 14px; line-height: 40px;">
+            Fällig:
+        </div>
+        <div class="col-xs-10">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" uib-datepicker-popup="dd.MM.yyyy" ng-model="ctrl.taskObj.dueDate" is-open="ctrl.popup.opened" datepicker-options="ctrl.dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ctrl.openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+        </div>
+        <div class="col-xs-12" style="font-size: 14px;">
+            Notiz:
+        </div>
+        <div class="col-xs-12">
+            <div ckeditor="{height:'120px'}"
+                 ng-if="ctrl.taskObj.open"
+                 ng-model="ctrl.taskObj.description"
+                 ng-change=""></div>
+        </div>
+        <div class="col-xs-6">
+            <button class="btn btn-primary btn-block" ng-click="ctrl.saveTask()">Speichern</button>
+        </div>
+        <div class="col-xs-6">
+            <button class="btn btn-default btn-block" ng-click="ctrl.cancel()">Abbrechen</button>
         </div>
     </div>
-    <div class="col-xs-12" style="font-size: 14px;">
-        Notiz:
-    </div>
-    <div class="col-xs-12">
-        <div ckeditor="{height:'120px'}"
-             ng-if="ctrl.taskObj.open"
-             ng-model="ctrl.taskObj.description"
-             ng-change=""></div>
-    </div>
-    <div class="col-xs-6">
-        <button class="btn btn-primary btn-block" ng-click="ctrl.saveTask()">Speichern</button>
-    </div>
-    <div class="col-xs-6">
-        <button class="btn btn-default btn-block" ng-click="ctrl.cancel()">Abbrechen</button>
-    </div>
+
 </div>
