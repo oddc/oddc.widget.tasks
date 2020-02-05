@@ -145,7 +145,6 @@
             else {
                 vm.service.createTask(vm.taskObj).then(function (result) {
                     vm.taskObj = result;
-                    vm.tasklist.tasks.push(vm.taskObj);
                     widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: result.id});
                 });
             }

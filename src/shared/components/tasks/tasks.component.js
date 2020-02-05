@@ -84,6 +84,7 @@
 
 
         function loadTasklist() {
+            console.log('>>>', $sessionStorage.tasklist);
             if ($sessionStorage.tasklist === undefined || $sessionStorage.tasklist === null) {
                 taskService.readTaskList($stateParams.listid).then(function (result) {
                     $sessionStorage.tasklist = result;
