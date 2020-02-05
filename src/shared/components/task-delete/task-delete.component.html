@@ -1,0 +1,10 @@
+<div style="padding: 15px;">
+    <button type="button" class="btn btn-default" ng-click="detailDeleteController.cancel()">Nein, Vorgang abbrechen</button>
+    <button type="button" class="btn btn-primary" ng-click="detailDeleteController.deleteSelectedTask()">Ja, bitte
+        entfernen
+    </button>
+
+    <div class="alert alert-danger" role="alert" style="margin-top: 10px;" ng-if="detailDeleteController.error">
+        <b>FEHLER:</b> {{detailDeleteController.errorMsg}}
+    </div>
+</div>

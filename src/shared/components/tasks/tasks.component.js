@@ -108,7 +108,7 @@
 
 
         self.delete = function () {
-            widgetState.go('tasks.listdelete', { listid: $stateParams.listid, taskid: 'none' });
+            widgetState.go('tasks.listdelete', { listid: $stateParams.listid });
         };
     }
 

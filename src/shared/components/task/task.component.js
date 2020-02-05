@@ -48,8 +48,6 @@
         widgetState.setBackButtonState('tasklist.view', { listid: '' });
 
         function $onInit() {
-            alert('LOAD');
-
             loadUserData()
             .then(loadTaskData)
             .then(loadSubData)
@@ -58,10 +56,7 @@
                     vm.isLoading = false;
                 }, 500);
             });
-
-
         }
-
 
 
         function loadSubData() {
@@ -146,14 +141,14 @@
                 vm.service.createTask(vm.taskObj).then(function (result) {
                     vm.taskObj = result;
                     vm.tasklist.tasks.push(vm.taskObj);
-                    widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
+                    widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: result.id});
                 });
             }
         };
 
 
         vm.cancel = function () {
-            widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
+            widgetState.go('tasks', {listid: $stateParams.listid });
         };
 
 
@@ -188,7 +183,7 @@
 
 
         vm.deleteTask = function () {
-            widgetState.go('detail.delete', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+            widgetState.go('tasks.delete', { listid: $stateParams.listid, taskid: $stateParams.taskid });
         };
 
 

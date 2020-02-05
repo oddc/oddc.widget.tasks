@@ -34,7 +34,7 @@
                 template: '<search-page></search-page>',
             })
             .state('tasks', {
-                url: '/tasks/:listid/:taskid',
+                url: '/tasks/:listid',
                 template: '<tasks-page></tasks-page>'
             })
             .state('tasks.listdelete', {
@@ -42,12 +42,16 @@
                 template: '<tasklist-delete></tasklist-delete>'
             })
             .state('tasks.task', {
-                url: '/task',
+                url: '/task/:taskid',
                 template: '<task></task>'
             })
             .state('tasks.comments', {
                 url: '/comments',
                 template: '<task-comment></task-comment>'
+            })
+            .state('tasks.delete', {
+                url: '/delete/:taskid',
+                template: '<task-delete></task-delete>'
             });
 
         $urlRouterProvider.otherwise('/tasklist/view/');
