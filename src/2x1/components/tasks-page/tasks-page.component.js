@@ -15,7 +15,6 @@
         var vm = this;
         vm.service = taskService;
         vm.tasks = [];
-        vm.newTask = '';
         vm.loading = true;
         vm.error = false;
         vm.errorMessage = null;
@@ -82,6 +81,16 @@
             if ($stateParams.listid !== '') {
                 $state.go('tasks.task', {listid: $stateParams.listid, taskid: "new"});
             }
+        };
+
+
+        vm.newTask = function() {
+            return $stateParams.taskid === 'new';
+        };
+
+
+        vm.noTask = function() {
+            return $stateParams.taskid === undefined || $stateParams.taskid === '';
         };
 
     }
