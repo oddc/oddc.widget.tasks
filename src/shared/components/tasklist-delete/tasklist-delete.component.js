@@ -16,18 +16,18 @@
         self.tasklist = $sessionStorage.tasklist;
 
 
-        widgetState.setBackButtonState('tasks', { listid: $stateParams.listid });
+        widgetState.setBackButtonState('tasklist.view', { listid: $stateParams.listid });
 
 
         self.cancel = function () {
-            widgetState.go('task.edit', { listid: $stateParams.listid });
+            widgetState.go('tasks', { listid: $stateParams.listid, taskid: '' });
         };
 
 
         self.delete = function () {
             self.error = "";
             taskService.deleteTaskList($stateParams.listid).then(function () {
-                widgetState.go('task', { listid: '' });
+                widgetState.go('tasklist.view', { listid: '' });
             }, function () {
                 self.error = "Beim löschen der Liste ist ein Fehler aufgetreten!";
             });

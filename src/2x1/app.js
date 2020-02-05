@@ -9,65 +9,17 @@
     stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function stateMashineConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
-            .state('task', {
-                url: '/tasklist/:listid',
-                template: '<index-page></index-page>'
+            .state('tasklist', {
+                url: '/tasklist',
+                template: '<tasklist-page></tasklist-page>'
             })
-            .state('task.delete', {
-                url: '/delete',
-                template: '<tasklist-delete></tasklist-delete>',
+            .state('tasklist.view', {
+                url: '/view/:listid',
+                template: '<tasklist></tasklist>'
             })
-            .state('task.add', {
+            .state('tasklist.add', {
                 url: '/add',
-                template: '<tasklist-add></tasklist-add>',
-            })
-            .state('task.edit', {
-                url: '/edit',
-                template: '<tasklist-edit></tasklist-edit>',
-            })
-            .state('detail', {
-                url: '/task/:listid/:taskid',
-                template: '<tasks-page></tasks-page>'
-            })
-            .state('detail.listdelete', {
-                url: '/tasklist/delete',
-                template: '<tasklist-delete></tasklist-delete>',
-            })
-            .state('detail.view', {
-                url: '/view',
-                template: '<task-view></task-view>'
-            })
-            .state('detail.edit', {
-                url: '/edit',
-                template: '<task-add></task-add>'
-            })
-            .state('detail.files', {
-                url: '/files',
-                template: '<task-files></task-files>'
-            })
-            .state('detail.comments', {
-                url: '/comments',
-                template: '<detail-comment></detail-comment>'
-            })
-            .state('detail.delete', {
-                url: '/delete',
-                template: '<detail-delete></detail-delete>'
-            })
-            .state('detail.filesdetails', {
-                url: '/files/details/{fileid}',
-                template: '<task-files-details></task-files-details>',
-            })
-            .state('detail.fileupload', {
-                url: '/files/upload',
-                template: '<task-files-upload></task-files-upload>',
-            })
-            .state('detail.filedelete', {
-                url: '/files/delete/{fileid}',
-                template: '<task-files-delete></task-files-delete>'
-            })
-            .state('detail.subscriber', {
-                url: '/add/subscriber',
-                template: '<task-add-subscriber></task-add-subscriber>',
+                template: '<tasklist-add></tasklist-add>'
             })
             .state('search', {
                 url: '/search',
@@ -80,9 +32,25 @@
             .state('search.result', {
                 url: '/result/{search}',
                 template: '<search-page></search-page>',
+            })
+            .state('tasks', {
+                url: '/tasks/:listid/:taskid',
+                template: '<tasks-page></tasks-page>'
+            })
+            .state('tasks.listdelete', {
+                url: '/listdelete',
+                template: '<tasklist-delete></tasklist-delete>'
+            })
+            .state('tasks.task', {
+                url: '/task',
+                template: '<task></task>'
+            })
+            .state('tasks.comments', {
+                url: '/comments',
+                template: '<task-comment></task-comment>'
             });
 
-        $urlRouterProvider.otherwise('/tasklist/');
+        $urlRouterProvider.otherwise('/tasklist/view/');
     }
 
 })();

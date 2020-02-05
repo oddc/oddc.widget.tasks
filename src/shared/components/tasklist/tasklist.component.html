@@ -1,52 +1,26 @@
 
-<od-loader ng-if="tasklist.isLoading"></od-loader>
+<od-loader ng-if="ctrl.isLoading"></od-loader>
 
-<div class="alert alert-warning" ng-if="tasklist.iderror" style="margin-top: 5px;">
-    <span class="icon icon-exclamation-triangle"></span> Es wurde keine Listen ausgewählt!
+<div class="alert alert-warning" ng-if="ctrl.tasklists.length === 0 && !ctrl.isLoading" style="margin: 25px;">
+    <span class="icon icon-exclamation-triangle"></span> Es wurde keine Listen gefunden!
 </div>
 
-<div class="alert alert-danger" ng-if="tasklist.error !== ''" style="margin-top: 5px;">
-    <span class="icon icon-exclamation-triangle"></span> {{tasklist.error}}
-</div>
-
-<div ng-if="!tasklist.iderror && !tasklist.isLoading">
-    <div class="open-task-list" ng-if="(tasklist.tasks | filter: { open: true }).length > 0">
-        <ul class="tasklist list-group">
-            <li ng-repeat="openTask in (tasklist.tasks | filter: { open: true, disabled: false } | orderBy: '-modifiedAt') track by $index" ng-class="{ active: openTask.id === tasklist.selectedTask.id }" class="list-group-item item-hover">
-                <oddc-tasklist-item on-select-task="tasklist.onSelectTask({ $task })"
-                                    on-status-change="tasklist.onStatusChange({ $task })"
-                                    task="openTask"></oddc-tasklist-item>
-            </li>
-        </ul>
-    </div>
-
-    <div class="panel-spacing" ng-if="(tasklist.tasks | filter: { open: true, disabled: false }).length === 0">
-        <div class="alert alert-warning">
-            <span class="icon icon-info"></span> Sie haben keine unerledigten Aufgaben.
+<div class="open-task-list" ng-if="ctrl.tasklists.length > 0">
+    <ul class="tasklist list-group">
+        <li ng-repeat="group in ctrl.tasklists" ng-class="" class="list-group-item item-hover" ng-click="ctrl.openList(group)">
+            <span class="tasklists-item">
+                <span class="glyphicon glyphicon-star tasklists-flag" ng-if="group.isPrivate"></span>
+                <span class="glyphicon glyphicon-user tasklists-flag" ng-if="group.isTeamlist"></span>
+                <span class="glyphicon glyphicon-tags tasklists-flag" ng-if="group.isProjectgrouplist"></span>
+                <span class="glyphicon glyphicon-asterisk tasklists-flag" ng-if="group.isSearchList"></span><!-- FILTER -->
+                {{group.title}}
+            </span>
+            <span class="label label-default pull-right" style="font-size: 14px; font-weight: normal; width: 80px;">{{group.count}} offen</span>
+        </li>
+        <div class="pull-right" style="margin-right: 20px;" ng-if="group.isLoading">
+            <svg class="lothar" width="24px" height="24px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+            </svg>
         </div>
-    </div>
-
-    <div class="text-center list-group" ng-if="(tasklist.tasks | filter: { open: false, disabled: false }).length > 0">
-        <a href="javascript:;" class="list-group-item list-group-item-info" ng-click="tasklist.onClosedTasksVisibilityChange({ $visibility: !tasklist.service.isClosedTasksVisible() })">Erledigte Aufgabe
-            <span ng-if="!tasklist.service.isClosedTasksVisible()">anzeigen</span>
-            <span ng-if="tasklist.service.isClosedTasksVisible()">ausblenden</span>
-        </a>
-    </div>
-
-    <div ng-if="tasklist.service.isClosedTasksVisible()">
-        <ul class="tasklist list-group">
-            <li ng-repeat="completedTask in (tasklist.tasks | filter: { open: false, disabled: false } | orderBy: '-modifiedAt')" ng-class="{ active: completedTask === tasklist.selectedTask }" class="list-group-item item-hover">
-                <oddc-tasklist-item on-select-task="tasklist.onSelectTask({ $task })"
-                                    on-status-change="tasklist.onStatusChange({ $task })"
-                                    task="completedTask"></oddc-tasklist-item>
-            </li>
-        </ul>
-    </div>
-
-
-    <div class="text-center list-group" ng-if="tasklist.canDelete()">
-        <a href="javascript:;" class="list-group-item list-group-item-danger" ng-click="tasklist.delete()">
-            Liste löschen
-        </a>
-    </div>
+    </ul>
 </div>

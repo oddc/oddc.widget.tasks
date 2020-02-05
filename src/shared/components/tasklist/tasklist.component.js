@@ -4,98 +4,82 @@
 
     angular
         .module('oddc.widget.tasks')
-        .component('oddcTasklist', {
+        .component('tasklist', {
             templateUrl: 'src/shared/components/tasklist/tasklist.component.html',
             controller: tasklistController,
-            controllerAs: 'tasklist'
+            controllerAs: 'ctrl',
+            bindings: {
+            }
         });
 
-    tasklistController.$inject = ['taskService', '$stateParams', 'widgetState', '$sessionStorage'];
-    function tasklistController(taskService, $stateParams, widgetState, $sessionStorage) {
+    tasklistController.$inject = ['taskService', 'widgetState', '$sessionStorage', '$timeout'];
+    function tasklistController(taskService, widgetState, $sessionStorage, $timeout) {
         var self = this;
-        self.service = taskService;
-        self.iderror = false;
-        self.error   = '';
-        self.tasklist = {};
-        self.currentUser = {};
-        self.tasks = [];
+        self.tasklists = [];
         self.isLoading = true;
 
-        widgetState.setBackButtonState('task', {listid: ''});
+        taskService.readTaskLists().then(function (result) {
+            self.tasklists = [];
+            console.log('## load ##', result);
 
-        // tasks
-        // indexpage.service.getTasks()
-
-
-        // selectedTask
-        // indexpage.service.getSelectedTask()
-
-
-        self.onClosedTasksVisibilityChange = function(visibility) {
-            self.service.setClosedTasksVisibility(visibility);
-        };
-
-
-        self.onStatusChange = function($task) {
-            $task.$task.state = !$task.$task.open ? 'done' : 'open';
-
-            self.service
-                .updateTask($task.$task)
-                .then(onUpdateTaskSuccess)
-                .catch(onUpdateTaskError);
-
-            function onUpdateTaskSuccess(result) {
-                $task.modifiedAt = Date.now();
+            for (var i = 0; i < result.length; i++) {
+                if (result[i].isPrivate) {
+                    result[i]['isLoading'] = false;
+                    self.tasklists.push(result[i]);
+                }
             }
 
-            function onUpdateTaskError(error) {
-                $log.error(error);
+            for (var i = 0; i < result.length; i++) {
+                if (result[i].isTeamlist) {
+                    result[i]['isLoading'] = false;
+                    self.tasklists.push(result[i]);
+                }
             }
-        };
 
+            for (var i = 0; i < result.length; i++) {
+                if (result[i].isProjectgrouplist) {
+                    result[i]['isLoading'] = false;
+                    self.tasklists.push(result[i]);
+                }
+            }
 
+            for (var i = 0; i < result.length; i++) {
+                if (result[i].isSearchList) {
+                    result[i]['isLoading'] = false;
+                    self.tasklists.push(result[i]);
+                }
+            }
 
-        self.onSelectTask = function(task) {
-            self.service.setSelectedTask(task.$task);
-            widgetState.go('detail.edit', { listid: self.tasklist.id, taskid: task.$task.id });
-        };
+            for (var i = 0; i < result.length; i++) {
+                if (!result[i].isPrivate && !result[i].isTeamlist && !result[i].isProjectgrouplist && !result[i].isSearchList) {
+                    result[i]['isLoading'] = false;
+                    self.tasklists.push(result[i]);
+                }
+            }
 
-
-
-        if($stateParams.listid === '' || $stateParams.listid === undefined) {
-            self.iderror = true;
             self.isLoading = false;
-        }
-        else {
-            self.currentUser = taskService.getCurrentUser();
-            if (self.currentUser.error) {
-                taskService.requestCurrentUser().then(function (user) {
-                    self.currentUser = user;
-                    loadTasklist();
-                });
-            }
-            else {
-                loadTasklist();
-            }
-        }
+        });
 
 
-        function loadTasklist() {
-            self.tasklist = $sessionStorage.tasklist;
-            self.tasks = self.tasklist.tasks;
-            self.isLoading = false;
-            console.log('### USER | TAKS ###', self.currentUser, self.tasks);
-        }
+        self.openList = function(list) {
+            list.isLoading = true;
+
+            $sessionStorage.tasklist = null;
+            widgetState.go('tasks', {listid: list.id, taskid: null});
+
+            /*
+            taskService.readTaskList(list.id).then(function (result) {
+                $sessionStorage.tasklist = result;
+                if (result.error === undefined) {
+
+                    taskService.setTasks(result.tasks);
+                    console.log('###', list.id, result);
 
 
-
-        self.canDelete = function() {
-            return (!self.tasklist.privateList && !self.tasklist.teamList && !self.tasklist.projectGroupList && self.currentUser.openId === self.tasklist.admin);
-        };
-
-
-        self.delete = function () {
-            widgetState.go('detail.listdelete', { listid: $stateParams.listid, taskid: 'none' });
+                }
+                list.isLoading = false;
+            });
+            */
         };
     }
 

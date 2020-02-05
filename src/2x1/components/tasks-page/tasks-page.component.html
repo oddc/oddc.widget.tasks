@@ -6,20 +6,19 @@
         </h1>
         <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
             <div role="group" class="btn-group tab-group btn-group-sm" style="margin-left: 42%;">
-                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.edit">Details</button>
-                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.comments" ng-if="!ctrl.createTask">Kommentare</button>
-                <button class="tab" type="button" ui-sref-active="active" ui-sref="detail.files" ng-if="!ctrl.createTask">Dateien</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="tasks.task">Details</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="tasks.comments" ng-if="!ctrl.createTask">Kommentare</button>
+                <button class="tab" type="button" ui-sref-active="active" ui-sref="tasks.files" ng-if="!ctrl.createTask">Dateien</button>
             </div>
             <button class="button-add icon-widget-plus" ng-click="ctrl.add()"></button>
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
-        <div class="alert alert-danger" ng-if="!ctrl.loading && ctrl.error"
-             ng-bind="ctrl.errorMessage"></div>
+        <div class="alert alert-danger" ng-if="!ctrl.loading && ctrl.error" ng-bind="ctrl.errorMessage"></div>
         <div class="col-xs-5" style="height:100%;">
             <od-scrollbar>
 
-                <oddc-tasklist ng-if="!ctrl.loading && !ctrl.error"></oddc-tasklist>
+                <tasks ng-if="!ctrl.loading && !ctrl.error"></tasks>
 
             </od-scrollbar>
         </div>

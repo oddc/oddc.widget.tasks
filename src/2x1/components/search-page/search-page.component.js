@@ -22,7 +22,7 @@
 
 
         vm.back = function () {
-            widgetState.go('task.edit', {listid: ''});
+            widgetState.go('tasklist.view', {listid: ''});
         };
 
     }

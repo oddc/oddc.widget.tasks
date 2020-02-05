@@ -4,52 +4,48 @@
 
     angular
         .module('oddc.widget.tasks')
-        .component('tasksPage', {
-            templateUrl: 'src/2x1/components/tasks-page/tasks-page.component.html',
-            controller: tasksPageController,
+        .component('tasklistPage', {
+            templateUrl: 'src/2x1/components/tasklist-page/tasklist-page.component.html',
+            controller: tasklistPageController,
             controllerAs: 'ctrl'
         });
 
-    tasksPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', '$stateParams'];
-    function tasksPageController($log, $state, taskService, widgetState, $stateParams) {
+    tasklistPageController.$inject = ['$log', '$state', 'taskService', 'widgetState', 'eventService'];
+    function tasklistPageController($log, $state, taskService, widgetState, eventService) {
         var vm = this;
         vm.service = taskService;
         vm.tasks = [];
         vm.newTask = '';
         vm.loading = true;
-        vm.error = false;
+        vm.error = '';
         vm.errorMessage = null;
-        vm.tasklist = {};
-        vm.taskid = '';
+        vm.tasklist = null;
         vm.$onInit = $onInit;
+        vm.errorStr = '';
+        vm.state = $state;
 
+        eventService.addEventListener();
 
         function $onInit() {
-            vm.taskid = $stateParams.taskid;
             vm.service.setColumns(2);
+            if (vm.service.getCurrentUser() === null) {
+                vm.loading = true;
+                vm.service
+                    .requestCurrentUser()
+                    .then(onGetCurrentUserSuccess)
+                    .then(onRequestTasksSuccess)
+                    .catch(OnError)
+                    .finally(onDone);
+            } else {
+                vm.loading = false;
+            }
 
-            vm.service
-                .requestCurrentUser()
-                .then(onGetCurrentUserSuccess)
-                .then(onGetTasklist)
-                .then(onRequestTasksSuccess)
-                .catch(OnError)
-                .finally(onDone);
-
-
-            widgetState.setBackButtonState('tasklist.view', { listid: '' });
+            widgetState.setBackButtonState(null);
 
             function onGetCurrentUserSuccess() {
                 if (vm.service.getTasks().length === 0) {
                     return vm.service.requestTasks();
                 }
-            }
-
-            function onGetTasklist() {
-                return vm.service.readTaskList($stateParams.listid).then(function (result) {
-                    vm.tasklist = result;
-                    return vm.tasklist;
-                });
             }
 
             function onRequestTasksSuccess() {
@@ -78,12 +74,9 @@
         }
 
 
-        vm.add = function () {
-            if ($stateParams.listid !== '') {
-                $state.go('tasks.task', {listid: $stateParams.listid, taskid: "new"});
-            }
+        vm.addNewList = function () {
+            $state.go('tasklist.add');
         };
-
     }
 
 })();
