@@ -6,8 +6,8 @@
         </h1>
         <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
             <div role="group" class="btn-group tab-group btn-group-sm" style="margin-left: 42%;">
-                <button class="tab" type="button" ui-sref-active="active" ui-sref="tasks.task" ng-if="!ctrl.noTask()">Details</button>
-                <button class="tab" type="button" ui-sref-active="active" ui-sref="tasks.comments" ng-if="!ctrl.newTask() && !ctrl.noTask()">Kommentare</button>
+                <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToDetail();" ng-if="!ctrl.noTask()">Details</button>
+                <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToComment();" ng-if="!ctrl.newTask() && !ctrl.noTask()">Kommentare</button>
                 <button class="tab" type="button" ui-sref-active="active" ui-sref="tasks.files" ng-if="!ctrl.newTask() && !ctrl.noTask()">Dateien</button>
             </div>
             <button class="button-add icon-widget-plus" ng-click="ctrl.add()"></button>

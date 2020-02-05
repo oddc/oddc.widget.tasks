@@ -79,7 +79,7 @@
 
         vm.add = function () {
             if ($stateParams.listid !== '') {
-                $state.go('tasks.task', {listid: $stateParams.listid, taskid: "new"});
+                widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: "new"});
             }
         };
 
@@ -92,6 +92,17 @@
         vm.noTask = function() {
             return $stateParams.taskid === undefined || $stateParams.taskid === '';
         };
+
+
+        vm.goToDetail = function () {
+            widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: $stateParams.taskid});
+        };
+
+
+        vm.goToComment = function () {
+            widgetState.go('tasks.comments', {listid: $stateParams.listid, taskid: $stateParams.taskid});
+        };
+
 
     }
 

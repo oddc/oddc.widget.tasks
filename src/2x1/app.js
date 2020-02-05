@@ -56,7 +56,7 @@
                 template: '<task></task>'
             })
             .state('tasks.comments', {
-                url: '/comments',
+                url: '/comments/:taskid',
                 template: '<task-comment></task-comment>'
             })
             .state('tasks.delete', {

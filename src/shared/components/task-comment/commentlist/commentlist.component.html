@@ -1,0 +1,14 @@
+<od-scrollbar style="height: 292px;">
+
+    <div ng-if="commentlist.comments.length == 0" class="col-md-12">
+        <div style="padding: 15px; height: 290px;">Jetzt der Erste sein!</div>
+    </div>
+
+    <ul ng-if="commentlist.comments.length > 0" class="chats p-0">
+        <li oddc-chat-bubble
+            message="comment"
+            class="in"
+            ng-repeat="comment in commentlist.comments | orderBy: 'createdAt'"></li>
+    </ul>
+
+</od-scrollbar>
