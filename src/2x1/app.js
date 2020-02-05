@@ -3,11 +3,21 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload', 'ngStorage'])
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload', 'ngStorage', 'ui-notification'])
         .config(stateMashineConfig);
 
-    stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function stateMashineConfig($stateProvider, $urlRouterProvider) {
+    stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider', 'NotificationProvider'];
+    function stateMashineConfig($stateProvider, $urlRouterProvider, NotificationProvider) {
+        NotificationProvider.setOptions({
+            delay: 3000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'right',
+            positionY: 'top'
+        });
+
         $stateProvider
             .state('tasklist', {
                 url: '/tasklist',

@@ -9,8 +9,8 @@
             controllerAs: 'ctrl',
         });
 
-    taskController.$inject = ['widgetState', 'taskService', '$stateParams', '$state', '$sessionStorage', '$q', '$timeout'];
-    function taskController(widgetState, taskService, $stateParams, $state, $sessionStorage, $q, $timeout) {
+    taskController.$inject = ['widgetState', 'taskService', '$stateParams', '$sessionStorage', '$q', '$timeout', 'Notification'];
+    function taskController(widgetState, taskService, $stateParams, $sessionStorage, $q, $timeout, Notification) {
         var vm = this;
         vm.service = taskService;
         vm.$onInit = $onInit;
@@ -145,7 +145,8 @@
                         vm.error = '';
                         $sessionStorage.task = vm.taskObj;
                         changeValues();
-                        widgetState.go('detail.view', {listid: $stateParams.listid, taskid: ''});
+                        Notification.primary('Änderungen wurden gespeichert!');
+                        widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: ''});
                     }
                     else {
                         vm.error = result.message;
@@ -155,7 +156,6 @@
             else {
                 vm.service.createTask(vm.taskObj).then(function (result) {
                     vm.taskObj = result;
-                    console.log('$$$', result);
                     widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: result.id});
                 });
             }
