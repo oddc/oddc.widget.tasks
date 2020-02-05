@@ -46,6 +46,7 @@
             important: false
         };
 
+
         widgetState.setBackButtonState('tasklist.view', { listid: '' });
 
         function $onInit() {
@@ -58,6 +59,8 @@
             .then(loadSubData)
             .then(function () {
                 $timeout(function () {
+                    console.log('TASK', vm.taskObj);
+                    console.log('USERS', vm.users);
                     vm.isLoading = false;
                 }, 500);
             });
@@ -65,7 +68,7 @@
 
 
         function loadSubData() {
-            angular.forEach(vm.taskObj.userIds, function(obj) {
+            angular.forEach(vm.taskObj.userIds, function (obj) {
                 vm.service.readUser(obj).then(function (user) {
                     vm.users.push(user);
                 });
@@ -79,7 +82,14 @@
                     if (result.error) {
                         vm.error = result.message;
                     }
+
                     vm.taskObj = result;
+                    /*
+                    if (!vm.isnew) {
+                        vm.taskObj['userIds'] = vm.taskObj.writingUserIds;
+                    }
+                    */
+
                     $sessionStorage.task = vm.taskObj;
                     return true;
                 });
@@ -145,6 +155,7 @@
             else {
                 vm.service.createTask(vm.taskObj).then(function (result) {
                     vm.taskObj = result;
+                    console.log('$$$', result);
                     widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: result.id});
                 });
             }
@@ -182,7 +193,7 @@
         };
 
         vm.addSubscriber = function () {
-            widgetState.go('detail.subscriber', { listid: $stateParams.listid, taskid: $stateParams.taskid });
+            widgetState.go('tasks.subscriber', { listid: $stateParams.listid, taskid: $stateParams.taskid });
         };
 
 
@@ -198,7 +209,9 @@
 
 
         vm.canRemove = function () {
-            return vm.users.length > 1;
+            //return vm.users.length > 1;
+
+            return true;  //Admin User wird nicht angezeigt
         };
 
     }

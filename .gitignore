@@ -12,3 +12,5 @@ node_modules
 *.orig
 widgetSetup.jar
 package-lock.json
+/1x1.html
+/2x1.html

@@ -52,6 +52,10 @@
             .state('tasks.delete', {
                 url: '/delete/:taskid',
                 template: '<task-delete></task-delete>'
+            })
+            .state('tasks.subscriber', {
+                url: '/subscriber/:taskid',
+                template: '<task-add-subscriber></task-add-subscriber>',
             });
 
         $urlRouterProvider.otherwise('/tasklist/view/');

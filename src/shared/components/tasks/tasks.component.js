@@ -25,8 +25,6 @@
 
 
         self.$onInit = function() {
-            console.log('TTT');
-
             if($stateParams.listid === '' || $stateParams.listid === undefined) {
                 self.iderror = true;
                 self.isLoading = false;
