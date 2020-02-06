@@ -3,17 +3,18 @@
     <information>
         <name lang="de-DE">Aufgaben</name>
 		<shortname lang="de-DE">Aufgaben</shortname>
-        <version>3.0.1</version>
+        <version>3.0.2</version>
         <author>
+            <name>opta data digital communication GmbH</name>
             <company>opta data Gruppe</company>
             <telephone>0201 / 3 19 60</telephone>
             <fax>0201 89074499</fax>
-            <email>service@optadata-gruppe.de</email>
+            <email>od1-support@optadata.de</email>
             <web>http://www.optadata-gruppe.de</web>
         </author>
         <developer>
-            <name>Sven Strgar</name>
-            <email>s.strgar@optadata-gruppe.de</email>
+            <name>Dennis Mais</name>
+            <email>d.mais@optadata-gruppe.de</email>
         </developer>
         <summary lang="de-DE">
             <image>/ressources/images/small.png</image>
@@ -43,8 +44,9 @@
                 <styles>
                     <style>/ressources/plugins/angular-slick/slick.css</style>
                     <style>/ressources/plugins/angular-slick/slick-theme.css</style>
+                    <style>/ressources/plugins/angular-notification/angular-ui-notification.css</style>
+                    <style>/src/shared/styles/glyphicons.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
-                    <style>/src/1x1/styles/animations.css</style>
                 </styles>
                 <scripts>
                     <script>/ressources/plugins/angular-slick/slick.min.js</script>
@@ -53,40 +55,39 @@
                     <script>/ressources/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
                     <script>/ressources/plugins/angular-file-upload/ng-file-upload.min.js</script>
                     <script>/ressources/plugins/angular-ng-storage/ngStorage.min.js</script>
+                    <script>/ressources/plugins/angular-notification/angular-ui-notification.js</script>
                     <script>/src/1x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
-                    <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
                     <script>/src/shared/components/tasklist/tasklist.component.js</script>
                     <script>/src/shared/components/tasklist-add/tasklist-add.component.js</script>
-                    <script>/src/shared/components/tasklist-edit/tasklist-edit.component.js</script>
                     <script>/src/shared/components/tasklist-delete/tasklist-delete.component.js</script>
-                    <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
-                    <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
-                    <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
-                    <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
-                    <script>/src/shared/components/detail-view/detail-view.component.js</script>
-                    <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
-                    <script>/src/shared/components/tasks-groups/tasks-groups.component.js</script>
-                    <script>/src/shared/components/task-view/task-view.component.js</script>
-                    <script>/src/shared/components/task-add/task-add.component.js</script>
-                    <script>/src/shared/components/task-files/task-files.component.js</script>
-                    <script>/src/shared/components/task-files-upload/task-files-upload.component.js</script>
-                    <script>/src/shared/components/task-files-details/task-files-details.component.js</script>
-                    <script>/src/shared/components/task-files-delete/task-files-delete.component.js</script>
+                    <script>/src/shared/components/tasks/tasks.component.js</script>
+                    <script>/src/shared/components/tasks/item/tasklist-item.component.js</script>
+                    <script>/src/shared/components/task/task.component.js</script>
+                    <script>/src/shared/components/task-delete/task-delete.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/task-add-subscriber.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
-                    <script>/src/shared/components/search-view/search-view.component.js</script>
+                    <script>/src/shared/components/task-comment/task-comment.component.js</script>
+                    <script>/src/shared/components/task-comment/commentlist/commentlist.component.js</script>
+                    <script>/src/shared/components/task-comment/commentlist/chatbubble/chatbubble.component.js</script>
+                    <script>/src/shared/components/task-files/task-files.component.js</script>
+                    <script>/src/shared/components/task-files-details/task-files-details.component.js</script>
+                    <script>/src/shared/components/task-files-upload/task-files-upload.component.js</script>
+                    <script>/src/shared/components/task-files-delete/task-files-delete.component.js</script>
                     <script>/src/shared/components/search-result/search-result.component.js</script>
-                    <script>/src/1x1/components/list-page/list-page.component.js</script>
+                    <script>/src/shared/components/search-view/search-view.component.js</script>
+                    <script>/src/1x1/components/tasklist-page/tasklist-page.component.js</script>
                     <script>/src/1x1/components/search-page/search-page.component.js</script>
-                    <script>/src/1x1/components/edit-page/edit-page.component.js</script>
+                    <script>/src/1x1/components/tasks-page/tasks-page.component.js</script>
                 </scripts>
             </template>
             <template cols="2" rows="1" markup="/src/2x1/app.html">
                 <styles>
                     <style>/ressources/plugins/angular-slick/slick.css</style>
                     <style>/ressources/plugins/angular-slick/slick-theme.css</style>
+                    <style>/ressources/plugins/angular-notification/angular-ui-notification.css</style>
+                    <style>/src/shared/styles/glyphicons.css</style>
                     <style>/src/shared/styles/tasks.widget.css</style>
                 </styles>
                 <scripts>
@@ -96,34 +97,31 @@
                     <script>/ressources/plugins/angular-file-upload/ng-file-upload-shim.min.js</script>
                     <script>/ressources/plugins/angular-file-upload/ng-file-upload.min.js</script>
                     <script>/ressources/plugins/angular-ng-storage/ngStorage.min.js</script>
+                    <script>/ressources/plugins/angular-notification/angular-ui-notification.js</script>
                     <script>/src/2x1/app.js</script>
                     <script>/src/shared/services/tasks.service.js</script>
                     <script>/src/shared/services/event.service.js</script>
-                    <script>/src/shared/components/tasklist/item/tasklist-item.component.js</script>
                     <script>/src/shared/components/tasklist/tasklist.component.js</script>
                     <script>/src/shared/components/tasklist-add/tasklist-add.component.js</script>
-                    <script>/src/shared/components/tasklist-edit/tasklist-edit.component.js</script>
                     <script>/src/shared/components/tasklist-delete/tasklist-delete.component.js</script>
-                    <script>/src/shared/components/detail-assign/detail-assign.component.js</script>
-                    <script>/src/shared/components/detail-comment/commentlist/chatbubble/chatbubble.component.js</script>
-                    <script>/src/shared/components/detail-comment/commentlist/commentlist.component.js</script>
-                    <script>/src/shared/components/detail-comment/detail-comment.component.js</script>
-                    <script>/src/shared/components/detail-view/detail-view.component.js</script>
-                    <script>/src/shared/components/detail-delete/detail-delete.component.js</script>
-                    <script>/src/shared/components/tasks-groups/tasks-groups.component.js</script>
-                    <script>/src/shared/components/task-view/task-view.component.js</script>
-                    <script>/src/shared/components/task-add/task-add.component.js</script>
-                    <script>/src/shared/components/task-files/task-files.component.js</script>
-                    <script>/src/shared/components/task-files-upload/task-files-upload.component.js</script>
-                    <script>/src/shared/components/task-files-details/task-files-details.component.js</script>
-                    <script>/src/shared/components/task-files-delete/task-files-delete.component.js</script>
+                    <script>/src/shared/components/tasks/tasks.component.js</script>
+                    <script>/src/shared/components/tasks/item/tasklist-item.component.js</script>
+                    <script>/src/shared/components/task/task.component.js</script>
+                    <script>/src/shared/components/task-delete/task-delete.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/task-add-subscriber.component.js</script>
                     <script>/src/shared/components/task-add-subscriber/inarray.filter.js</script>
-                    <script>/src/shared/components/search-view/search-view.component.js</script>
+                    <script>/src/shared/components/task-comment/task-comment.component.js</script>
+                    <script>/src/shared/components/task-comment/commentlist/commentlist.component.js</script>
+                    <script>/src/shared/components/task-comment/commentlist/chatbubble/chatbubble.component.js</script>
+                    <script>/src/shared/components/task-files/task-files.component.js</script>
+                    <script>/src/shared/components/task-files-details/task-files-details.component.js</script>
+                    <script>/src/shared/components/task-files-upload/task-files-upload.component.js</script>
+                    <script>/src/shared/components/task-files-delete/task-files-delete.component.js</script>
                     <script>/src/shared/components/search-result/search-result.component.js</script>
-                    <script>/src/2x1/components/indexpage/indexpage.component.js</script>
-                    <script>/src/2x1/components/tasks-page/tasks-page.component.js</script>
+                    <script>/src/shared/components/search-view/search-view.component.js</script>
+                    <script>/src/2x1/components/tasklist-page/tasklist-page.component.js</script>
                     <script>/src/2x1/components/search-page/search-page.component.js</script>
+                    <script>/src/2x1/components/tasks-page/tasks-page.component.js</script>
                 </scripts>
             </template>
         </templates>
