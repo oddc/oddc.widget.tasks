@@ -162,7 +162,7 @@
 
 
         vm.cancel = function () {
-            widgetState.go('tasks.list', {listid: $stateParams.listid });
+            widgetState.go('tasks.list', {listid: $stateParams.listid, taskid: '' });
         };
 
 

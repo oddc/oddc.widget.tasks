@@ -1,11 +1,13 @@
-<od-widget widget-title="Aufgaben" template="tpl-small-header">
+<od-widget widget-title="Aufgaben - {{ctrl.tasklist.title}}" template="tpl-small-header">
     <od-widget-header>
-        <h1 style="color: rgba(255, 255, 255, 0.8);">
+
+        <h1 style="color: rgba(255, 255, 255, 0.8);" ng-if="ctrl.noTask()">
             <i class="icon-folder-open" style="vertical-align: middle; margin-right: 5px;"></i>
             {{ctrl.tasklist.title}}
         </h1>
+
         <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
-            <div role="group" class="btn-group tab-group btn-group-sm" style="margin-left: 42%;">
+            <div role="group" class="btn-group tab-group btn-group-sm">
                 <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToDetail();" ng-if="!ctrl.noTask()">Details</button>
                 <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToComment();" ng-if="!ctrl.newTask() && !ctrl.noTask()">Kommentare</button>
                 <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToFiles();" ng-if="!ctrl.newTask() && !ctrl.noTask()">Dateien</button>
