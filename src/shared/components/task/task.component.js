@@ -47,7 +47,11 @@
         };
 
 
-        widgetState.setBackButtonState('tasks.list', { listid: $stateParams.listid, taskid: '' });
+        if (vm.isempty) {
+            widgetState.setBackButtonState('tasklist.view', { listid: '' });
+        } else {
+            widgetState.setBackButtonState('tasks.list', { listid: $stateParams.listid, taskid: '' });
+        }
 
         function $onInit() {
             if (vm.isempty) {
