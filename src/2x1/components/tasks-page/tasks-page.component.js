@@ -104,6 +104,11 @@
         };
 
 
+        vm.goToFiles = function () {
+            widgetState.go('tasks.files', {listid: $stateParams.listid, taskid: $stateParams.taskid});
+        };
+
+
     }
 
 })();

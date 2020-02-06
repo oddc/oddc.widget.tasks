@@ -66,6 +66,22 @@
             .state('tasks.subscriber', {
                 url: '/subscriber/:taskid',
                 template: '<task-add-subscriber></task-add-subscriber>',
+            })
+            .state('tasks.files', {
+                url: '/files/:taskid',
+                template: '<task-files></task-files>'
+            })
+            .state('tasks.filesdetails', {
+                url: '/files/:taskid/details/:fileid',
+                template: '<task-files-details></task-files-details>',
+            })
+            .state('tasks.fileupload', {
+                url: '/files/:taskid/upload',
+                template: '<task-files-upload></task-files-upload>',
+            })
+            .state('tasks.filedelete', {
+                url: '/files/:taskid/delete/:fileid',
+                template: '<task-files-delete></task-files-delete>'
             });
 
         $urlRouterProvider.otherwise('/tasklist/view/');
