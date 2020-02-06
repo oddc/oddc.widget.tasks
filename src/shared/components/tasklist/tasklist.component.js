@@ -65,7 +65,7 @@
             list.isLoading = true;
 
             $sessionStorage.tasklist = null;
-            widgetState.go('tasks.task', {listid: list.id, taskid: ''});
+            widgetState.go('tasks.list', {listid: list.id, taskid: ''});
 
             /*
             taskService.readTaskList(list.id).then(function (result) {

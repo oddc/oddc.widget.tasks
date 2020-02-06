@@ -2,16 +2,24 @@
     <od-widget-header>
         <navigation-slot>
             <div role="group" class="btn-group tab-group btn-group-sm">
-                <button class="tab" type="button" ng-click="ctrl.goToList()">Meine Listen</button>
-                <button class="tab active" type="button" ui-sref="search.view">Suche</button>
+                <button class="tab" type="button" ng-click="ctrl.back()">Meine Listen</button>
+                <button class="tab active" type="button">Suche</button>
             </div>
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
-        <od-scrollbar>
 
-            <ui-view></ui-view>
+        <div class="col-xs-12" style="height:100%;">
+            <od-scrollbar>
 
-        </od-scrollbar>
+                <div style="margin: 15px;" ng-if="ctrl.showBtn()">
+                    <button class="btn btn-primary" ui-sref="search.view">Zurück zur Suche</button>
+                </div>
+
+                <ui-view></ui-view>
+
+            </od-scrollbar>
+        </div>
+
     </od-widget-content>
 </od-widget>

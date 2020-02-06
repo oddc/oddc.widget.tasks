@@ -16,11 +16,11 @@
         self.tasklist = $sessionStorage.tasklist;
 
 
-        widgetState.setBackButtonState('tasklist.view', { listid: '' });
+        widgetState.setBackButtonState('tasks.list', { listid: $stateParams.listid });
 
 
         self.cancel = function () {
-            widgetState.go('tasks.task', { listid: $stateParams.listid, taskid: '' });
+            widgetState.go('tasks.list', { listid: $stateParams.listid, taskid: '' });
         };
 
 

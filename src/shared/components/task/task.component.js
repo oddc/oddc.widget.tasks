@@ -47,7 +47,7 @@
         };
 
 
-        widgetState.setBackButtonState('tasklist.view', { listid: '' });
+        widgetState.setBackButtonState('tasks.list', { listid: $stateParams.listid, taskid: '' });
 
         function $onInit() {
             if (vm.isempty) {
@@ -68,10 +68,10 @@
 
 
         function loadSubData() {
-            angular.forEach(vm.taskObj.userIds, function (obj) {
-                vm.service.readUser(obj).then(function (user) {
-                    vm.users.push(user);
-                });
+            angular.forEach(vm.taskObj.users, function (obj) {
+                if (obj.openId !== vm.taskObj.userId) {
+                    vm.users.push(obj);
+                }
             });
         }
 
@@ -84,11 +84,6 @@
                     }
 
                     vm.taskObj = result;
-                    /*
-                    if (!vm.isnew) {
-                        vm.taskObj['userIds'] = vm.taskObj.writingUserIds;
-                    }
-                    */
 
                     $sessionStorage.task = vm.taskObj;
                     return true;
@@ -98,7 +93,7 @@
                 var user = vm.service.getCurrentUser();
                 vm.taskObj.userId = user.openId;
                 //vm.taskObj.users.push({ userId: user.userId, openId: user.openId});
-                vm.taskObj.userIds.push(user.userId);
+                //vm.taskObj.userIds.push(user.userId);
 
                 return $q.resolve(true);
             }
@@ -146,7 +141,7 @@
                         $sessionStorage.task = vm.taskObj;
                         changeValues();
                         Notification.primary('Änderungen wurden gespeichert!');
-                        widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: ''});
+                        widgetState.go('tasks.list', {listid: $stateParams.listid, taskid: ''});
                     }
                     else {
                         vm.error = result.message;
@@ -156,14 +151,14 @@
             else {
                 vm.service.createTask(vm.taskObj).then(function (result) {
                     vm.taskObj = result;
-                    widgetState.go('tasks.task', {listid: $stateParams.listid, taskid: result.id});
+                    widgetState.go('tasks.list', {listid: $stateParams.listid, taskid: ''});
                 });
             }
         };
 
 
         vm.cancel = function () {
-            widgetState.go('tasks', {listid: $stateParams.listid });
+            widgetState.go('tasks.list', {listid: $stateParams.listid });
         };
 
 

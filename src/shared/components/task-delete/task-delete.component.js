@@ -39,7 +39,7 @@
                             }
                         }
 
-                        $state.go('tasks.task', {listid: $stateParams.listid, taskid: ''});
+                        $state.go('tasks.list', {listid: $stateParams.listid, taskid: ''});
                     }
 
                 });

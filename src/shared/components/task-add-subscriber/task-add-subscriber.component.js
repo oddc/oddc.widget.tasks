@@ -16,7 +16,6 @@
         vm.users = [];
         vm.tasklist = $sessionStorage.tasklist;
         vm.currentUsers = $sessionStorage.task.userIds === undefined ? [] : $sessionStorage.task.userIds;
-        console.log($sessionStorage.task.userIds, $sessionStorage.task);
         vm.task = $sessionStorage.task;
         vm.error = '';
 
@@ -40,8 +39,8 @@
         vm.addUser = function (user) {
             clearList();
 
-            if (vm.task.userIds.indexOf(user.id) === -1) {
-                vm.task.userIds.push(user.id);
+            if (vm.task.userIds.indexOf(user.openid) === -1) {
+                vm.task.userIds.push(user.openid);
             }
 
             taskService.updateTask(vm.task).then(function (result) {
@@ -81,7 +80,7 @@
                             vm.users.push(result[i]);
                         }
                     }
-                    console.log('+++', result);
+                    console.log(vm.currentUsers, vm.users);
                     return true;
                 });
             }

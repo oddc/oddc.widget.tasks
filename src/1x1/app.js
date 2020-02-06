@@ -3,72 +3,34 @@
     'use strict';
 
     angular
-        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload', 'ngStorage'])
-        .config(stateMashineConfig)
-        .run(runBlock);
+        .module('oddc.widget.tasks', ['widgetbuilder', 'slick', 'base64', 'ngFileUpload', 'ngStorage', 'ui-notification'])
+        .config(stateMashineConfig);
 
-    stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-    function stateMashineConfig($stateProvider, $urlRouterProvider) {
+    stateMashineConfig.$inject = ['$stateProvider', '$urlRouterProvider', 'NotificationProvider'];
+    function stateMashineConfig($stateProvider, $urlRouterProvider, NotificationProvider) {
+        NotificationProvider.setOptions({
+            delay: 3000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'right',
+            positionY: 'top'
+        });
+
+
         $stateProvider
-            .state('task', {
-                url: '/tasklist/:listid',
-                template: '<task-list-page></task-list-page>',
+            .state('tasklist', {
+                url: '/tasklist',
+                template: '<tasklist-page></tasklist-page>'
             })
-            .state('task.edit', {
-                url: '/edit',
-                template: '<tasklist-edit></tasklist-edit>',
+            .state('tasklist.view', {
+                url: '/view/:listid',
+                template: '<tasklist></tasklist>'
             })
-            .state('task.delete', {
-                url: '/delete',
-                template: '<tasklist-delete></tasklist-delete>',
-            })
-            .state('task.add', {
+            .state('tasklist.add', {
                 url: '/add',
-                template: '<tasklist-add></tasklist-add>',
-            })
-            .state('detail', {
-                url: '/tasks/{listid}/{taskid}',
-                template: '<edit-page></edit-page>'
-            })
-            .state('detail.listdelete', {
-                url: '/tasklist/delete',
-                template: '<tasklist-delete></tasklist-delete>',
-            })
-            .state('detail.view', {
-                url: '/view',
-                template: '<oddc-tasklist></oddc-tasklist>'
-            })
-            .state('detail.edit', {
-                url: '/edit',
-                template: '<task-add></task-add>'
-            })
-            .state('detail.files', {
-                url: '/files',
-                template: '<task-files></task-files>'
-            })
-            .state('detail.comments', {
-                url: '/comments',
-                template: '<detail-comment></detail-comment>'
-            })
-            .state('detail.delete', {
-                url: '/delete',
-                template: '<detail-delete></detail-delete>'
-            })
-            .state('detail.filesdetails', {
-                url: '/files/details/{fileid}',
-                template: '<task-files-details></task-files-details>',
-            })
-            .state('detail.fileupload', {
-                url: '/files/upload',
-                template: '<task-files-upload></task-files-upload>',
-            })
-            .state('detail.filedelete', {
-                url: '/files/delete/{fileid}',
-                template: '<task-files-delete></task-files-delete>'
-            })
-            .state('detail.subscriber', {
-                url: '/add/subscriber',
-                template: '<task-add-subscriber></task-add-subscriber>',
+                template: '<tasklist-add></tasklist-add>'
             })
             .state('search', {
                 url: '/search',
@@ -81,12 +43,57 @@
             .state('search.result', {
                 url: '/result/{search}',
                 template: '<search-result></search-result>',
+            })
+            .state('tasks', {
+                url: '/tasks/:listid',
+                template: '<tasks-page></tasks-page>'
+            })
+            .state('tasks.list', {
+                url: '/list/:listid',
+                template: '<tasks></tasks>'
+            })
+            .state('tasks.listdelete', {
+                url: '/listdelete',
+                template: '<tasklist-delete></tasklist-delete>'
+            })
+            .state('tasks.task', {
+                url: '/task/:taskid',
+                template: '<task></task>'
+            })
+            .state('tasks.comments', {
+                url: '/comments/:taskid',
+                template: '<task-comment></task-comment>'
+            })
+            .state('tasks.delete', {
+                url: '/delete/:taskid',
+                template: '<task-delete></task-delete>'
+            })
+            .state('tasks.subscriber', {
+                url: '/subscriber/:taskid',
+                template: '<task-add-subscriber></task-add-subscriber>',
+            })
+            .state('tasks.files', {
+                url: '/files/:taskid',
+                template: '<task-files></task-files>'
+            })
+            .state('tasks.filesdetails', {
+                url: '/files/:taskid/details/:fileid',
+                template: '<task-files-details></task-files-details>',
+            })
+            .state('tasks.fileupload', {
+                url: '/files/:taskid/upload',
+                template: '<task-files-upload></task-files-upload>',
+            })
+            .state('tasks.filedelete', {
+                url: '/files/:taskid/delete/:fileid',
+                template: '<task-files-delete></task-files-delete>'
             });
 
 
-        $urlRouterProvider.otherwise('/tasklist/');
+        $urlRouterProvider.otherwise('/tasklist/view/');
     }
 
+    /*
     runBlock.$inject = ['$rootScope', 'widgetState'];
     function runBlock($rootScope, widgetState) {
         $rootScope.$on('$stateChangeStart', onStateChangeStart);
@@ -100,4 +107,5 @@
             $rootScope.$broadcast('scroll.bottom');
         }
     }
+    */
 })();

@@ -1,19 +1,20 @@
 <od-widget widget-title="Aufgaben" template="tpl-small-header" icon="ressources/images/icon.png">
     <od-widget-header>
-        <navigation-slot>
+        <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
             <div role="group" class="btn-group tab-group btn-group-sm">
-                <button class="tab active" type="button" ng-click="ctrl.goToList();">Meine Listen</button>
+                <button class="tab active" type="button">Meine Listen</button>
                 <button class="tab" type="button" ui-sref="search.view">Suche</button>
             </div>
-            <button class="button-add icon-widget-plus" ng-click="ctrl.openNewList()"></button>
+            <button class="button-add icon-widget-plus" ng-click="ctrl.addNewList()"></button>
         </navigation-slot>
     </od-widget-header>
     <od-widget-content nospacing>
+
         <od-scrollbar>
 
             <ui-view></ui-view>
-            <oddc-tasks-groups on-select-tasklist="ctrl.onSelectTasklist(id)" ng-if="ctrl.state.current.name === 'task'"></oddc-tasks-groups>
 
         </od-scrollbar>
+
     </od-widget-content>
 </od-widget>

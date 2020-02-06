@@ -10,24 +10,24 @@
             controllerAs: 'ctrl'
         });
 
-    searchPageController.$inject = ['widgetState', '$state', '$scope'];
-    function searchPageController(widgetState, $state, $scope) {
+    searchPageController.$inject = ['taskService', 'widgetState', '$stateParams', '$state'];
+    function searchPageController(taskService, widgetState, $stateParams, $state) {
         var vm = this;
+        vm.service = taskService;
+        vm.$onInit = $onInit;
 
-        $scope.$watch(function () { return $state.current.name; }, function () {
-            if ($state.current.name === 'search.result') {
-                widgetState.setBackButtonState('search.view');
-            }
-            else {
-                widgetState.setBackButtonState(null);
-            }
-        });
+        function $onInit() {
 
+        }
 
-        vm.goToList = function () {
-            $state.go('task', {listid: ''});
+        vm.back = function () {
+            widgetState.go('tasklist.view', {listid: ''});
         };
 
+
+        vm.showBtn = function () {
+            return $state.current.name === 'search.result';
+        };
 
     }
 

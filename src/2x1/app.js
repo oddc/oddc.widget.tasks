@@ -47,6 +47,10 @@
                 url: '/tasks/:listid',
                 template: '<tasks-page></tasks-page>'
             })
+            .state('tasks.list', {
+                url: '/task/:taskid',
+                template: '<task></task>'
+            })
             .state('tasks.listdelete', {
                 url: '/listdelete',
                 template: '<tasklist-delete></tasklist-delete>'

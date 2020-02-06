@@ -1,0 +1,27 @@
+<od-widget widget-title="Aufgaben" template="tpl-small-header">
+    <od-widget-header>
+        <h1 style="color: rgba(255, 255, 255, 0.8);">
+            <i class="icon-folder-open" style="vertical-align: middle; margin-right: 5px;"></i>
+            {{ctrl.tasklist.title}}
+        </h1>
+        <navigation-slot ng-if="!ctrl.loading && !ctrl.error">
+            <div role="group" class="btn-group tab-group btn-group-sm" style="margin-left: 42%;">
+                <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToDetail();" ng-if="!ctrl.noTask()">Details</button>
+                <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToComment();" ng-if="!ctrl.newTask() && !ctrl.noTask()">Kommentare</button>
+                <button class="tab" type="button" ui-sref-active="active" ng-click="ctrl.goToFiles();" ng-if="!ctrl.newTask() && !ctrl.noTask()">Dateien</button>
+            </div>
+            <button class="button-add icon-widget-plus" ng-click="ctrl.add()"></button>
+        </navigation-slot>
+    </od-widget-header>
+    <od-widget-content nospacing>
+
+        <div class="alert alert-danger" ng-if="!ctrl.loading && ctrl.error" ng-bind="ctrl.errorMessage"></div>
+        <div class="col-xs-12" style="height:340px;overflow:auto;">
+            <od-scrollbar>
+
+                <ui-view></ui-view>
+
+            </od-scrollbar>
+        </div>
+    </od-widget-content>
+</od-widget>

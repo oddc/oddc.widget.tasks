@@ -35,7 +35,6 @@
 
         self.cancel = function () {
             widgetState.go('tasklist.view', {listid: ''});
-            window.location.reload();
         };
 
     }
